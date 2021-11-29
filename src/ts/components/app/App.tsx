@@ -1,13 +1,17 @@
 import React from 'react';
-
 import './index.scss';
-import { Button } from '@material-ui/core';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { store } from '../../store';
+import AppRouter from '../appRouter';
 
 function App(): JSX.Element {
   return (
-    <div className="app">
-      <Button variant="contained">Create awesome app!</Button>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
+    </Provider>
   );
 }
 
