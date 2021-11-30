@@ -1,12 +1,11 @@
 import React from 'react';
-import './index.scss';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { store } from '../../store';
 import AppRouter from '../appRouter';
 import Header from '../header';
-import { theme } from '../../../my-theme';
+import { theme } from '../../theme/theme';
 
 function App(): JSX.Element {
   return (
