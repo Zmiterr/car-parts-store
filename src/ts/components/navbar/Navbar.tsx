@@ -1,12 +1,9 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-
-interface Path {
-  path: string;
-}
+import { RoutesInterface } from '../../router';
 
 interface PathProps {
-  routes: Path[];
+  routes: RoutesInterface[];
 }
 
 const Navbar: FC<PathProps> = ({ routes }) => {
@@ -17,7 +14,7 @@ const Navbar: FC<PathProps> = ({ routes }) => {
           <Link to="/">Home</Link>
           {routes.map((r) => (
             <Link key={r.path} to={r.path}>
-              {r.path}
+              {r.readableName}
             </Link>
           ))}
         </li>
