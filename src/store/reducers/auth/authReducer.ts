@@ -7,7 +7,7 @@ import {
 } from './types';
 import { UserInterface } from '../../../models/UserInterface';
 
-interface AuthState {
+export interface AuthState {
   isAuth: boolean;
   user: UserInterface;
   isLoading: boolean;
@@ -23,7 +23,6 @@ const initialState: AuthState = {
   error: '',
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const authReducer = (state = initialState, action: AuthAction): AuthState => {
   switch (action.type) {
     case AuthActionsTypes.SET_AUTH:

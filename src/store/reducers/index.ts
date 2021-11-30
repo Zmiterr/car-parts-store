@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-// eslint-disable-next-line import/no-cycle
 import { store } from '../index';
 import { authReducer } from './auth/authReducer';
 
