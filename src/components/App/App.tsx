@@ -5,8 +5,8 @@ import { ThemeProvider } from 'styled-components';
 
 // import GlobalStyle from 'theme/global';
 import { store } from '../../store';
-import AppRouter from '../appRouter';
-import Header from '../header';
+import AppRouter from '../App-router';
+import Header from '../Header';
 import { theme } from '../../theme/theme';
 
 function App(): JSX.Element {
