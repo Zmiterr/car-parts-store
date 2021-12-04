@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Login from '../pages/Login';
+import Login from '../pages/Login/Login';
 import Parts from '../pages/Parts';
 import Dealers from '../pages/Dealers';
 import Chat from '../pages/Chat';
