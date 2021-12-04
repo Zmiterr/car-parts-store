@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  
   // ------------------------------------------
   // Base
   //-------------------------------------------
@@ -25,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     overflow-x: hidden;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
   }
 
   img {
