@@ -4,7 +4,7 @@ const theme: DefaultTheme = {
   borderRadius: '5px',
   colors: {
     main: 'tomato',
-    secondary: 'palevioletred',
+    secondary: 'white',
   },
 };
 
