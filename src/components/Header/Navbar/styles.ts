@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledNav = styled.nav`
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.primaryLight};
   display: flex;
   flex-wrap: wrap;
   padding-left: 0;
