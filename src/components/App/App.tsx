@@ -8,6 +8,7 @@ import { store } from '../../store';
 import AppRouter from '../App-router';
 import Header from '../Header';
 import { theme } from '../../theme/theme';
+import Footer from '../Footer';
 
 function App(): JSX.Element {
   return (
@@ -17,6 +18,7 @@ function App(): JSX.Element {
         <BrowserRouter>
           <Header />
           <AppRouter />
+          <Footer />
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
