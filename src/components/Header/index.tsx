@@ -1,3 +1,3 @@
-import AppRouter from './Header';
+import Header from './Header';
 
-export default AppRouter;
+export default Header;

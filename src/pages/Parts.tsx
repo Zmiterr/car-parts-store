@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
+import { StyledContainer } from '../theme/container';
 
 const Parts: FC = () => {
-  return <div>This is parts page</div>;
+  return <StyledContainer>This is parts page</StyledContainer>;
 };
 
 export default Parts;
