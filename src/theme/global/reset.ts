@@ -1,6 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
-
-export const reset = createGlobalStyle`
+export const reset = `
   a {
     background: transparent; // IE10
     text-decoration: none;
