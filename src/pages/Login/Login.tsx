@@ -1,36 +1,20 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
 import { StyledCard, CardBody } from '../../theme/card';
+import { Input } from './styles';
 
-const Input = styled.input.attrs({
-  // type: 'submit',
-  // value: 'Submit',
-})`
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  &:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  }
-  &::placeholder {
-    color: #6c757d;
-    opacity: 1;
-  }
-`;
+interface ILoginData {
+  login: string;
+  password: string;
+}
+
 const Login: FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (loginData: ILoginData) => loginData;
   return (
     <StyledCard>
       <CardBody>
@@ -40,9 +24,12 @@ const Login: FC = () => {
           <input type="radio" value="Customer" name="gender" /> Customer
           <input type="radio" value="Dealer" name="gender" /> Dealer
         </div>
-        <Input type="text" placeholder="login" />
-        <Input type="password" placeholder="password" />
-        <Input type="submit" value="Submit" />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input {...register('login')} /> {/* register an input */}
+          <Input type="password" {...register('password', { required: true })} />
+          {errors.lastName && <p>Last name is required.</p>}
+          <input type="submit" />
+        </form>
       </CardBody>
     </StyledCard>
   );
