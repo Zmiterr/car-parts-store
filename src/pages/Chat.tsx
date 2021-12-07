@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
+import { StyledContainer } from '../theme/container';
 
 const Chat: FC = () => {
-  return <div>This is chat page</div>;
+  return <StyledContainer>This is chat page</StyledContainer>;
 };
 
 export default Chat;

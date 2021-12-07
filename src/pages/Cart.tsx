@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
+import { StyledContainer } from '../theme/container';
 
 const Cart: FC = () => {
-  return <div>This is cart page</div>;
+  return <StyledContainer>This is cart page</StyledContainer>;
 };
 
 export default Cart;

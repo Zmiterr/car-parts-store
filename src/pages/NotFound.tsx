@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
+import { StyledContainer } from '../theme/container';
 
 const NotFound: FC = () => {
-  return <div>This is 404 page</div>;
+  return <StyledContainer>This is 404 page</StyledContainer>;
 };
 
 export default NotFound;
