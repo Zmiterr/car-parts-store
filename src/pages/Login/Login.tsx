@@ -33,10 +33,17 @@ const Input = styled.input.attrs({
 const Login: FC = () => {
   return (
     <StyledCard>
-      <CardBody>This is login page</CardBody>
-      <Input type="text" placeholder="login" />
-      <Input type="password" placeholder="password" />
-      <Input type="submit" value="Submit" />
+      <CardBody>
+        <h2>Login</h2>
+        <p>Dont have an account yet? Register now!</p>
+        <div>
+          <input type="radio" value="Customer" name="gender" /> Customer
+          <input type="radio" value="Dealer" name="gender" /> Dealer
+        </div>
+        <Input type="text" placeholder="login" />
+        <Input type="password" placeholder="password" />
+        <Input type="submit" value="Submit" />
+      </CardBody>
     </StyledCard>
   );
 };

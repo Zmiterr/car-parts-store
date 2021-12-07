@@ -19,5 +19,9 @@ export const StyledCard = styled.div`
 `;
 
 export const CardBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1rem;
 `;
