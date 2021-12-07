@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Navbar from './Navbar';
-import { privateRoutes } from '../../router';
+import { defaultRoutes } from '../../router';
 import { ContainerPadding, StyledHeader, UserActions } from './styles';
 import NavbarLogo from './Navbar-logo';
 import Authorization from './User-actions/Authorization';
@@ -9,7 +9,7 @@ import Cart from './User-actions/Cart';
 import UserIcon from './User-actions/Avatar';
 
 const Header: FC = () => {
-  const routes = [...privateRoutes];
+  const routes = [...defaultRoutes];
   return (
     <StyledHeader>
       <ContainerPadding>

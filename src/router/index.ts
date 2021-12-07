@@ -6,6 +6,7 @@ import Chat from '../pages/Chat';
 import MyLots from '../pages/MyLots';
 import Orders from '../pages/Orders';
 import Cart from '../pages/Cart';
+import NotFound from '../pages/NotFound';
 
 export interface RoutesInterface {
   path: string;
@@ -25,6 +26,13 @@ export enum RouteNames {
   NOT_FOUND = '/404-error',
 }
 
+export const defaultRoutes: RoutesInterface[] = [
+  { path: RouteNames.LOGIN, exact: true, component: Login, readableName: '' },
+  { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
+  { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
+  { path: RouteNames.ORDERS, exact: true, component: Orders, readableName: 'Orders' },
+  { path: '*', exact: true, component: NotFound, readableName: '' },
+];
 export const publicRoutes: RoutesInterface[] = [
   { path: RouteNames.LOGIN, exact: true, component: Login, readableName: 'Login' },
   { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
@@ -37,7 +45,7 @@ export const privateRoutes: RoutesInterface[] = [
   { path: RouteNames.CHAT, exact: true, component: Chat, readableName: 'Chat' },
 ];
 
-export const dealersRoutes: RoutesInterface[] = [
+export const dealerRoutes: RoutesInterface[] = [
   { path: RouteNames.MY_LOTS, exact: true, component: MyLots, readableName: 'MyLots' },
   { path: RouteNames.ORDERS, exact: true, component: Orders, readableName: 'Orders' },
 ];
