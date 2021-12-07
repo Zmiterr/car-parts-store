@@ -7,6 +7,7 @@ import MyLots from '../pages/MyLots';
 import Orders from '../pages/Orders';
 import Cart from '../pages/Cart';
 import NotFound from '../pages/NotFound';
+import Profile from '../pages/Profile';
 
 export interface RoutesInterface {
   path: string;
@@ -23,6 +24,7 @@ export enum RouteNames {
   ORDERS = '/orders',
   CART = '/cart',
   CHAT = '/chat',
+  PROFILE = '/profile',
   NOT_FOUND = '/404-error',
 }
 
@@ -31,6 +33,7 @@ export const defaultRoutes: RoutesInterface[] = [
   { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
   { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
   { path: RouteNames.ORDERS, exact: true, component: Orders, readableName: 'Orders' },
+  { path: RouteNames.PROFILE, exact: true, component: Profile, readableName: '' },
   { path: '*', exact: true, component: NotFound, readableName: '' },
 ];
 export const publicRoutes: RoutesInterface[] = [
