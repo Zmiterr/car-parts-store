@@ -4,7 +4,7 @@ export const StyledMain = styled.main`
   display: flex;
   justify-content: center;
   font-family: Roboto, sans-serif;
-  //margin: 20px;
+  padding: 0 10px;
   //align-items: center;
   //TODO fix that when header and footer changed
   min-height: calc(100vh - 73px);
