@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const StyledMain = styled.main`
   display: flex;
   justify-content: center;
+  font-family: Roboto, sans-serif;
   //margin: 20px;
   //align-items: center;
   //TODO fix that when header and footer changed
