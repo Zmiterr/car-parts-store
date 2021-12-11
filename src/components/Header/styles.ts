@@ -32,9 +32,7 @@ export const StyledHeader = styled.header`
 export const UserActions = styled.div`
   display: flex;
   //TODO delete after padding settings
-  width: 200px;
-  margin-left: auto;
+  min-width: 200px;
   justify-content: space-between;
   align-items: center;
-  justify-self: end;
 `;

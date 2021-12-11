@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export const StyledNav = styled.nav`
   display: flex;
   flex-wrap: wrap;
+  flex-grow: 1;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
