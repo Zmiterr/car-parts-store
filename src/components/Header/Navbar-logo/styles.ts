@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledLogo = styled.div`
-  display: inline-block;
-  padding-top: 0.5rem;
-  padding-bottom: 0.3125rem;
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
   margin-right: 0;
   font-size: 1.25rem;
   line-height: inherit;
@@ -11,5 +11,7 @@ export const StyledLogo = styled.div`
 `;
 
 export const StyledImg = styled.img`
-  height: 20px;
+  //height: 30px;
+  width: 100px;
+  min-width: 100px;
 `;
