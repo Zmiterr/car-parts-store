@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import Login from '../pages/Login/Login';
-import Parts from '../pages/Parts';
-import Dealers from '../pages/Dealers';
-import Chat from '../pages/Chat';
-import MyLots from '../pages/MyLots';
-import Orders from '../pages/Orders';
-import Cart from '../pages/Cart';
-import NotFound from '../pages/NotFound';
-import Profile from '../pages/Profile';
+import Parts from '../pages/Parts/Parts';
+import Dealers from '../pages/Dealers/Dealers';
+import Chat from '../pages/Chat/Chat';
+import MyLots from '../pages/MyLots/MyLots';
+import Orders from '../pages/Orders/Orders';
+import Cart from '../pages/Cart/Cart';
+import NotFound from '../pages/NotFound/NotFound';
+import Profile from '../pages/Profile/Profile';
 
 export interface RoutesInterface {
   path: string;

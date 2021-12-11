@@ -8,7 +8,7 @@ import AppRouter from '../App-router';
 import Header from '../Header';
 import { theme } from '../../theme/theme';
 import Footer from '../Footer';
-import { StyledMain } from '../../theme/main';
+import { StyledMain } from '../../shared/styled/containers/Main';
 
 function App(): JSX.Element {
   return (
