@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { H1 } from '../../shared/styled/headers/H1';
+import { H2 } from '../../shared/styled/headers/H2';
 import { StyledCard, CardBody } from '../../shared/styled/containers/Card';
 import { Input } from './styles';
 
@@ -19,7 +19,7 @@ const Login: FC = () => {
   return (
     <StyledCard>
       <CardBody>
-        <H1>Login</H1>
+        <H2>Login</H2>
         <p>Dont have an account yet? Register now!</p>
         <div>
           <input type="radio" value="Customer" name="gender" /> Customer
