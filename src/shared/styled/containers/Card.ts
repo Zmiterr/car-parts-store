@@ -8,6 +8,7 @@ export const StyledCard = styled.div`
   height: fit-content;
   min-width: 0;
   margin: 1rem 1.5rem;
+  padding: 0 0.5rem;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
