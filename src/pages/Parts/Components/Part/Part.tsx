@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import img from '../../../../assets/ats_classic_1_large.png';
+import img from '../../../../assets/images/ats_classic_1_large.png';
 import { H5 } from '../../../../shared/styled/headers/H5';
 import {
   PartDealer,

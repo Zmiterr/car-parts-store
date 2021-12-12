@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import emptyCartImg from '../../assets/bg/cart-cat.png';
+import emptyCartImg from '../../assets/images/bg/cart-cat.png';
 
 export const EmptyCart = styled.div`
   display: flex;

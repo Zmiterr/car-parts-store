@@ -1,14 +1,13 @@
-import React, { FC, useRef } from 'react';
+import React, { FC } from 'react';
 import { DealerInfo, DealerLogo, DealerReport, ReportButton } from '../styles';
 import { StyledCard } from '../../../shared/styled/containers/Card';
-import emptyCartImg from '../../../assets/dealer-logo.jpg';
+import emptyCartImg from '../../../assets/images/dealer-logo.jpg';
 
 const Dealer: FC = () => {
-  const img = useRef(emptyCartImg);
   return (
     <StyledCard>
       <DealerLogo>
-        <img src={img.current} alt="dealer" />
+        <img src={emptyCartImg} alt="dealer" />
       </DealerLogo>
       <DealerInfo>
         <ul>
