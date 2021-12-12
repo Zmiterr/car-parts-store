@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const StyledNav = styled.nav`
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   flex-grow: 1;
   padding-left: 0;
@@ -11,8 +12,7 @@ export const StyledNav = styled.nav`
 `;
 
 export const StyledLink = styled(Link)`
-  margin: 0 10px;
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
   text-transform: uppercase;
 `;
