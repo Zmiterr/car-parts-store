@@ -7,6 +7,6 @@ export const StyledMain = styled.main`
   padding: 0 10px;
   //align-items: center;
   //TODO fix that when header and footer changed
-  min-height: calc(100vh - 73px);
+  min-height: calc(100vh - 59px);
   background: #eff2f3;
 `;

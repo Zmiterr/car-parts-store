@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const H2 = styled.h2`
-  display: block;
+  display: inline-block;
   font-size: 2.5rem;
   line-height: 1.2;
   word-wrap: break-word;

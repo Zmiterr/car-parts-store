@@ -13,10 +13,10 @@ export const SearchNavigation = styled.div`
 `;
 
 export const SearchNavigationItem = styled.div`
-  padding: 10px 35px 10px 35px;
+  padding: 10px 35px;
   font-size: 16px;
   color: #000;
-  background: #eaecee;
+  background: ${(props) => props.theme.colors.white};
   transition: all 0.3s ease;
   margin-right: 2px;
   cursor: pointer;
@@ -26,7 +26,6 @@ export const SearchNavigationItem = styled.div`
 export const SearchNavigationItemActive = styled(SearchNavigationItem)`
   color: #fff;
   background: ${(props) => props.theme.colors.primary};
-  padding: 15px 35px 10px 35px;
 `;
 
 export const SearchContent = styled.div`

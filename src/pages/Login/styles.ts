@@ -15,14 +15,12 @@ export const StyledLogin = styled.div`
   border-radius: 8px;
 `;
 
-export const Input = styled.input.attrs({
-  // type: 'submit',
-  // value: 'Submit',
-})`
+export const Input = styled.input`
   display: block;
   width: 100%;
   height: 34px;
-  padding: 0.375rem 0.75rem;
+  padding: 0.5rem 0.75rem;
+  margin: 1rem 0;
   font-size: 1rem;
   line-height: 1.5;
   color: #495057;
@@ -41,5 +39,25 @@ export const Input = styled.input.attrs({
   &::placeholder {
     color: #6c757d;
     opacity: 1;
+  }
+`;
+export const Submit = styled.input.attrs({
+  type: 'submit',
+  value: 'Submit',
+})`
+  background: ${(props) => props.theme.colors.success};
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  width: 100%;
+  border-radius: 5px;
+  height: 35px;
+  border-color: transparent;
+  outline: none;
+  transition: 0.15s;
+  text-align: center;
+  &:active {
+    background-color: ${(props) => props.theme.colors.success};
   }
 `;
