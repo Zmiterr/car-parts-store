@@ -3,6 +3,7 @@ import {
   SetAuthInterface,
   SetErrorInterface,
   SetLoadingInterface,
+  SetTokenInterface,
   SetUserInterface,
 } from './types';
 import { UserInterface } from '../../../models/UserInterface';
@@ -10,15 +11,22 @@ import { UserInterface } from '../../../models/UserInterface';
 export interface AuthState {
   isAuth: boolean;
   user: UserInterface;
+  token: string;
   isLoading: boolean;
   error: string;
 }
 
-type AuthAction = SetAuthInterface | SetErrorInterface | SetUserInterface | SetLoadingInterface;
+type AuthAction =
+  | SetAuthInterface
+  | SetErrorInterface
+  | SetUserInterface
+  | SetLoadingInterface
+  | SetTokenInterface;
 
 const initialState: AuthState = {
   isAuth: false,
   user: {} as UserInterface,
+  token: '',
   isLoading: false,
   error: '',
 };
@@ -33,6 +41,8 @@ export const authReducer = (state = initialState, action: AuthAction): AuthState
       return { ...state, isLoading: action.payload };
     case AuthActionsTypes.SET_USER:
       return { ...state, user: action.payload };
+    case AuthActionsTypes.SET_TOKEN:
+      return { ...state, token: action.payload };
     default:
       return state;
   }

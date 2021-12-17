@@ -3,13 +3,14 @@ import {
   SetAuthInterface,
   SetErrorInterface,
   SetLoadingInterface,
+  SetTokenInterface,
   SetUserInterface,
 } from './types';
 
 import { AppDispatch } from '../index';
 
 import { UserInterface } from '../../../models/UserInterface';
-import UserService from '../../../api/UserService';
+import AuthService from '../../../api/AuthService';
 
 export const AuthActions = {
   setAuth: (auth: boolean): SetAuthInterface => ({
@@ -24,6 +25,10 @@ export const AuthActions = {
     type: AuthActionsTypes.SET_USER,
     payload: user,
   }),
+  setToken: (token: string): SetTokenInterface => ({
+    type: AuthActionsTypes.SET_TOKEN,
+    payload: token,
+  }),
   setError: (error: string): SetErrorInterface => ({
     type: AuthActionsTypes.SET_ERROR,
     payload: error,
@@ -34,15 +39,15 @@ export const AuthActions = {
       try {
         dispatch(AuthActions.setLoading(true));
         setTimeout(async () => {
-          const response = await UserService.getUsers();
-          const mockUser = response.data.find(
-            (user) => user.username === username && user.password === password,
-          );
-          if (mockUser) {
-            localStorage.setItem('username', mockUser.username);
+          const response = await AuthService.signUp(username, password);
+          const authResponseUserData = response.data;
+          if (authResponseUserData) {
+            localStorage.setItem('username', authResponseUserData.username);
             localStorage.setItem('auth', 'true');
-            dispatch(AuthActions.setUser(mockUser));
+            localStorage.setItem('token', authResponseUserData.token);
+            dispatch(AuthActions.setUser(authResponseUserData));
             dispatch(AuthActions.setAuth(true));
+            dispatch(AuthActions.setToken(authResponseUserData.token));
           } else {
             dispatch(AuthActions.setError('User is not found'));
           }
