@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
@@ -7,57 +7,95 @@ import { StyledCard, CardBody } from '../../shared/styled/containers/Card';
 import { Input, Submit } from './styles';
 import { AuthActions } from '../../store/reducers/auth/authActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { TransparentButton } from '../../shared/styled/Elements/TransparentButton';
 
-interface ILoginData {
+interface LoginData {
   username: string;
   password: string;
+}
+interface NewUserData {
+  username: string;
+  password: string;
+  role: string;
 }
 
 const Login: FC = () => {
   const dispatch = useDispatch();
-  const { isAuth } = useTypedSelector((state) => state.auth);
+  const [enterType, setEnterType] = useState<'login' | 'auth'>('login');
+  const { isLoading } = useTypedSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (loginData: ILoginData) => {
+  const onLogin = (loginData: LoginData) => {
     dispatch(AuthActions.login(loginData.username, loginData.password));
+  };
+  const onCreateAccount = (newUSerData: NewUserData) => {
+    dispatch(AuthActions.createUser(newUSerData.username, newUSerData.password, newUSerData.role));
   };
   return (
     <StyledCard>
       <CardBody>
-        <div>
-          <H2>Login</H2>
-          {
-            // TODO send visible props to loader
-            isAuth ? (
+        {enterType === 'login' ? (
+          <>
+            <div>
+              <H2>Login</H2>
               <div style={{ display: 'inline-block' }}>
                 <Loader
+                  visible={isLoading}
                   type="Oval"
                   color="#000000"
                   height={20}
                   width={20}
-                  timeout={3000} // 3 secs
+                  timeout={1000}
                 />
               </div>
-            ) : (
-              <div />
-            )
-          }
-        </div>
-
-        <p>Dont have an account yet? Register now!</p>
-        <div>
-          <input type="radio" value="Customer" name="gender" /> Customer
-          <input type="radio" value="Dealer" name="gender" /> Dealer
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input {...register('username')} /> {/* register an input */}
-          <Input type="password" {...register('password', { required: true })} />
-          {errors.lastName && <p>Last name is required.</p>}
-          <Submit />
-        </form>
+            </div>
+            <p>
+              Dont have an account yet?{' '}
+              <TransparentButton onClick={() => setEnterType('auth')}>
+                Register now!
+              </TransparentButton>
+            </p>
+            <form onSubmit={handleSubmit(onLogin)}>
+              <Input {...register('username')} /> {/* register an input */}
+              <Input type="password" {...register('password', { required: true })} />
+              {errors.lastName && <p>Last name is required.</p>}
+              <Submit />
+            </form>
+          </>
+        ) : (
+          <>
+            <div>
+              <H2>Create account</H2>
+              <div style={{ display: 'inline-block' }}>
+                <Loader
+                  visible={isLoading}
+                  type="Oval"
+                  color="#000000"
+                  height={20}
+                  width={20}
+                  timeout={1000}
+                />
+              </div>
+            </div>
+            <p>
+              Do you have an account?{' '}
+              <TransparentButton onClick={() => setEnterType('login')}>login</TransparentButton>
+            </p>
+            <div>
+              <input type="radio" value="Customer" name="gender" /> Customer
+              <input type="radio" value="Dealer" name="gender" /> Dealer
+            </div>
+            <form onSubmit={handleSubmit(onCreateAccount)}>
+              <Input {...register('username')} /> {/* register an input */}
+              <Input type="password" {...register('password', { required: true })} />
+              {errors.lastName && <p>Last name is required.</p>}
+              <Submit />
+            </form>
+          </>
+        )}
       </CardBody>
     </StyledCard>
   );

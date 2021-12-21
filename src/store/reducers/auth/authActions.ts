@@ -11,6 +11,7 @@ import { AppDispatch } from '../index';
 
 import { UserInterface } from '../../../models/UserInterface';
 import AuthService from '../../../api/AuthService';
+import UserService from '../../../api/UserService';
 
 export const AuthActions = {
   setAuth: (auth: boolean): SetAuthInterface => ({
@@ -68,6 +69,26 @@ export const AuthActions = {
         dispatch(AuthActions.setUser({} as UserInterface));
       } catch (e) {
         dispatch(AuthActions.setError(String(e)));
+      }
+    },
+  createUser:
+    (username: string, password: string, role: string) =>
+    async (dispatch: AppDispatch): Promise<void> => {
+      try {
+        dispatch(AuthActions.setLoading(true));
+        setTimeout(async () => {
+          const response = await UserService.setUser(username, password, role);
+          const authResponseUserData = response.data;
+          if (authResponseUserData) {
+            localStorage.setItem('username', authResponseUserData.username);
+          } else {
+            dispatch(AuthActions.setError('User is not found'));
+          }
+        }, 500);
+      } catch (e) {
+        dispatch(AuthActions.setError(String(e)));
+      } finally {
+        dispatch(AuthActions.setLoading(false));
       }
     },
 };
