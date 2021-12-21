@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   // Input file, main entry point
@@ -42,6 +43,9 @@ module.exports = {
           noErrorOnMissing: true,
         },
       ],
+    }),
+    new Dotenv({
+      path: './.env',
     }),
     // Notification
     new WebpackNotifierPlugin({ alwaysNotify: false }),
