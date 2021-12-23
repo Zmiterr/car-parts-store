@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,15 +10,26 @@ import {
   SearchInput,
   SearchNavigation,
   SearchNavigationItem,
-  SearchNavigationItemActive,
 } from './Styles';
 
 const Search: FC = () => {
+  const tabs = ['By name', 'By part number'];
+  const [activeTab, setActiveTab] = useState(0);
   return (
     <SearchBody>
       <SearchNavigation>
-        <SearchNavigationItemActive>By name</SearchNavigationItemActive>
-        <SearchNavigationItem>By part number</SearchNavigationItem>
+        {tabs.map((tabName, index) => {
+          return (
+            <SearchNavigationItem
+              key={tabName}
+              // TODO fix ts error
+              isActiveTab={activeTab === index}
+              onClick={() => setActiveTab(index)}
+            >
+              {tabName}
+            </SearchNavigationItem>
+          );
+        })}
       </SearchNavigation>
       <SearchContent>
         <SearchForm>
