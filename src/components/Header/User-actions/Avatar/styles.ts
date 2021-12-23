@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import avatar from '../../../../assets/images/user-avatar.jpg';
 
 export const Avatar = styled.div`
-  background-image: url('../../../../assets/images/user-avatar.jpg');
+  background-image: url(${avatar});
   background-color: #fff;
   background-position: center center;
   background-size: 40px 40px;
