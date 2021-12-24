@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { AuthActions } from '../../../../store/reducers/auth/authActions';
@@ -7,11 +7,13 @@ import { RouteNames } from '../../../../router';
 import { LogoutButton } from './styles';
 
 const Authorization: FC = () => {
+  const history = useHistory();
   const { isAuth } = useTypedSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logout = () => {
     dispatch(AuthActions.logout());
+    history.push('/login');
   };
   return isAuth ? (
     <LogoutButton onClick={() => logout()}>Log out</LogoutButton>

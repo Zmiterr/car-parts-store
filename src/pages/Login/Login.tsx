@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
+import { useHistory } from 'react-router-dom';
 import { H2 } from '../../shared/styled/headers/H2';
 import { StyledCard, CardBody } from '../../shared/styled/containers/Card';
 import { Input, Submit } from './styles';
@@ -20,9 +21,10 @@ interface NewUserData {
 }
 
 const Login: FC = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [enterType, setEnterType] = useState<'login' | 'auth'>('login');
-  const { isLoading } = useTypedSelector((state) => state.auth);
+  const { isLoading, isAuth } = useTypedSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
@@ -34,6 +36,8 @@ const Login: FC = () => {
   const onCreateAccount = (newUSerData: NewUserData) => {
     dispatch(AuthActions.createUser(newUSerData.username, newUSerData.password, newUSerData.role));
   };
+  // TODO ask better way to handle and process server response
+  isAuth && history.push('/profile');
   return (
     <StyledCard>
       <CardBody>
