@@ -23,7 +23,6 @@
     "js:check": "npx eslint \"src/**/*.{ts,tsx,js,jsx}\"",
     "js:fix": "npx eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix"
   },
-
   "eslintConfig": {
     "extends": [
       "react-app"
@@ -59,6 +58,7 @@
     "@typescript-eslint/parser": "^4.28.5",
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^2.0.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "copy-webpack-plugin": "^9.0.1",
