@@ -6,6 +6,7 @@ export enum AuthActionsTypes {
   SET_ERROR = 'SET_ERROR',
   SET_USER = 'SET_USER',
   SET_TOKEN = 'SET_TOKEN',
+  SET_ROLE = 'SET_ROLE',
 }
 
 export interface SetAuthInterface {
@@ -30,5 +31,10 @@ export interface SetErrorInterface {
 
 export interface SetTokenInterface {
   type: AuthActionsTypes.SET_TOKEN;
+  payload: string;
+}
+
+export interface SetRoleInterface {
+  type: AuthActionsTypes.SET_ROLE;
   payload: string;
 }

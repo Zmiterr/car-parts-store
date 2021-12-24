@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
-import { privateRoutes } from '../../router';
 import { Container, StyledFooter } from './styles';
 import Navbar from '../Header/Navbar';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { getAvailableRoutes } from '../../router/routes';
 
 const Footer: FC = () => {
-  const routes = [...privateRoutes];
+  const { isAuth } = useTypedSelector((state) => state.auth);
+  const userType = useTypedSelector((state) => state.auth.role);
+  const routes = getAvailableRoutes(isAuth, userType);
   return (
     <StyledFooter>
       <Container>

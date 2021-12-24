@@ -9,11 +9,13 @@ interface PathProps {
 const Navbar: FC<PathProps> = ({ routes }) => {
   return (
     <StyledNav>
-      {routes.map((r) => (
-        <StyledLink key={r.path} to={r.path}>
-          {r.readableName}
-        </StyledLink>
-      ))}
+      {routes
+        .filter((r) => r.readableName !== '')
+        .map((r) => (
+          <StyledLink key={r.path} to={r.path}>
+            {r.readableName}
+          </StyledLink>
+        ))}
     </StyledNav>
   );
 };

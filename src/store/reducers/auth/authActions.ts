@@ -3,6 +3,7 @@ import {
   SetAuthInterface,
   SetErrorInterface,
   SetLoadingInterface,
+  SetRoleInterface,
   SetTokenInterface,
   SetUserInterface,
 } from './types';
@@ -30,6 +31,10 @@ export const AuthActions = {
     type: AuthActionsTypes.SET_TOKEN,
     payload: token,
   }),
+  setRole: (role: string): SetRoleInterface => ({
+    type: AuthActionsTypes.SET_ROLE,
+    payload: role,
+  }),
   setError: (error: string): SetErrorInterface => ({
     type: AuthActionsTypes.SET_ERROR,
     payload: error,
@@ -49,6 +54,7 @@ export const AuthActions = {
             dispatch(AuthActions.setUser(authResponseUserData));
             dispatch(AuthActions.setAuth(true));
             dispatch(AuthActions.setToken(authResponseUserData.token));
+            dispatch(AuthActions.setRole(authResponseUserData.userData[0].role));
           } else {
             dispatch(AuthActions.setError('User is not found'));
           }
@@ -67,6 +73,7 @@ export const AuthActions = {
         localStorage.removeItem('username');
         dispatch(AuthActions.setAuth(false));
         dispatch(AuthActions.setUser({} as UserInterface));
+        dispatch(AuthActions.setRole(''));
       } catch (e) {
         dispatch(AuthActions.setError(String(e)));
       }

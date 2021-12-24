@@ -1,28 +1,14 @@
 import React, { FC } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import {
-  customerRoutes,
-  dealerRoutes,
-  defaultRoutes,
-  publicRoutes,
-  RouteNames,
-} from '../../router';
+
+import { RouteNames } from '../../router';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { getAvailableRoutes } from '../../router/routes';
 
 const AppRouter: FC = () => {
   const { isAuth } = useTypedSelector((state) => state.auth);
-  const userType = 'dealer';
-  let routes = defaultRoutes;
-  if (isAuth) {
-    routes = [...routes, ...publicRoutes];
-  } else {
-    if (userType === 'dealer') {
-      routes = [...routes, ...customerRoutes];
-    }
-    if (userType === 'dealer') {
-      routes = [...routes, ...dealerRoutes];
-    }
-  }
+  const userType = useTypedSelector((state) => state.auth.role);
+  const routes = getAvailableRoutes(isAuth, userType);
   return (
     <Switch>
       {routes.map((r) => (
