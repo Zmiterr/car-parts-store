@@ -34,25 +34,25 @@ export const defaultRoutes: RoutesInterface[] = [
   { path: RouteNames.LOGIN, exact: true, component: Login, readableName: '' },
   { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
   { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
-  { path: RouteNames.ORDERS, exact: true, component: Orders, readableName: '' },
-  { path: RouteNames.PROFILE, exact: true, component: Profile, readableName: '' },
-  { path: RouteNames.CHAT, exact: true, component: Chat, readableName: '' },
-  { path: RouteNames.CART, exact: true, component: Cart, readableName: '' },
-  { path: '*', exact: true, component: NotFound, readableName: '' },
+  // { path: RouteNames.CART, exact: true, component: Cart, readableName: '' },
+  // { path: RouteNames.PROFILE, exact: true, component: Profile, readableName: '' },
+  // { path: RouteNames.MY_LOTS, exact: true, component: MyLots, readableName: 'My lots' },
 ];
 export const publicRoutes: RoutesInterface[] = [
-  // { path: RouteNames.LOGIN, exact: true, component: Login, readableName: '' },
-  // { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
-  // { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
-  { path: RouteNames.ORDERS, exact: true, component: Orders, readableName: 'Orders' },
   { path: RouteNames.CHAT, exact: true, component: Chat, readableName: '' },
-  { path: RouteNames.CART, exact: true, component: Cart, readableName: '' },
+  { path: RouteNames.PROFILE, exact: true, component: Profile, readableName: '' },
+  // { path: RouteNames.MY_LOTS, exact: true, component: MyLots, readableName: 'My lots' },
 ];
 
 export const dealerRoutes: RoutesInterface[] = [
   { path: RouteNames.MY_LOTS, exact: true, component: MyLots, readableName: 'My lots' },
+  { path: RouteNames.ORDERS, exact: true, component: Orders, readableName: 'Orders' },
 ];
 
 export const customerRoutes: RoutesInterface[] = [
-  { path: RouteNames.CART, exact: true, component: Cart, readableName: 'Cart' },
+  { path: RouteNames.CART, exact: true, component: Cart, readableName: '' },
+];
+
+export const notFoundRoutes: RoutesInterface[] = [
+  { path: '*', exact: true, component: NotFound, readableName: '' },
 ];

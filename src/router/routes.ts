@@ -2,6 +2,7 @@ import {
   customerRoutes,
   dealerRoutes,
   defaultRoutes,
+  notFoundRoutes,
   publicRoutes,
   RoutesInterface,
 } from './index';
@@ -12,11 +13,11 @@ export const getAvailableRoutes = (isAuth: boolean, userType: string): RoutesInt
     routes = [...routes, ...publicRoutes];
   }
   if (userType === 'dealer') {
-    routes = [...routes, ...customerRoutes];
-  }
-  if (userType === 'dealer') {
     routes = [...routes, ...dealerRoutes];
   }
+  if (userType === 'customer') {
+    routes = [...routes, ...customerRoutes];
+  }
 
-  return routes;
+  return [...routes, ...notFoundRoutes];
 };
