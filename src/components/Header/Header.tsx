@@ -19,9 +19,9 @@ const Header: FC = () => {
         <NavbarLogo />
         <Navbar routes={routes} />
         <UserActions>
-          <Messages />
-          <Cart />
-          <UserIcon />
+          {isAuth && <Messages />}
+          {userType === 'customer' && <Cart />}
+          {isAuth && <UserIcon />}
           <Authorization />
         </UserActions>
       </ContainerPadding>
