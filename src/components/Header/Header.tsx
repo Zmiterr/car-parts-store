@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import Navbar from './Navbar';
 import { ContainerPadding, StyledHeader, UserActions } from './styles';
-import NavbarLogo from './Navbar-logo';
-import Authorization from './User-actions/Authorization';
-import Messages from './User-actions/Messages';
-import Cart from './User-actions/Cart';
-import UserIcon from './User-actions/Avatar';
+import NavbarLogo from './NavbarLogo';
+import Authorization from './UserActions/Authorization';
+import Messages from './UserActions/Messages';
+import Cart from './UserActions/Cart';
+import UserIcon from './UserActions/Avatar';
 import { getAvailableRoutes } from '../../router/routes';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
