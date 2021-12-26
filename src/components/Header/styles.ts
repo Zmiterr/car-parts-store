@@ -17,6 +17,7 @@ export const ContainerPadding = styled(Container)`
 export const StyledHeader = styled.header`
   //display: flex;
   box-sizing: border-box;
+  min-height: 40px;
   //justify-content: flex-start;
   border: none;
   box-shadow: 0 3px 14px 0 rgb(0 0 0 / 12%);
