@@ -30,7 +30,8 @@ const lotsMockArr = [
 const MyLots: FC = () => {
   const dispatch = useDispatch();
   dispatch(getLots);
-  const { issues } = useTypedSelector((state) => state.lots);
+  // TODO: get from reducer
+  // const {lots} = useTypedSelector((state) => state.lots);
 
   return (
     <Container>

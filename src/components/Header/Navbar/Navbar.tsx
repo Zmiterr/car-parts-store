@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { RoutesInterface } from '../../../router';
-import { StyledLink, StyledNav } from './styles';
+import { StyledLink, StyledNav } from './Styles';
 
 interface PathProps {
   routes: RoutesInterface[];

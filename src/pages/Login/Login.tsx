@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner';
 import { useHistory } from 'react-router-dom';
 import { H2 } from '../../shared/styled/headers/H2';
 import { StyledCard, CardBody } from '../../shared/styled/containers/Card';
-import { Input, Submit } from './styles';
+import { Input, Submit } from './Styles';
 import { AuthActions } from '../../store/reducers/auth/authActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { TransparentButton } from '../../shared/styled/Elements/TransparentButton';

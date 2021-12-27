@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { DealerInfo, DealerLogo, DealerReport, ReportButton } from '../styles';
+import { DealerInfo, DealerLogo, DealerReport, ReportButton } from '../Styles';
 import { StyledCard } from '../../../shared/styled/containers/Card';
 import emptyCartImg from '../../../assets/images/dealer-logo.jpg';
 

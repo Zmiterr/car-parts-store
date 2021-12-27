@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Container, StyledFooter } from './styles';
+import { Container, StyledFooter } from './Styles';
 import Navbar from '../Header/Navbar';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { getAvailableRoutes } from '../../router/routes';

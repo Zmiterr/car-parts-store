@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { AuthActions } from '../../../../store/reducers/auth/authActions';
 import { RouteNames } from '../../../../router';
-import { LogoutButton } from './styles';
+import { LogoutButton } from './Styles';
 
 const Authorization: FC = () => {
   const history = useHistory();

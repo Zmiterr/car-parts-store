@@ -8,10 +8,10 @@ const Orders: FC = () => {
     <Container>
       <PageHeader>
         <h2>Orders</h2>
-        <Order />
-        <Order />
-        <Order />
       </PageHeader>
+      <Order />
+      <Order />
+      <Order />
     </Container>
   );
 };

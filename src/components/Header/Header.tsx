@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Navbar from './Navbar';
-import { ContainerPadding, StyledHeader, UserActions } from './styles';
+import { ContainerPadding, StyledHeader, UserActions } from './Styles';
 import NavbarLogo from './NavbarLogo';
 import Authorization from './UserActions/Authorization';
 import Messages from './UserActions/Messages';
