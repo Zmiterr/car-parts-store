@@ -4,7 +4,7 @@ import { Container } from '../../shared/styled/containers/Container';
 import { PageHeader } from '../../shared/styled/headers/PageHeader';
 import Lot from './Lot/Lot';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { getLots } from '../../store/reducers/lots/lotsActions';
+import { getLots } from '../../store/lots/lotsActions';
 
 export interface LotsInterface {
   objectId: string;

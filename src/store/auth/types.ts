@@ -1,4 +1,4 @@
-import { UserInterface } from '../../../models/UserInterface';
+import { UserInterface } from '../../models/UserInterface';
 
 export enum AuthActionsTypes {
   SET_AUTH = 'SET_AUTH',

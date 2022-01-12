@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { store } from '../index';
-import { authReducer } from './auth/authReducer';
-import lotsReducer from './lots/lotsReducer';
-import partsReducer from './parts/partsReducer';
+import { authReducer } from '../auth/authReducer';
+import lotsReducer from '../lots/lotsReducer';
+import partsReducer from '../parts/partsReducer';
 
 export const rootReducer = combineReducers({
   auth: authReducer,

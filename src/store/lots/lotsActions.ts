@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { LotsActionsType } from './types';
-import { lotsService } from '../../../api/LotsService';
+import { lotsService } from '../../api/LotsService';
 
 const lotsLoaded = (data: any) => ({
   type: LotsActionsType.GET_LOTS,
@@ -24,7 +24,7 @@ const getLots =
   () =>
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await lotsService.getLotsData();
-    const lotsResponseUserData = response.data;
+    const lotsResponseUserData = data;
     if (lotsResponseUserData) {
       dispatch(lotsLoaded(lotsResponseUserData));
     } else {

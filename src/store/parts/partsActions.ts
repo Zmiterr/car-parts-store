@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { PartsActionsType } from './types';
 
-import PartsService from '../../../api/PartsService';
-import { PartsInterface } from '../../../models/PartsInterface';
+import PartsService from '../../api/PartsService';
+import { PartsInterface } from '../../models/PartsInterface';
 
 const partsService = new PartsService();
 const { getPartsData } = partsService;
