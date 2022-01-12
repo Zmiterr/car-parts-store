@@ -44,6 +44,7 @@ export const AuthActions = {
     async (dispatch: AppDispatch): Promise<void> => {
       try {
         dispatch(AuthActions.setLoading(true));
+        // TODO remove setTimeout
         setTimeout(async () => {
           const response = await AuthService.signUp(username, password);
           const authResponseUserData = response.data;

@@ -17,6 +17,9 @@ const Header: FC = () => {
     <StyledHeader>
       <ContainerPadding>
         <NavbarLogo />
+        {
+          // <HasPermisions role={'customer'}><Cart /></HasPermisions>
+        }
         <Navbar routes={routes} />
         <UserActions>
           {isAuth && <Messages />}
