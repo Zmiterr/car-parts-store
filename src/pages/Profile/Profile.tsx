@@ -26,7 +26,6 @@ const Profile: FC = () => {
             return (
               <SearchNavigationItem
                 key={tabName}
-                // TODO fix ts error
                 isActiveTab={activeTab === index}
                 onClick={() => setActiveTab(index)}
               >
