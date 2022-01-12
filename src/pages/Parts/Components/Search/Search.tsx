@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, KeyboardEvent, ChangeEvent, useState } from 'react';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,30 +12,28 @@ import {
   SearchNavigationItem,
 } from './Styles';
 
-// TODO best way to use enum (type here better?)
 enum SearchTabs {
-  by_name = 'By name',
-  By_part_number = 'By part number',
+  ByName = 'By name',
+  ByPartNumber = 'By part number',
 }
 
 const Search: FC = () => {
   const [searchValue, setSearchValue] = useState('');
-  const tabs: SearchTabs[] = [SearchTabs.by_name, SearchTabs.By_part_number];
+  const tabs: SearchTabs[] = [SearchTabs.ByName, SearchTabs.ByPartNumber];
   const [activeTab, setActiveTab] = useState(0);
   const sendSearchRequest = () => {
     console.log(`Search: ${searchValue}`, tabs[activeTab]);
   };
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    // TODO fix error with set value definition
     setSearchValue(event.target.value);
     if (searchValue.length > 2) {
       sendSearchRequest();
     }
   };
 
-  const checkEnterKey = (event) => {
+  const checkEnterKey = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
       sendSearchRequest();
     }
@@ -47,7 +45,6 @@ const Search: FC = () => {
           return (
             <SearchNavigationItem
               key={tabName}
-              // TODO fix ts error
               isActiveTab={activeTab === index}
               onClick={() => setActiveTab(index)}
             >

@@ -11,7 +11,7 @@ export const SearchNavigation = styled.div`
   display: flex;
   align-items: flex-end;
 `;
-// TODO fix ts error
+
 export const SearchNavigationItem = styled.div`
   padding: 10px 35px;
   font-size: 16px;
@@ -21,11 +21,11 @@ export const SearchNavigationItem = styled.div`
   margin-right: 2px;
   cursor: pointer;
   border-radius: 5px 5px 0 0;
-  ${(props) =>
+  ${(props: { isActiveTab: boolean }) =>
     props.isActiveTab &&
     css`
       color: #fff;
-      background: ${(propss) => propss.theme.colors.primary};
+      background: ${(global) => global.theme.colors.primary};
     `}
 `;
 
