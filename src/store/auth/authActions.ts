@@ -44,22 +44,19 @@ export const AuthActions = {
     async (dispatch: AppDispatch): Promise<void> => {
       try {
         dispatch(AuthActions.setLoading(true));
-        // TODO remove setTimeout
-        setTimeout(async () => {
-          const response = await AuthService.signUp(username, password);
-          const authResponseUserData = response.data;
-          if (authResponseUserData) {
-            localStorage.setItem('username', authResponseUserData.username);
-            localStorage.setItem('auth', 'true');
-            localStorage.setItem('token', authResponseUserData.token);
-            dispatch(AuthActions.setUser(authResponseUserData));
-            dispatch(AuthActions.setAuth(true));
-            dispatch(AuthActions.setToken(authResponseUserData.token));
-            dispatch(AuthActions.setRole(authResponseUserData.userData[0].role));
-          } else {
-            dispatch(AuthActions.setError('User is not found'));
-          }
-        }, 500);
+        const response = await AuthService.signUp(username, password);
+        const authResponseUserData = response.data;
+        if (authResponseUserData) {
+          localStorage.setItem('username', authResponseUserData.username);
+          localStorage.setItem('auth', 'true');
+          localStorage.setItem('token', authResponseUserData.token);
+          dispatch(AuthActions.setUser(authResponseUserData));
+          dispatch(AuthActions.setAuth(true));
+          dispatch(AuthActions.setToken(authResponseUserData.token));
+          dispatch(AuthActions.setRole(authResponseUserData.userData[0].role));
+        } else {
+          dispatch(AuthActions.setError('User is not found'));
+        }
       } catch (e) {
         dispatch(AuthActions.setError(String(e)));
       } finally {
