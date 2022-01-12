@@ -36,7 +36,7 @@ const Login: FC = () => {
   const onCreateAccount = (newUSerData: NewUserData) => {
     dispatch(AuthActions.createUser(newUSerData.username, newUSerData.password, newUSerData.role));
   };
-  // TODO ask better way to handle and process server response
+  // TODO move to Actions
   if (isAuth) history.push('/profile');
   return (
     <StyledCard>
