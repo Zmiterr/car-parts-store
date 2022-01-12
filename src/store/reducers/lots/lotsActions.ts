@@ -1,9 +1,6 @@
 import { Dispatch } from 'redux';
 import { LotsActionsType } from './types';
-import ApiService from './lotsMock';
-
-const mockDataStoreService = new ApiService();
-const { getLotsData } = mockDataStoreService;
+import { lotsService } from '../../../api/LotsService';
 
 const lotsLoaded = (data: any) => ({
   type: LotsActionsType.GET_LOTS,
@@ -15,24 +12,25 @@ const lotRemoved = (lotId: number) => ({
   payload: lotId,
 });
 
-const lotsRequested = () => ({
-  type: LotsActionsType.FETCH_LOTS_REQUEST,
-});
+// const lotsRequested = () => ({
+//   type: LotsActionsType.FETCH_LOTS_REQUEST,
+// });
 
 const lotsError = () => ({
   type: LotsActionsType.FETCH_LOTS_ERROR,
 });
 
-const getLots = (dispatch: Dispatch) => (): any => {
-  try {
-    dispatch(lotsRequested());
-    getLotsData().then((data: any) => {
-      dispatch(lotsLoaded(data));
-    });
-  } catch (error) {
-    dispatch(lotsError());
-  }
-};
+const getLots =
+  () =>
+  async (dispatch: Dispatch): Promise<void> => {
+    const response = await lotsService.getLotsData();
+    const lotsResponseUserData = response.data;
+    if (lotsResponseUserData) {
+      dispatch(lotsLoaded(lotsResponseUserData));
+    } else {
+      dispatch(lotsError());
+    }
+  };
 
 const removeLot = (dispatch: Dispatch, id: number) => (): any => {
   dispatch(lotRemoved(id));
