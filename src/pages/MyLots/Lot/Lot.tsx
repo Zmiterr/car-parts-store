@@ -6,23 +6,21 @@ import EditIcon from '../../../assets/icons/edit.svg';
 import DeleteIcon from '../../../assets/icons/delete.svg';
 import { Icon, IconWrapper, LotContent, LotDescription, LotName } from './Styles';
 import { ModalBox } from '../../../shared/styled/containers/ModalBox';
+import { LotsInterface } from '../MyLots';
 
-const Lot: FC = ({ lot }: any) => {
+const Lot: FC = ({ lot }: LotsInterface) => {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
-  const onRemovedIssue = () => {
-    // dispatch removeIssue
+  const onRemovedLot = () => {
+    // dispatch removeLot
   };
 
-  const onEditIssue = () => {
+  const onEditLot = () => {
     setOpen(true);
   };
   return (
     <StyledCard>
       <LotContent>
-        {
-          // TODO fix modal style
-        }
         <Modal
           open={open}
           aria-labelledby="modal-modal-title"
@@ -34,9 +32,9 @@ const Lot: FC = ({ lot }: any) => {
             <p id="modal-modal-description">Modal content</p>
           </ModalBox>
         </Modal>
-        <LotName>{lot.name}</LotName>
-        <LotName>{[lot.fitCars].join(',')}</LotName>
-        <LotDescription>{lot.description}</LotDescription>
+        <LotName>{lot.Name}</LotName>
+        <LotName>{[lot.Models].join(',')}</LotName>
+        <LotDescription>{lot.Description}</LotDescription>
       </LotContent>
       <IconWrapper>
         <Icon
@@ -46,7 +44,7 @@ const Lot: FC = ({ lot }: any) => {
             svg.setAttribute('style', 'height: 24px');
           }}
           onClick={() => {
-            onEditIssue();
+            onEditLot();
           }}
         />
         <Icon
@@ -56,7 +54,7 @@ const Lot: FC = ({ lot }: any) => {
             svg.setAttribute('style', 'height: 24px');
           }}
           onClick={() => {
-            onRemovedIssue();
+            onRemovedLot();
           }}
         />
       </IconWrapper>
