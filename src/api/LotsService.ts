@@ -14,6 +14,9 @@ class LotsService {
 
   getLotsData = async (): Promise<AxiosResponse<PartsInterface[]>> =>
     storeApi.get<PartsInterface[]>(`${this.server}:${this.port}/lots`);
+
+  deleteLot = async (id: string): Promise<AxiosResponse> =>
+    storeApi.delete<PartsInterface[]>(`${this.server}:${this.port}/lots/${id}`, { data: id });
 }
 
 export const lotsService = new LotsService(process.env.SERVER, process.env.PORT);

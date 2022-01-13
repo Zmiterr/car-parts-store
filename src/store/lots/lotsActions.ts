@@ -7,7 +7,7 @@ const lotsLoaded = (data: any) => ({
   payload: data,
 });
 
-const lotRemoved = (lotId: number) => ({
+const lotRemoved = (lotId: string) => ({
   type: LotsActionsType.REMOVE_LOT,
   payload: lotId,
 });
@@ -32,9 +32,14 @@ const getLots =
   };
 
 const removeLot =
-  (id: number) =>
-  (dispatch: Dispatch): any => {
-    dispatch(lotRemoved(id));
+  (id: string) =>
+  async (dispatch: Dispatch): Promise<void> => {
+    const { status } = await lotsService.deleteLot(id);
+    if (status === 200) {
+      dispatch(lotRemoved(id));
+    } else {
+      dispatch(lotsError());
+    }
   };
 
 export { getLots, removeLot };
