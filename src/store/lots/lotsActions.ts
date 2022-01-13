@@ -24,9 +24,8 @@ const getLots =
   () =>
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await lotsService.getLotsData();
-    const lotsResponseUserData = data;
-    if (lotsResponseUserData) {
-      dispatch(lotsLoaded(lotsResponseUserData));
+    if (data) {
+      dispatch(lotsLoaded(data));
     } else {
       dispatch(lotsError());
     }
