@@ -5,6 +5,7 @@ import { PageHeader } from '../../shared/styled/headers/PageHeader';
 import Lot from './Lot/Lot';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { getLots } from '../../store/lots/lotsActions';
+import { getParts } from '../../store/parts/partsActions';
 
 export interface LotsInterface {
   id: string;
@@ -21,6 +22,9 @@ const MyLots: FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getLots());
+  }, []);
+  useEffect(() => {
+    dispatch(getParts());
   }, []);
 
   const { lots } = useTypedSelector((state) => state.lots);
