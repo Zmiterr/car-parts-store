@@ -23,7 +23,7 @@ const lotsError = () => ({
 const getLots =
   () =>
   async (dispatch: Dispatch): Promise<void> => {
-    const response = await lotsService.getLotsData();
+    const { data } = await lotsService.getLotsData();
     const lotsResponseUserData = response.data;
     if (lotsResponseUserData) {
       dispatch(lotsLoaded(lotsResponseUserData));
