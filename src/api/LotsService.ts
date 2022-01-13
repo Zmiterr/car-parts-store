@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { PartsInterface } from '../models/PartsInterface';
+import storeApi from './storeApi';
 
 class LotsService {
   server = '';
@@ -12,7 +13,7 @@ class LotsService {
   }
 
   getLotsData = async (): Promise<AxiosResponse<PartsInterface[]>> =>
-    axios.get<PartsInterface[]>(`${this.server}:${this.port}/lots`);
+    storeApi.get<PartsInterface[]>(`${this.server}:${this.port}/lots`);
 }
 
 export const lotsService = new LotsService(process.env.SERVER, process.env.PORT);
