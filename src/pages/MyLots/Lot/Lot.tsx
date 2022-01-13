@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Modal } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import { H2 } from '../../../shared/styled/headers/H2';
 import { StyledCard } from '../../../shared/styled/containers/Card';
 import EditIcon from '../../../assets/icons/edit.svg';
@@ -9,12 +10,14 @@ import { ModalBox } from '../../../shared/styled/containers/ModalBox';
 import { LotsInterface } from '../MyLots';
 import img from '../../../assets/images/ats_classic_1_large.png';
 import { PartImage, PartOrderInfo, PartPrise } from '../../Parts/Components/Part/Styles';
+import { removeLot } from '../../../store/lots/lotsActions';
 
 const Lot: FC = ({ lot }: LotsInterface) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
   const onRemovedLot = () => {
-    // dispatch removeLot
+    dispatch(removeLot(lot.id));
   };
 
   const onEditLot = () => {
@@ -63,7 +66,7 @@ const Lot: FC = ({ lot }: LotsInterface) => {
             svg.setAttribute('style', 'height: 24px');
           }}
           onClick={() => {
-            onRemovedLot();
+            onRemovedLot(lot.id);
           }}
         />
       </IconWrapper>

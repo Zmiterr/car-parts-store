@@ -31,8 +31,10 @@ const getLots =
     }
   };
 
-const removeLot = (dispatch: Dispatch, id: number) => (): any => {
-  dispatch(lotRemoved(id));
-};
+const removeLot =
+  (id: number) =>
+  (dispatch: Dispatch): any => {
+    dispatch(lotRemoved(id));
+  };
 
 export { getLots, removeLot };
