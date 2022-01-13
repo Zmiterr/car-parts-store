@@ -7,6 +7,8 @@ import DeleteIcon from '../../../assets/icons/delete.svg';
 import { Icon, IconWrapper, LotContent, LotDescription, LotName } from './Styles';
 import { ModalBox } from '../../../shared/styled/containers/ModalBox';
 import { LotsInterface } from '../MyLots';
+import img from '../../../assets/images/ats_classic_1_large.png';
+import { PartImage, PartOrderInfo, PartPrise } from '../../Parts/Components/Part/Styles';
 
 const Lot: FC = ({ lot }: LotsInterface) => {
   const [open, setOpen] = React.useState(false);
@@ -32,10 +34,17 @@ const Lot: FC = ({ lot }: LotsInterface) => {
             <p id="modal-modal-description">Modal content</p>
           </ModalBox>
         </Modal>
-        <LotName>{lot.Name}</LotName>
-        <LotName>{[lot.Models].join(',')}</LotName>
+        <PartImage src={img} alt="text" />
+        <LotName>{lot.name}</LotName>
+        <LotName>{lot.condition}</LotName>
+        <LotName>{[lot.models].join(',')}</LotName>
         <LotDescription>{lot.Description}</LotDescription>
       </LotContent>
+      <PartOrderInfo>
+        <PartPrise>
+          <span>5000$</span>
+        </PartPrise>
+      </PartOrderInfo>
       <IconWrapper>
         <Icon
           src={(EditIcon || '').replace(/^\.\//, '/')}

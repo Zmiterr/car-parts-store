@@ -7,8 +7,7 @@ export const LotContent = styled.div`
   align-items: center;
   justify-content: space-around;
   width: 300px;
-  height: 75px;
-  max-height: 75px;
+  min-height: 75px;
   padding: 12px;
 `;
 
@@ -22,6 +21,7 @@ export const LotName = styled.div`
 export const IconWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 `;
 
 export const Icon = styled(ReactSVG)`

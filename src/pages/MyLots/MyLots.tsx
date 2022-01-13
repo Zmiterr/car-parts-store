@@ -12,6 +12,7 @@ export interface LotsInterface {
   name: string;
   description: string;
   models: string[];
+  condition: string;
   price: number;
   photoUrl: string;
 }
