@@ -7,13 +7,13 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { getLots } from '../../store/lots/lotsActions';
 
 export interface LotsInterface {
-  objectId: string;
-  Category: string;
-  Name: string;
-  Description: string;
-  Models: string[];
-  Price: number;
-  PhotoUrl: string;
+  id: string;
+  category: string;
+  name: string;
+  description: string;
+  models: string[];
+  price: number;
+  photoUrl: string;
 }
 
 const MyLots: FC = () => {
@@ -30,7 +30,7 @@ const MyLots: FC = () => {
         <h2>My lots</h2>
       </PageHeader>
       {lots.map((lot: LotsInterface) => (
-        <Lot key={lot.objectId} lot={lot} />
+        <Lot key={lot.id} lot={lot} />
       ))}
     </Container>
   );
