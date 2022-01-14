@@ -1,16 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import { PartsInterface } from '../models/PartsInterface';
+import { AppService } from './AppService';
 
-class PartsService {
-  server = '';
-
-  port = '';
-
-  constructor(server = '', port = '') {
-    this.server = server;
-    this.port = port;
-  }
-
+class PartsService extends AppService {
   getPartsData = async (): Promise<AxiosResponse<PartsInterface[]>> =>
     axios.get<PartsInterface[]>(`${process.env.SERVER}:${process.env.PORT}/parts`);
 }
