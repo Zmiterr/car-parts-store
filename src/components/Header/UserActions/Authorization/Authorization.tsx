@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
-import { AuthActions } from '../../../../store/reducers/auth/authActions';
+import { AuthActions } from '../../../../store/auth/authActions';
 import { RouteNames } from '../../../../router';
 import { LogoutButton } from './Styles';
 

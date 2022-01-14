@@ -8,11 +8,11 @@ import {
   SetUserInterface,
 } from './types';
 
-import { AppDispatch } from '../index';
+import { AppDispatch } from '../rootReducer';
 
-import { UserInterface } from '../../../models/UserInterface';
-import AuthService from '../../../api/AuthService';
-import UserService from '../../../api/UserService';
+import { UserInterface } from '../../models/UserInterface';
+import AuthService from '../../api/AuthService';
+import UserService from '../../api/UserService';
 
 export const AuthActions = {
   setAuth: (auth: boolean): SetAuthInterface => ({

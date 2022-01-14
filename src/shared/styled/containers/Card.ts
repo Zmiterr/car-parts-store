@@ -7,7 +7,7 @@ export const StyledCard = styled.div`
   //flex-direction: column;
   height: fit-content;
   min-width: 0;
-  margin: 1rem 1.5rem;
+  margin: 1rem 0;
   padding: 0 0.5rem;
   word-wrap: break-word;
   background-color: #fff;

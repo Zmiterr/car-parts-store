@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Input, Submit } from '../../Login/Styles';
-import { AuthActions } from '../../../store/reducers/auth/authActions';
+import { AuthActions } from '../../../store/auth/authActions';
 
 const SecurityForm: FC = () => {
   const dispatch = useDispatch();

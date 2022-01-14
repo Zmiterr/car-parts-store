@@ -50,9 +50,9 @@ export const Submit = styled.input.attrs({
   cursor: pointer;
   margin-bottom: 0;
   text-transform: uppercase;
-  width: 100%;
   border-radius: 5px;
   height: 35px;
+  width: 100px;
   border-color: transparent;
   outline: none;
   transition: 0.15s;
