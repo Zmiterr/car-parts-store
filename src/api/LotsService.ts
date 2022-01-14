@@ -1,17 +1,9 @@
 import { AxiosResponse } from 'axios';
 import { PartsInterface } from '../models/PartsInterface';
 import storeApi from './storeApi';
+import { AppService } from './AppService';
 
-class LotsService {
-  server = '';
-
-  port = '';
-
-  constructor(server = '', port = '') {
-    this.server = server;
-    this.port = port;
-  }
-
+class LotsService extends AppService {
   getLotsData = async (): Promise<AxiosResponse<PartsInterface[]>> =>
     storeApi.get<PartsInterface[]>(`${this.server}:${this.port}/lots`);
 
