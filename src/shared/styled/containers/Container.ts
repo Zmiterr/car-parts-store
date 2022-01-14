@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: block;
+  padding: 1rem;
   width: 100%;
   max-width: 1200px;
   background: #fff;
