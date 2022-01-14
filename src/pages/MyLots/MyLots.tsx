@@ -1,11 +1,13 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { H2 } from '../../shared/styled/headers/H2';
 import { Container } from '../../shared/styled/containers/Container';
 import { PageHeader } from '../../shared/styled/headers/PageHeader';
 import Lot from './Lot/Lot';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { getLots } from '../../store/lots/lotsActions';
 import { getParts } from '../../store/parts/partsActions';
+import { PrimaryButton } from '../../shared/styled/Elements/PrimaryButton';
 
 export interface LotsInterface {
   id: string;
@@ -32,8 +34,9 @@ const MyLots: FC = () => {
   return (
     <Container>
       <PageHeader>
-        <h2>My lots</h2>
+        <H2>My lots</H2>
       </PageHeader>
+      <PrimaryButton>Add new lot</PrimaryButton>
       {lots.map((lot: LotsInterface) => (
         <Lot key={lot.id} lot={lot} />
       ))}
