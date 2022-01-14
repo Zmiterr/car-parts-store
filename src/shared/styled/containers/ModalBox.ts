@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ModalBox = styled.div`
   font-family: 'Roboto', sans-serif;
   position: absolute;
+  padding: 1em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
