@@ -15,6 +15,9 @@ class LotsService {
   getLotsData = async (): Promise<AxiosResponse<PartsInterface[]>> =>
     storeApi.get<PartsInterface[]>(`${this.server}:${this.port}/lots`);
 
+  getLotsDataByDealer = async (dealerId: number): Promise<AxiosResponse<PartsInterface[]>> =>
+    storeApi.get<PartsInterface[]>(`${this.server}:${this.port}/lots?${dealerId}`);
+
   createLot = async (payload: any): Promise<AxiosResponse<PartsInterface>> =>
     storeApi.post<PartsInterface>(`${this.server}:${this.port}/lots`, { data: payload });
 
