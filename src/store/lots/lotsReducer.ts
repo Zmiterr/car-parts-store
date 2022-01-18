@@ -1,12 +1,18 @@
-import { LotsActionsType, LotsActions } from './types';
+import { LotsActionsType, LotsActions, LotInterface } from './types';
+// TODO
+interface LotsStateInterface {
+  lots: LotInterface[];
+  isLoading: boolean;
+  isError: boolean;
+}
 
-const initialState: any = {
+const initialState: LotsStateInterface = {
   lots: [],
   isLoading: false,
   isError: false,
 };
 
-const lotsReducer = (state = initialState, action: LotsActions): any => {
+const lotsReducer = (state = initialState, action: LotsActions): LotsStateInterface => {
   switch (action.type) {
     case LotsActionsType.GET_LOTS:
       return { ...state, lots: action.payload, isLoading: false };
@@ -14,17 +20,18 @@ const lotsReducer = (state = initialState, action: LotsActions): any => {
     case LotsActionsType.REMOVE_LOT:
       return {
         ...state,
-        lots: state.lots.filter((lot: any) => lot.id !== action.payload),
+        lots: state.lots.filter((lot) => lot.id !== action.payload),
         isLoading: false,
       };
 
-    case LotsActionsType.CREATE_LOT:
-      return {
-        ...state,
-        lots: state.lots.push(action.payload),
-        isLoading: false,
-      };
+    // case LotsActionsType.CREATE_LOT:
+    //   return {
+    //     ...state,
+    //     lots: state.lots.push(action.payload),
+    //     isLoading: false,
+    //   };
 
+    // TODO remove this action
     case LotsActionsType.UPDATE_LOT:
       return {
         ...state,
