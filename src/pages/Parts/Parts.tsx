@@ -5,7 +5,7 @@ import Part from './Components/Part/Part';
 import Search from './Components/Search/Search';
 import { getLots } from '../../store/lots/lotsActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { LotsInterface } from '../MyLots/MyLots';
+import { LotInterface } from '../MyLots/MyLots';
 
 const Parts: FC = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Parts: FC = () => {
   return (
     <Container>
       <Search />
-      {lots.map((lot: LotsInterface) => (
+      {lots.map((lot: LotInterface) => (
         <Part key={lot.id} lot={lot} />
       ))}
     </Container>

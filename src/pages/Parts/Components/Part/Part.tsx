@@ -12,10 +12,14 @@ import {
 } from './Styles';
 import { StyledCard } from '../../../../shared/styled/containers/Card';
 import { SmallDescribe } from '../../../../shared/styled/headers/SmallDescribe';
-import { LotsInterface } from '../../../MyLots/MyLots';
+import { LotInterface } from '../../../MyLots/MyLots';
 import { PrimaryButton } from '../../../../shared/styled/Elements/PrimaryButton';
 
-const Part: FC = ({ lot }: LotsInterface) => {
+interface PartPropsInterface {
+  lot: LotInterface;
+}
+
+const Part: FC<PartPropsInterface> = ({ lot }) => {
   return (
     <StyledCard>
       <PartImage src={img} alt="text" />
