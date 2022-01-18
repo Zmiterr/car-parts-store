@@ -1,5 +1,16 @@
 import { Action } from 'redux';
 
+export interface LotInterface {
+  id: string;
+  category: string;
+  name: string;
+  description: string;
+  models: string[];
+  condition: string;
+  price: number;
+  photoUrl: string;
+}
+
 export enum LotsActionsType {
   GET_LOTS = 'lots/GET_LOTS',
   CREATE_LOT = 'lots/CREATE_LOT',
