@@ -9,14 +9,18 @@ import EditIcon from '../../../assets/icons/edit.svg';
 import DeleteIcon from '../../../assets/icons/delete.svg';
 import { Icon, IconWrapper, LotContent, LotDescription, LotName } from './Styles';
 import { ModalBox } from '../../../shared/styled/containers/ModalBox';
-import { LotsInterface } from '../MyLots';
+import { LotInterface } from '../MyLots';
 import img from '../../../assets/images/ats_classic_1_large.png';
 import { PartImage, PartOrderInfo, PartPrise } from '../../Parts/Components/Part/Styles';
-import { removeLot, updateLot } from '../../../store/lots/lotsActions';
+import { createLot, removeLot } from '../../../store/lots/lotsActions';
 import { Input, Submit } from '../../Login/Styles';
 import { FieldErrorNotification } from '../../../shared/styled/headers/FieldErrorNotification';
 
-const Lot: FC = ({ lot }: LotsInterface) => {
+type SubmitBodyInterface = Omit<LotInterface, 'id'>;
+interface PartPropsInterface {
+  lot: LotInterface;
+}
+const Lot: FC<PartPropsInterface> = ({ lot }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
@@ -33,8 +37,9 @@ const Lot: FC = ({ lot }: LotsInterface) => {
     setOpen(true);
   };
 
-  const onSubmit = () => {
-    dispatch(updateLot(lot.id));
+  const onSubmit = (data: SubmitBodyInterface) => {
+    // dispatch(updateLot(lot.id, { ...lot, ...data }));
+    dispatch(createLot({ ...lot, ...data }));
   };
 
   return (
@@ -52,8 +57,24 @@ const Lot: FC = ({ lot }: LotsInterface) => {
               {/* //TODO make search field */}
               <p>search filed</p>
               <div>
-                <input type="radio" value="new" name="condition" /> new
-                <input type="radio" value="used" name="condition" /> used
+                <label htmlFor="new">
+                  new
+                  <input
+                    id="new"
+                    {...register('condition', { required: true })}
+                    type="radio"
+                    value="new"
+                  />
+                </label>
+                <label htmlFor="used">
+                  used
+                  <input
+                    id="used"
+                    {...register('condition', { required: true })}
+                    type="radio"
+                    value="used"
+                  />
+                </label>
               </div>
               <Input {...register('description')} placeholder="description" />{' '}
               {/* register an input */}
@@ -68,7 +89,7 @@ const Lot: FC = ({ lot }: LotsInterface) => {
         <LotName>{lot.condition}</LotName>
         <LotName>{[lot.models].join(',')}</LotName>
         <SmallDescribe>{[lot.description].join(',')}</SmallDescribe>
-        <LotDescription>{lot.Description}</LotDescription>
+        <LotDescription>{lot.description}</LotDescription>
       </LotContent>
       <PartOrderInfo>
         <PartPrise>
