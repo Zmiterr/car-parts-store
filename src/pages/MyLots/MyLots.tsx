@@ -9,7 +9,7 @@ import { getLots } from '../../store/lots/lotsActions';
 import { getParts } from '../../store/parts/partsActions';
 import { PrimaryButton } from '../../shared/styled/Elements/PrimaryButton';
 
-export interface LotsInterface {
+export interface LotInterface {
   id: string;
   category: string;
   name: string;
@@ -37,7 +37,7 @@ const MyLots: FC = () => {
         <H2>My lots</H2>
       </PageHeader>
       <PrimaryButton>Add new lot</PrimaryButton>
-      {lots.map((lot: LotsInterface) => (
+      {lots.map((lot: LotInterface) => (
         <Lot key={lot.id} lot={lot} />
       ))}
     </Container>
