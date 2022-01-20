@@ -16,8 +16,6 @@ const MyLots: FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getLots());
-  }, [dispatch]);
-  useEffect(() => {
     dispatch(getParts());
   }, [dispatch]);
 
