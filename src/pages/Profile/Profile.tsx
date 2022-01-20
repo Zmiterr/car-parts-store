@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { StyledCard } from '../../shared/styled/containers/Card';
 import { Container } from '../../shared/styled/containers/Container';
 import { PageHeader } from '../../shared/styled/headers/PageHeader';
@@ -11,8 +12,17 @@ import {
 import { UserAvatar, UserInfo } from './Styles';
 import SecurityForm from './Security/SecurityForm';
 import UserInfoForm from './UserInfo/UserInfoForm';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { getUser } from '../../store/user/userActions';
 
 const Profile: FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser(1));
+  }, [dispatch]);
+
+  const user = useTypedSelector((state) => (state.user.user ? state.user.user[0] : []));
+  console.log(user);
   const tabs = ['User info', 'Security'];
   const [activeTab, setActiveTab] = useState(0);
   return (
@@ -37,7 +47,7 @@ const Profile: FC = () => {
         <SearchContent>
           <StyledCard>
             {activeTab === 0 && <UserAvatar />}
-            <UserInfo>{activeTab === 0 ? <UserInfoForm /> : <SecurityForm />}</UserInfo>
+            <UserInfo>{activeTab === 0 ? <UserInfoForm user={user} /> : <SecurityForm />}</UserInfo>
           </StyledCard>
         </SearchContent>
       </SearchBody>
