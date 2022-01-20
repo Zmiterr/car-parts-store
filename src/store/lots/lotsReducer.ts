@@ -1,5 +1,5 @@
 import { LotsActionsType, LotsActions, LotInterface } from './types';
-// TODO
+
 interface LotsStateInterface {
   lots: LotInterface[];
   isLoading: boolean;
@@ -31,11 +31,11 @@ const lotsReducer = (state = initialState, action: LotsActions): LotsStateInterf
     //     isLoading: false,
     //   };
 
-    // // TODO remove this action
+    //
     // case LotsActionsType.UPDATE_LOT:
     //   return {
     //     ...state,
-    //     // TODO write update action
+    //
     //     lots: state.lots, // state.lots.find((lot: any) => lot.id === action.payload.id),
     //     isLoading: false,
     //   };
