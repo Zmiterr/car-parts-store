@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { LotsActionsType } from './types';
+import { LotInterface, LotsActionsType } from './types';
 import { lotsService } from '../../api/LotsService';
 
 const lotsLoaded = (data: any) => ({
@@ -7,20 +7,20 @@ const lotsLoaded = (data: any) => ({
   payload: data,
 });
 
-const lotCreated = (data: any) => ({
-  type: LotsActionsType.CREATE_LOT,
-  payload: data,
-});
-
-const lotUpdated = (data: any) => ({
-  type: LotsActionsType.UPDATE_LOT,
-  payload: data,
-});
-
-const lotRemoved = (lotId: string) => ({
-  type: LotsActionsType.REMOVE_LOT,
-  payload: lotId,
-});
+// const lotCreated = (data: any) => ({
+//   type: LotsActionsType.CREATE_LOT,
+//   payload: data,
+// });
+//
+// const lotUpdated = (data: any) => ({
+//   type: LotsActionsType.UPDATE_LOT,
+//   payload: data,
+// });
+//
+// const lotRemoved = (lotId: string) => ({
+//   type: LotsActionsType.REMOVE_LOT,
+//   payload: lotId,
+// });
 
 // const lotsRequested = () => ({
 //   type: LotsActionsType.FETCH_LOTS_REQUEST,
@@ -46,29 +46,30 @@ const removeLot =
   async (dispatch: Dispatch): Promise<void> => {
     const { status } = await lotsService.deleteLot(id);
     if (status === 200) {
-      dispatch(lotRemoved(id));
+      dispatch<any>(getLots());
     } else {
       dispatch(lotsError());
     }
   };
 
 const updateLot =
-  (id: string) =>
+  (id: string, body: LotInterface) =>
   async (dispatch: Dispatch): Promise<void> => {
-    const { data } = await lotsService.updateLot(id, '');
+    const { data } = await lotsService.updateLot(id, body);
     if (data) {
-      dispatch(lotUpdated(id));
+      // TODO find type for action
+      dispatch<any>(getLots());
     } else {
       dispatch(lotsError());
     }
   };
 
 const createLot =
-  (payload: string) =>
+  (payload: LotInterface) =>
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await lotsService.createLot(payload);
     if (data) {
-      dispatch(lotCreated(data));
+      dispatch<any>(getLots());
     } else {
       dispatch(lotsError());
     }

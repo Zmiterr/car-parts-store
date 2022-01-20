@@ -9,43 +9,44 @@ import {
   PartPrise,
   PartSpecifications,
   PartSpecificationsAdditional,
-  PartToCartButton,
 } from './Styles';
 import { StyledCard } from '../../../../shared/styled/containers/Card';
 import { SmallDescribe } from '../../../../shared/styled/headers/SmallDescribe';
+import { LotInterface } from '../../../MyLots/MyLots';
+import { PrimaryButton } from '../../../../shared/styled/Elements/PrimaryButton';
 
-const Part: FC = () => {
+interface PartPropsInterface {
+  lot: LotInterface;
+}
+
+const Part: FC<PartPropsInterface> = ({ lot }) => {
   return (
     <StyledCard>
       <PartImage src={img} alt="text" />
       <PartSpecifications>
-        <H5>Part</H5>
+        <H5>{lot.name}</H5>
         <ul>
-          <li>
-            Lorem ipsum: <span>lorem</span>
-          </li>
-          <li>
-            Lorem ipsum: <span>lorem</span>
-          </li>
-          <li>
-            Lorem ipsum: <span>lorem</span>
-          </li>
+          {lot.models.map((model: string) => (
+            <li key={model}>
+              Alfa romeo: <span>{model}</span>
+            </li>
+          ))}
         </ul>
         <PartSpecificationsAdditional>
-          <SmallDescribe>Lorem ipsum dolor sit amet.</SmallDescribe>
+          <SmallDescribe>{lot.description}</SmallDescribe>
         </PartSpecificationsAdditional>
       </PartSpecifications>
       <PartOrderInfo>
         <PartPrise>
-          <span>5000$</span>
+          <span>{lot.price}</span>
         </PartPrise>
         <PartLocation>
           <SmallDescribe>Los-santos</SmallDescribe>
         </PartLocation>
         <PartDealer>
-          <span>Seller name</span>
+          <span>Dealer name</span>
         </PartDealer>
-        <PartToCartButton>Add to cart</PartToCartButton>
+        <PrimaryButton>Add to cart</PrimaryButton>
       </PartOrderInfo>
     </StyledCard>
   );
