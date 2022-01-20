@@ -11,7 +11,7 @@ import { PrimaryButton } from '../../shared/styled/Elements/PrimaryButton';
 import { LotsModal } from './LotsModal';
 import { LotInterface } from '../../store/lots/types';
 
-type SubmitBodyInterface = Omit<LotInterface, 'id'>;
+export type SubmitBodyInterface = Omit<LotInterface, 'id'>;
 const MyLots: FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {

@@ -37,7 +37,7 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
   return (
     <StyledCard>
       <LotContent>
-        <LotsModal isOpen={isOpen} handleClose={handleClose} onSubmit={onSubmit} />
+        <LotsModal isOpen={isOpen} lot={lot} handleClose={handleClose} onSubmit={onSubmit} />
         <PartImage src={img} alt="text" />
         <LotName>{lot.name}</LotName>
         <LotName>{lot.condition}</LotName>

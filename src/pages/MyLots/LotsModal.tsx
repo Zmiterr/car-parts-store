@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useState } from 'react';
-import { Modal, Radio, RadioGroup } from '@material-ui/core';
+import { FormControlLabel, Modal, Radio, RadioGroup } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { ModalBox } from '../../shared/styled/containers/ModalBox';
 import { H2 } from '../../shared/styled/headers/H2';
@@ -13,14 +13,22 @@ interface LotsModalProps {
   onSubmit: (data: SubmitBodyInterface) => void;
   handleClose: () => void;
   isOpen: boolean;
+  // TODO fix TS error
+  lot?: LotInterface | undefined;
 }
 
-export const LotsModal: FC<LotsModalProps> = ({ onSubmit, handleClose, isOpen }) => {
+export const LotsModal: FC<LotsModalProps> = ({ onSubmit, lot, handleClose, isOpen }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      description: lot?.description,
+      price: lot?.price,
+      condition: lot?.condition,
+    },
+  });
 
   const [searchString, setSearchString] = useState('');
   const sortPartsArray = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,27 +52,11 @@ export const LotsModal: FC<LotsModalProps> = ({ onSubmit, handleClose, isOpen })
               sortPartsArray(e);
             }}
           />
-          <RadioGroup defaultValue="new" name="radio-buttons-group" row>
-            <label htmlFor="new">
-              new
-              <Radio
-                id="new"
-                {...register('condition', { required: true })}
-                value="new"
-                color="default"
-              />
-            </label>
-            <label htmlFor="used">
-              used
-              <Radio
-                id="used"
-                {...register('condition', { required: true })}
-                value="used"
-                color="default"
-              />
-            </label>
+          <RadioGroup defaultValue={String(lot?.condition)} name="radio-buttons-group" row>
+            <FormControlLabel value="new" control={<Radio />} label="new" />
+            <FormControlLabel value="used" control={<Radio />} label="used" />
           </RadioGroup>
-          <Input {...register('description')} placeholder="description" /> {/* register an input */}
+          <Input {...register('description')} placeholder="description" />
           <Input type="number" {...register('price', { required: true })} placeholder="price" />
           {errors.price && <FieldErrorNotification>price is required.</FieldErrorNotification>}
           <Submit />
