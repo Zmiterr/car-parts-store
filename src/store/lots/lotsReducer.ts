@@ -1,6 +1,6 @@
 import { LotsActionsType, LotsActions, LotInterface } from './types';
 
-interface LotsStateInterface {
+export interface LotsStateInterface {
   lots: LotInterface[];
   isLoading: boolean;
   isError: boolean;
