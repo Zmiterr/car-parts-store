@@ -1,10 +1,9 @@
 import { Dispatch } from 'redux';
 import { LotInterface, LotsActionsType } from './types';
 import { lotsService } from '../../api/LotsService';
-import { PartsInterface } from '../../models/PartsInterface';
 import { SubmitBodyInterface } from '../../pages/MyLots/MyLots';
 
-const lotsLoaded = (data: PartsInterface[]) => ({
+const lotsLoaded = (data: LotInterface[]) => ({
   type: LotsActionsType.GET_LOTS,
   payload: data,
 });
@@ -77,4 +76,14 @@ const createLot =
     }
   };
 
-export { getLots, removeLot, updateLot, createLot };
+const addLotToCompare = (data: LotInterface) => ({
+  type: LotsActionsType.ADD_COMPARE_LOT,
+  payload: data,
+});
+
+const removeLotFromCompare = (data: LotInterface) => ({
+  type: LotsActionsType.REMOVE_COMPARE_LOT,
+  payload: data,
+});
+
+export { getLots, removeLot, updateLot, createLot, addLotToCompare, removeLotFromCompare };
