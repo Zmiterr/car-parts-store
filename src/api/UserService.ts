@@ -20,7 +20,7 @@ export default class UserService {
     body: UserProfileDataInterface,
   ): Promise<AxiosResponse<UserProfileDataInterface>> {
     return StoreApi.put<UserProfileDataInterface>(
-      `${process.env.SERVER}:${process.env.PORT}/users${id}`,
+      `${process.env.SERVER}:${process.env.PORT}/users/${id}`,
       body,
     );
   }
