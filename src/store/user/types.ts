@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 
 export interface UserProfileDataInterface {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
   phone: string;

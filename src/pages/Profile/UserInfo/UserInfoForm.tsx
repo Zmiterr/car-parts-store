@@ -9,7 +9,9 @@ type UserInfoFormProps = {
   user: UserProfileDataInterface;
 };
 
-const UserInfoForm: FC<UserInfoFormProps> = ({ user: { firstName, lastName, email, phone } }) => {
+const UserInfoForm: FC<UserInfoFormProps> = ({
+  user: { id, firstName, lastName, email, phone },
+}) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -25,7 +27,7 @@ const UserInfoForm: FC<UserInfoFormProps> = ({ user: { firstName, lastName, emai
   });
   console.log(firstName);
   const onSubmit = (userData: UserProfileDataInterface) => {
-    dispatch(UserService.updateUser(1, userData));
+    dispatch(UserService.updateUser(id, userData));
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
