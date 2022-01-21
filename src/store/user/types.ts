@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+import { UserInterface } from '../../models/UserInterface';
 
 export interface UserProfileDataInterface {
   id: number;
@@ -17,7 +18,7 @@ export enum UserActionsType {
 
 export interface GetUserActionInterface extends Action<UserActionsType> {
   type: UserActionsType.GET_USER;
-  payload: any;
+  payload: UserInterface;
 }
 
 export interface FetchUserRequestActionInterface extends Action<UserActionsType> {

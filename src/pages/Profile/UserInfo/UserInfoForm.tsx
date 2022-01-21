@@ -25,7 +25,6 @@ const UserInfoForm: FC<UserInfoFormProps> = ({
       email,
     },
   });
-  console.log(firstName);
   const onSubmit = (userData: UserProfileDataInterface) => {
     dispatch(UserService.updateUser(id, userData));
   };

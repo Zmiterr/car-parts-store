@@ -17,7 +17,6 @@ import { getUser } from '../../store/user/userActions';
 
 const Profile: FC = () => {
   const userId = useTypedSelector((state) => state.auth.user.userData[0].id);
-  console.log(`userId: ${userId}`);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUser(userId));
