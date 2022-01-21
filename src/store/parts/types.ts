@@ -7,6 +7,20 @@ export enum PartsActionsType {
   FETCH_PARTS_ERROR = 'part/FETCH_ERROR',
 }
 
+export interface PartInterface {
+  objectId: string;
+  Year: number;
+  Make: string;
+  Model: string;
+  Category: string;
+}
+
+export interface PartsStateInterface {
+  parts: PartInterface[];
+  isLoading: boolean;
+  isError: boolean;
+}
+
 export interface GetPartsActionInterface extends Action<PartsActionsType> {
   type: PartsActionsType.SET_PARTS;
   payload: any;

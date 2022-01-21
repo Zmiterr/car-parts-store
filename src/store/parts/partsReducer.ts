@@ -1,12 +1,12 @@
-import { PartsActionsType, PartsActions } from './types';
+import { PartsActionsType, PartsActions, PartsStateInterface, PartInterface } from './types';
 
-const initialState: any = {
+const initialState: PartsStateInterface = {
   parts: [],
   isLoading: false,
   isError: false,
 };
 
-const partsReducer = (state = initialState, action: PartsActions): any => {
+const partsReducer = (state = initialState, action: PartsActions): PartsStateInterface => {
   switch (action.type) {
     case PartsActionsType.SET_PARTS:
       return { ...state, parts: action.payload, isLoading: false, isError: false };
@@ -14,17 +14,13 @@ const partsReducer = (state = initialState, action: PartsActions): any => {
     case PartsActionsType.REMOVE_PART:
       return {
         ...state,
-        parts: state.parts.filter((part: any) => part.id !== action.payload),
+        parts: state.parts.filter((part: PartInterface) => part.objectId !== action.payload),
         isLoading: false,
-        isError: false,
       };
-
     case PartsActionsType.FETCH_PARTS_REQUEST:
       return { ...state, isLoading: true };
-
     case PartsActionsType.FETCH_PARTS_ERROR:
-      return { ...state, parts: [], isLoading: false, isError: true };
-
+      return { ...state, isLoading: false, isError: true };
     default:
       return state;
   }
