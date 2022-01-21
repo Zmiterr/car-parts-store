@@ -2,11 +2,14 @@ import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Input, Submit } from '../../Login/Styles';
-import { AuthActions } from '../../../store/auth/authActions';
 import { UserProfileDataInterface } from '../../../store/user/types';
 import UserService from '../../../api/UserService';
 
-const UserInfoForm: FC<UserProfileDataInterface> = ({ firstName, lastName, email, phone }) => {
+type UserInfoFormProps = {
+  user: UserProfileDataInterface;
+};
+
+const UserInfoForm: FC<UserInfoFormProps> = ({ user: { firstName, lastName, email, phone } }) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -20,6 +23,7 @@ const UserInfoForm: FC<UserProfileDataInterface> = ({ firstName, lastName, email
       email,
     },
   });
+  console.log(firstName);
   const onSubmit = (userData: UserProfileDataInterface) => {
     dispatch(UserService.updateUser(1, userData));
   };

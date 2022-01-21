@@ -3,6 +3,7 @@ import { PartsInterface } from '../models/PartsInterface';
 import storeApi from './storeApi';
 import { AppService } from './AppService';
 import { LotInterface } from '../store/lots/types';
+import { SubmitBodyInterface } from '../pages/MyLots/MyLots';
 
 class LotsService extends AppService {
   getLotsData = async (): Promise<AxiosResponse<PartsInterface[]>> =>
@@ -11,7 +12,7 @@ class LotsService extends AppService {
   getLotsDataByDealer = async (dealerId: number): Promise<AxiosResponse<PartsInterface[]>> =>
     storeApi.get<PartsInterface[]>(`${this.server}:${this.port}/lots?${dealerId}`);
 
-  createLot = async (payload: LotInterface): Promise<AxiosResponse<PartsInterface>> =>
+  createLot = async (payload: SubmitBodyInterface): Promise<AxiosResponse<PartsInterface>> =>
     storeApi.post<PartsInterface>(`${this.server}:${this.port}/lots`, { ...payload });
 
   deleteLot = async (id: string): Promise<AxiosResponse> =>

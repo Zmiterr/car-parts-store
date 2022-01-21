@@ -1,8 +1,10 @@
 import { Dispatch } from 'redux';
 import { LotInterface, LotsActionsType } from './types';
 import { lotsService } from '../../api/LotsService';
+import { PartsInterface } from '../../models/PartsInterface';
+import { SubmitBodyInterface } from '../../pages/MyLots/MyLots';
 
-const lotsLoaded = (data: any) => ({
+const lotsLoaded = (data: PartsInterface[]) => ({
   type: LotsActionsType.GET_LOTS,
   payload: data,
 });
@@ -65,7 +67,7 @@ const updateLot =
   };
 
 const createLot =
-  (payload: LotInterface) =>
+  (payload: SubmitBodyInterface) =>
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await lotsService.createLot(payload);
     if (data) {

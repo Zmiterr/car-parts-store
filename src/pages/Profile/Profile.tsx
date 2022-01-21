@@ -16,13 +16,14 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { getUser } from '../../store/user/userActions';
 
 const Profile: FC = () => {
+  const userId = useTypedSelector((state) => state.auth.user.userData[0].id);
+  console.log(`userId: ${userId}`);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUser(1));
-  }, [dispatch]);
+    dispatch(getUser(userId));
+  }, [dispatch, userId]);
 
   const user = useTypedSelector((state) => (state.user.user ? state.user.user[0] : []));
-  console.log(user);
   const tabs = ['User info', 'Security'];
   const [activeTab, setActiveTab] = useState(0);
   return (
@@ -47,7 +48,10 @@ const Profile: FC = () => {
         <SearchContent>
           <StyledCard>
             {activeTab === 0 && <UserAvatar />}
-            <UserInfo>{activeTab === 0 ? <UserInfoForm user={user} /> : <SecurityForm />}</UserInfo>
+            <UserInfo>
+              {/* //TODO fix ts errror */}
+              {activeTab === 0 ? user && <UserInfoForm user={user} /> : <SecurityForm />}
+            </UserInfo>
           </StyledCard>
         </SearchContent>
       </SearchBody>
