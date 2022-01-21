@@ -2,17 +2,31 @@ import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Input, Submit } from '../../Login/Styles';
-import { AuthActions } from '../../../store/auth/authActions';
+import { UserProfileDataInterface } from '../../../store/user/types';
+import UserService from '../../../api/UserService';
 
-const UserInfoForm: FC = () => {
+type UserInfoFormProps = {
+  user: UserProfileDataInterface;
+};
+
+const UserInfoForm: FC<UserInfoFormProps> = ({
+  user: { id, firstName, lastName, email, phone },
+}) => {
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (userData) => {
-    dispatch(AuthActions.login(userData.username, userData.password));
+  } = useForm({
+    defaultValues: {
+      firstName,
+      lastName,
+      phone,
+      email,
+    },
+  });
+  const onSubmit = (userData: UserProfileDataInterface) => {
+    dispatch(UserService.updateUser(id, userData));
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

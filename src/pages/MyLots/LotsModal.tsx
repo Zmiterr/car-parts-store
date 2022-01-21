@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
   FormControlLabel,
   Modal,
@@ -19,15 +19,19 @@ import { PartsInterface } from '../../models/PartsInterface';
 
 type SubmitBodyInterface = Omit<LotInterface, 'id'>;
 
-interface LotsModalProps {
+interface LotsModalProps extends ModalPropsWithoutLots {
+  lot: LotInterface;
+}
+
+interface ModalPropsWithoutLots {
   onSubmit: (data: SubmitBodyInterface) => void;
   handleClose: () => void;
   isOpen: boolean;
-  // TODO fix TS error
-  lot?: LotInterface | undefined;
 }
 
-export const LotsModal: FC<LotsModalProps> = ({ onSubmit, lot, handleClose, isOpen }) => {
+type ModalPropsLots = ModalPropsWithoutLots | LotsModalProps;
+
+export const LotsModal: FC<ModalPropsLots> = ({ onSubmit, lot, handleClose, isOpen }) => {
   const { parts } = useTypedSelector((state) => state.parts);
   const partsArray = Object.values(parts);
   const {
@@ -42,6 +46,7 @@ export const LotsModal: FC<LotsModalProps> = ({ onSubmit, lot, handleClose, isOp
     },
   });
 
+  const [value, setValue] = useState(null);
   return (
     <Modal
       open={isOpen}
@@ -53,6 +58,7 @@ export const LotsModal: FC<LotsModalProps> = ({ onSubmit, lot, handleClose, isOp
         <H2 id="modal-modal-title">Modal name</H2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Autocomplete
+            value={value}
             id="parts-search"
             options={partsArray}
             autoHighlight
@@ -71,6 +77,9 @@ export const LotsModal: FC<LotsModalProps> = ({ onSubmit, lot, handleClose, isOp
                 }}
               />
             )}
+            onChange={(event, newItem) => {
+              setValue(newItem);
+            }}
           />
           <RadioGroup defaultValue={String(lot?.condition)} name="radio-buttons-group" row>
             <FormControlLabel value="new" control={<Radio />} label="new" />
