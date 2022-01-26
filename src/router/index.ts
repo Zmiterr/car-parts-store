@@ -8,7 +8,7 @@ import Orders from '../pages/Orders/Orders';
 import Cart from '../pages/Cart/Cart';
 import NotFound from '../pages/NotFound/NotFound';
 import Profile from '../pages/Profile/Profile';
-import LotCompare from '../pages/LotCompare/LotCompare/LotCompare';
+import LotsCompare from '../pages/LotCompare/LotsCompare';
 
 export interface RoutesInterface {
   path: string;
@@ -36,7 +36,7 @@ export const defaultRoutes: RoutesInterface[] = [
   { path: RouteNames.LOGIN, exact: true, component: Login, readableName: '' },
   { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
   { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
-  { path: RouteNames.COMPARE, exact: true, component: LotCompare, readableName: '' },
+  { path: RouteNames.COMPARE, exact: true, component: LotsCompare, readableName: '' },
   // { path: RouteNames.CART, exact: true, component: Cart, readableName: '' },
   // { path: RouteNames.PROFILE, exact: true, component: Profile, readableName: '' },
   { path: RouteNames.MY_LOTS, exact: true, component: MyLots, readableName: 'My lots' },

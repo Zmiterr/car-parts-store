@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
 import { Container } from '../../shared/styled/containers/Container';
 import { PageHeader } from '../../shared/styled/headers/PageHeader';
-import LotCompare from './LotCompare/LotCompare';
+import { H2 } from '../../shared/styled/headers/H2';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import CompareTable from './CompareTable/CompareTable';
 
 const LotsCompare: FC = () => {
+  const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
   return (
     <Container>
       <PageHeader>
-        <h2>Dealers</h2>
+        <H2>Compare lots</H2>
       </PageHeader>
-      <LotCompare />
-      <LotCompare />
-      <LotCompare />
+      <CompareTable lots={lotsToCompare} />
     </Container>
   );
 };
