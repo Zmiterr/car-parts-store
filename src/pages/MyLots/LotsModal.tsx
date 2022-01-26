@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
   FormControlLabel,
   Modal,
@@ -16,24 +16,30 @@ import { FieldErrorNotification } from '../../shared/styled/headers/FieldErrorNo
 import { LotInterface } from '../../store/lots/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { PartsInterface } from '../../models/PartsInterface';
-
-type SubmitBodyInterface = Omit<LotInterface, 'id'>;
+import { sortArrayAscend } from '../../shared/utils/sortArrayAscend';
 
 interface LotsModalProps extends ModalPropsWithoutLots {
   lot: LotInterface;
 }
 
 interface ModalPropsWithoutLots {
-  onSubmit: (data: SubmitBodyInterface) => void;
+  onSubmit: (data: LotInterface) => void;
   handleClose: () => void;
+  setAutocompleteData: (a: number) => void;
   isOpen: boolean;
 }
 
-type ModalPropsLots = ModalPropsWithoutLots | LotsModalProps;
+type ModalPropsLots = ModalPropsWithoutLots & LotsModalProps;
 
-export const LotsModal: FC<ModalPropsLots> = ({ onSubmit, lot, handleClose, isOpen }) => {
+export const LotsModal: FC<ModalPropsLots> = ({
+  onSubmit,
+  lot = {} as LotInterface,
+  handleClose,
+  isOpen,
+  setAutocompleteData,
+}) => {
   const { parts } = useTypedSelector((state) => state.parts);
-  const partsArray = Object.values(parts);
+  const partsArray = Object.values(parts).sort((a, b) => sortArrayAscend(a.category, b.category));
   const {
     register,
     handleSubmit,
@@ -46,7 +52,7 @@ export const LotsModal: FC<ModalPropsLots> = ({ onSubmit, lot, handleClose, isOp
     },
   });
 
-  const [value, setValue] = useState(null);
+  // const [autocompleteData, setAutocompleteData] = useState(null);
   return (
     <Modal
       open={isOpen}
@@ -58,27 +64,26 @@ export const LotsModal: FC<ModalPropsLots> = ({ onSubmit, lot, handleClose, isOp
         <H2 id="modal-modal-title">Modal name</H2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Autocomplete
-            value={value}
             id="parts-search"
             options={partsArray}
             autoHighlight
             groupBy={(option: PartsInterface) => option.category}
             getOptionLabel={(option: PartsInterface) =>
-              `${option.name}. Models: ${option.models.join(', ')}`
+              `${option.id}. ${option.name}. Models: ${option.models.join(', ')}`
             }
             renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
               <TextField
                 {...params}
                 label={lot?.name || 'Choose part'}
-                value={lot?.name}
+                value={lot?.id}
                 variant="outlined"
                 inputProps={{
                   ...params.inputProps,
                 }}
               />
             )}
-            onChange={(event, newItem) => {
-              setValue(newItem);
+            onChange={(_event, newItem) => {
+              if (newItem?.id) setAutocompleteData(newItem.id);
             }}
           />
           <RadioGroup defaultValue={String(lot?.condition)} name="radio-buttons-group" row>
