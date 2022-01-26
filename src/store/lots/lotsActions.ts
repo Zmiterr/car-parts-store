@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { LotInterface, LotsActionsType } from './types';
 import { lotsService } from '../../api/LotsService';
 import { SubmitBodyInterface } from '../../pages/MyLots/MyLots';
+import { sortArrayAscend } from '../../shared/utils/sortArrayAscend';
 
 const lotsLoaded = (data: LotInterface[]) => ({
   type: LotsActionsType.GET_LOTS,
@@ -36,6 +37,7 @@ const getLots =
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await lotsService.getLotsData();
     if (data) {
+      data.sort((a, b) => sortArrayAscend(a.category, b.category));
       dispatch(lotsLoaded(data));
     } else {
       dispatch(lotsError());
@@ -43,7 +45,7 @@ const getLots =
   };
 
 const removeLot =
-  (id: string) =>
+  (id: number) =>
   async (dispatch: Dispatch): Promise<void> => {
     const { status } = await lotsService.deleteLot(id);
     if (status === 200) {
@@ -54,7 +56,7 @@ const removeLot =
   };
 
 const updateLot =
-  (id: string, body: LotInterface) =>
+  (id: number, body: LotInterface) =>
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await lotsService.updateLot(id, body);
     if (data) {
