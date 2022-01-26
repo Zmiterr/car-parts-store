@@ -1,7 +1,8 @@
 import { Action } from 'redux';
 
 export interface LotInterface {
-  id: string;
+  id: number;
+  partId: number;
   category: string;
   name: string;
   description: string;

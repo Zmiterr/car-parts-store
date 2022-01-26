@@ -15,10 +15,10 @@ class LotsService extends AppService {
   createLot = async (payload: SubmitBodyInterface): Promise<AxiosResponse<LotInterface>> =>
     storeApi.post<LotInterface>(`${this.server}:${this.port}/lots`, { ...payload });
 
-  deleteLot = async (id: string): Promise<AxiosResponse> =>
+  deleteLot = async (id: number): Promise<AxiosResponse> =>
     storeApi.delete(`${this.server}:${this.port}/lots/${id}`, { data: id });
 
-  updateLot = async (id: string, payload: LotInterface): Promise<AxiosResponse<LotInterface>> =>
+  updateLot = async (id: number, payload: LotInterface): Promise<AxiosResponse<LotInterface>> =>
     storeApi.put<LotInterface>(`${this.server}:${this.port}/lots/${id}`, { ...payload });
 }
 

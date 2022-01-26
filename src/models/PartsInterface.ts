@@ -1,5 +1,5 @@
 export interface PartsInterface {
-  objectId: string;
+  id: number;
   category: string;
   name: string;
   description: string;
