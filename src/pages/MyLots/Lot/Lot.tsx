@@ -33,6 +33,8 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
   const onRemovedLot = () => {
     dispatch(removeLot(lot.id));
   };
+  // TODO get status checked from state
+  // TODO how to call necessary dispatch
   const [autocompleteData, setAutocompleteData] = useState(lot.partId);
   const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
 
@@ -68,6 +70,7 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
           // checked={lotsToCompare.some((checkedLot) => lot.id === checkedLot.id)}
           checked={isChecked}
           labelPlacement="start"
+          // TODO fic eslint error
           onChange={handleCompareClick}
         />
         <PartImage src={img} alt="text" />
