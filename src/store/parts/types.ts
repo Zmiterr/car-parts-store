@@ -8,11 +8,14 @@ export enum PartsActionsType {
 }
 
 export interface PartInterface {
-  objectId: string;
-  Year: number;
-  Make: string;
-  Model: string;
-  Category: string;
+  id: number;
+  name: string;
+  description: string;
+  models: string[];
+  year: number;
+  make: string;
+  model: string;
+  category: string;
 }
 
 export interface PartsStateInterface {
