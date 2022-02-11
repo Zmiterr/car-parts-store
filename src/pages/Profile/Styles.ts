@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import emptyCartImg from '../../assets/images/user-avatar-big.jpg';
 
-export const UserAvatar = styled.div`
+export const UserAvatarImage = styled.div`
   width: 360px;
   height: 320px;
-  background-image: url(${emptyCartImg});
+  background-image: url(${(props) => props.image});
   background-size: cover;
   margin: 1rem;
 `;
