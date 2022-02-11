@@ -11,31 +11,44 @@ import {
   SearchNavigation,
   SearchNavigationItem,
 } from './Styles';
+import { LotInterface } from '../../../../store/lots/types';
 
 enum SearchTabs {
   ByName = 'By name',
   ByPartNumber = 'By part number',
 }
 
-const Search: FC = () => {
+interface SearchProps {
+  setFilteredLots: (a: LotInterface[]) => void;
+  lots: LotInterface[];
+}
+
+const Search: FC<SearchProps> = ({ lots, setFilteredLots }) => {
   const [searchValue, setSearchValue] = useState('');
   const tabs: SearchTabs[] = [SearchTabs.ByName, SearchTabs.ByPartNumber];
   const [activeTab, setActiveTab] = useState(0);
-  const sendSearchRequest = () => {
-    console.log(`Search: ${searchValue}`, tabs[activeTab]);
+  const sendSearchRequest = (param: string) => {
+    const filteredLots = lots.filter((lot) => {
+      if (tabs[activeTab] === SearchTabs.ByName) {
+        return lot.name.toLowerCase().includes(param.toLowerCase());
+      }
+      if (tabs[activeTab] === SearchTabs.ByPartNumber) {
+        return String(lot.id).includes(param.toLowerCase());
+      }
+      return lots;
+    });
+    setFilteredLots(filteredLots);
   };
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setSearchValue(event.target.value);
-    if (searchValue.length > 2) {
-      sendSearchRequest();
-    }
+    sendSearchRequest(event.target.value);
   };
 
   const checkEnterKey = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
-      sendSearchRequest();
+      sendSearchRequest(event.target.value);
     }
   };
   return (
