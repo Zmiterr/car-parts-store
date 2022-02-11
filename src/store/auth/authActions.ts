@@ -67,6 +67,7 @@ export const AuthActions = {
     () =>
     async (dispatch: AppDispatch): Promise<void> => {
       try {
+        // TODO clear all state
         localStorage.removeItem('auth');
         localStorage.removeItem('username');
         dispatch(AuthActions.setAuth(false));
