@@ -36,7 +36,7 @@ export const LotsModal: FC<ModalPropsLots> = ({
   lot = {} as LotInterface,
   handleClose,
   isOpen,
-  setAutocompleteData,
+  setAutocompleteData = () => {},
 }) => {
   const { parts } = useTypedSelector((state) => state.parts);
   const partsArray = Object.values(parts).sort((a, b) => sortArrayAscend(a.category, b.category));
@@ -83,7 +83,7 @@ export const LotsModal: FC<ModalPropsLots> = ({
               />
             )}
             onChange={(_event, newItem) => {
-              if (newItem?.id) setAutocompleteData(newItem.id);
+              if (newItem?.id && setAutocompleteData) setAutocompleteData(newItem.id);
             }}
           />
           <RadioGroup defaultValue={String(lot?.condition)} name="radio-buttons-group" row>

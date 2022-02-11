@@ -9,11 +9,14 @@ import {
   SearchNavigation,
   SearchNavigationItem,
 } from '../Parts/Components/Search/Styles';
-import { UserAvatar, UserInfo } from './Styles';
+import { UserInfo } from './Styles';
 import SecurityForm from './Security/SecurityForm';
 import UserInfoForm from './UserInfo/UserInfoForm';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { getUser } from '../../store/user/userActions';
+import StoreLocation from './StoreLocation/StoreLocation';
+import { UserInterface } from '../../models/UserInterface';
+import UserAvatar from './UserInfo/UserAvatar/UserAvatar';
 
 const Profile: FC = () => {
   const userId = useTypedSelector((state) => state.auth.user.userData[0].id);
@@ -22,8 +25,10 @@ const Profile: FC = () => {
     dispatch(getUser(userId));
   }, [dispatch, userId]);
 
-  const user = useTypedSelector((state) => (state.user.user ? state.user.user[0] : []));
-  const tabs = ['User info', 'Security'];
+  const user: UserInterface = useTypedSelector((state) =>
+    state.user.user ? state.user.user[0] : [],
+  );
+  const tabs = ['User info', 'Security', 'Store location'];
   const [activeTab, setActiveTab] = useState(0);
   return (
     <Container>
@@ -49,7 +54,9 @@ const Profile: FC = () => {
             {activeTab === 0 && <UserAvatar />}
             <UserInfo>
               {/* //TODO fix ts errror */}
-              {activeTab === 0 ? user && <UserInfoForm user={user} /> : <SecurityForm />}
+              {activeTab === 0 && user && <UserInfoForm user={user} />}
+              {activeTab === 1 && user && <SecurityForm />}
+              {activeTab === 2 && user.role === 'dealer' && <StoreLocation />}
             </UserInfo>
           </StyledCard>
         </SearchContent>

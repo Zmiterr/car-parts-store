@@ -52,7 +52,7 @@ export const SearchInput = styled.input`
   height: auto;
   vertical-align: middle;
   font-weight: normal;
-  padding: 13px 11px 14px 165px;
+  padding: 13px 11px 14px 16px;
   color: #333;
   width: 100%;
   border-radius: 4px 4px 4px 4px;
