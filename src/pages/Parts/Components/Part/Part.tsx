@@ -12,8 +12,8 @@ import {
 } from './Styles';
 import { StyledCard } from '../../../../shared/styled/containers/Card';
 import { SmallDescribe } from '../../../../shared/styled/headers/SmallDescribe';
-import { LotInterface } from '../../../MyLots/MyLots';
 import { PrimaryButton } from '../../../../shared/styled/Elements/PrimaryButton';
+import { LotInterface } from '../../../../store/lots/types';
 
 interface PartPropsInterface {
   lot: LotInterface;
