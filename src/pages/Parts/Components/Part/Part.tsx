@@ -38,7 +38,7 @@ const Part: FC<PartPropsInterface> = ({ lot }) => {
       </PartSpecifications>
       <PartOrderInfo>
         <PartPrise>
-          <span>{lot.price}</span>
+          <span>{lot.price}$</span>
         </PartPrise>
         <PartLocation>
           <SmallDescribe>Los-santos</SmallDescribe>
