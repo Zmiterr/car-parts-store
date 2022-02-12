@@ -15,6 +15,19 @@ import AuthService from '../../api/AuthService';
 import UserService from '../../api/UserService';
 
 export const AuthActions = {
+  checkAuth:
+    () =>
+    async (dispatch: AppDispatch): Promise<void> => {
+      try {
+        if (localStorage.getItem('auth')) {
+          dispatch(AuthActions.setAuth(true));
+        } else {
+          dispatch(AuthActions.logout());
+        }
+      } catch (e) {
+        dispatch(AuthActions.setError(String(e)));
+      }
+    },
   setAuth: (auth: boolean): SetAuthInterface => ({
     type: AuthActionsTypes.SET_AUTH,
     payload: auth,
