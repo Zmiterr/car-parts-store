@@ -1,8 +1,17 @@
 import React, { FC } from 'react';
-import { Card } from '@material-ui/core';
+
 import { Container } from '../../shared/styled/containers/Container';
 import { PageHeader } from '../../shared/styled/headers/PageHeader';
-import { ChatContainer, ChatList, ChatMessages } from './styles';
+import {
+  ChatContainer,
+  ChatList,
+  Main,
+  ChatSearch,
+  Messages,
+  StyledMessage,
+  InputArea,
+} from './styles';
+import ChatRoom from './ChatRoom/ChatRoom';
 
 const Chat: FC = () => {
   return (
@@ -11,12 +20,53 @@ const Chat: FC = () => {
         <h2>Chat</h2>
       </PageHeader>
       <ChatContainer>
-        <ChatList />
-        <ChatMessages>
-          <Card>
-            <p>No chat stated yet</p>
-          </Card>
-        </ChatMessages>
+        <ChatList>
+          <ChatSearch />
+          <ChatRoom />
+        </ChatList>
+        <Main>
+          <Messages>
+            <StyledMessage myMessage>
+              <div className="entete">
+                <h2>My message</h2>
+                <h3>10:12AM, Today</h3>
+              </div>
+              <div className="triangle" />
+              <div className="message">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                dolor.
+              </div>
+            </StyledMessage>
+            <StyledMessage>
+              <div className="entete">
+                <h3>10:12AM, Today</h3>
+                <h2>Customer</h2>
+              </div>
+              <div className="triangle" />
+              <div className="message">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                dolor.
+              </div>
+            </StyledMessage>
+            <StyledMessage>
+              <div className="entete">
+                <h3>10:12AM, Today</h3>
+                <h2>Customer</h2>
+              </div>
+              <div className="triangle" />
+              <div className="message">OK</div>
+            </StyledMessage>
+          </Messages>
+          <InputArea>
+            <textarea placeholder="Type your message" />
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png"
+              alt=""
+            />
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="" />
+            <button type="button">Send</button>
+          </InputArea>
+        </Main>
       </ChatContainer>
     </Container>
   );
