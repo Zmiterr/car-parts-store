@@ -78,12 +78,12 @@ const createLot =
     }
   };
 
-const addLotToCompare = (data: LotInterface) => ({
+const addLotToCompare = (data: number) => ({
   type: LotsActionsType.ADD_COMPARE_LOT,
   payload: data,
 });
 
-const removeLotFromCompare = (data: LotInterface) => ({
+const removeLotFromCompare = (data: number) => ({
   type: LotsActionsType.REMOVE_COMPARE_LOT,
   payload: data,
 });

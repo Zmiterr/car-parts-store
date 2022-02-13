@@ -6,13 +6,13 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import CompareTable from './CompareTable/CompareTable';
 
 const LotsCompare: FC = () => {
-  const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
+  const lotsIdToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
   return (
     <Container>
       <PageHeader>
         <H2>Compare lots</H2>
       </PageHeader>
-      <CompareTable lots={lotsToCompare} />
+      <CompareTable lotsIdToCompare={lotsIdToCompare} />
     </Container>
   );
 };

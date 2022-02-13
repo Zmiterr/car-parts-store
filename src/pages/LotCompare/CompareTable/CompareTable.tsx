@@ -11,16 +11,20 @@ import {
 import { useDispatch } from 'react-redux';
 import { LotInterface } from '../../../store/lots/types';
 import { getLots } from '../../../store/lots/lotsActions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 interface CompareTableProps {
-  lots: LotInterface[];
+  lotsIdToCompare: number[];
 }
 
-const CompareTable: FC<CompareTableProps> = ({ lots }: CompareTableProps) => {
+const CompareTable: FC<CompareTableProps> = ({ lotsIdToCompare }: CompareTableProps) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getLots());
   }, [dispatch]);
+  const lots = useTypedSelector((state) => state.lots.lots);
+
+  const lotsToCompare = lots.filter((lot) => lotsIdToCompare.includes(lot.id));
 
   return (
     <TableContainer component={Paper}>
@@ -35,7 +39,7 @@ const CompareTable: FC<CompareTableProps> = ({ lots }: CompareTableProps) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {lots.map((lot: LotInterface) => (
+          {lotsToCompare.map((lot: LotInterface) => (
             <TableRow key={lot.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
                 {lot.name}

@@ -33,8 +33,7 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
   const onRemovedLot = () => {
     dispatch(removeLot(lot.id));
   };
-  // TODO get status checked from state
-  // TODO how to call necessary dispatch
+
   const [autocompleteData, setAutocompleteData] = useState(lot.partId);
   const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
 
@@ -49,10 +48,11 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
   // const isLotPresentInCompare = lotsToCompare.some((checkedLot) => lot.id === checkedLot.id);
 
   const [isChecked, setIsChecked] = useState(false);
-  function handleCompareClick() {
-    !isChecked ? dispatch(addLotToCompare(lot)) : removeLotFromCompare(lot);
+  const handleCompareClick = () => {
+    const updateLotCompare = isChecked ? removeLotFromCompare : addLotToCompare;
+    dispatch(updateLotCompare(lot.id));
     setIsChecked(!isChecked);
-  }
+  };
 
   return (
     <StyledCard>
@@ -67,10 +67,8 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
         <FormControlLabel
           control={<Checkbox icon={<BookmarkBorderIcon />} checkedIcon={<BookmarkIcon />} />}
           label=""
-          // checked={lotsToCompare.some((checkedLot) => lot.id === checkedLot.id)}
-          checked={isChecked}
+          checked={lotsToCompare.some((checkedLot) => lot.id === checkedLot)}
           labelPlacement="start"
-          // TODO fic eslint error
           onChange={handleCompareClick}
         />
         <PartImage src={img} alt="text" />

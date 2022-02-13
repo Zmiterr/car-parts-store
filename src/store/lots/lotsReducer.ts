@@ -2,7 +2,7 @@ import { LotsActionsType, LotsActions, LotInterface } from './types';
 
 export interface LotsStateInterface {
   lots: LotInterface[];
-  lotsToCompare: LotInterface[];
+  lotsToCompare: number[];
   isLoading: boolean;
   isError: boolean;
 }
@@ -19,10 +19,12 @@ const lotsReducer = (state = initialState, action: LotsActions): LotsStateInterf
     case LotsActionsType.GET_LOTS:
       return { ...state, lots: action.payload, isLoading: false };
     case LotsActionsType.ADD_COMPARE_LOT:
-      // TODO is it well?
-      return { ...state, lotsToCompare: [...state.lotsToCompare, ...[action.payload]] };
+      return { ...state, lotsToCompare: [...state.lotsToCompare, action.payload] };
     case LotsActionsType.REMOVE_COMPARE_LOT:
-      return { ...state, lotsToCompare: state.lots.filter((lot) => lot.id !== action.payload.id) };
+      return {
+        ...state,
+        lotsToCompare: state.lotsToCompare.filter((lotId) => lotId !== action.payload),
+      };
 
     // case LotsActionsType.REMOVE_LOT:
     //   return {

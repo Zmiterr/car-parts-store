@@ -45,12 +45,12 @@ export interface UpdateLotsActionInterface extends Action<LotsActionsType> {
 
 export interface AddLotToCompareInterface extends Action<LotsActionsType> {
   type: LotsActionsType.ADD_COMPARE_LOT;
-  payload: LotInterface;
+  payload: number;
 }
 
 export interface RemoveLotFromCompareInterface extends Action<LotsActionsType> {
   type: LotsActionsType.REMOVE_COMPARE_LOT;
-  payload: LotInterface;
+  payload: number;
 }
 
 export interface FetchLotRequestActionInterface extends Action<LotsActionsType> {
