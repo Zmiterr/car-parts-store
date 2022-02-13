@@ -21,6 +21,7 @@ export const AuthActions = {
       try {
         if (localStorage.getItem('auth')) {
           dispatch(AuthActions.setAuth(true));
+          dispatch(AuthActions.login(localStorage.getItem('login'), 1));
         } else {
           dispatch(AuthActions.logout());
         }
@@ -60,7 +61,7 @@ export const AuthActions = {
         const response = await AuthService.signUp(username, password);
         const authResponseUserData = response.data;
         if (authResponseUserData) {
-          localStorage.setItem('username', authResponseUserData.username);
+          localStorage.setItem('login', authResponseUserData.userData[0].login);
           localStorage.setItem('auth', 'true');
           localStorage.setItem('token', authResponseUserData.token);
           dispatch(AuthActions.setUser(authResponseUserData));
