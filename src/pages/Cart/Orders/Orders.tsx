@@ -1,126 +1,35 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { PrimaryButton } from '../../../shared/styled/Elements/PrimaryButton';
 import { OrdersContainer, Subtotal } from './styles';
-import OrderItem from './OrderItem/OrderItem';
+import { getLots, removeLotFromCart } from '../../../store/lots/lotsActions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import OrderItem from './OrderList/OrderItem/OrderItem';
 
-const Orders: FC = () => {
+interface OrdersProps {
+  lotsInCartId: number[];
+}
+
+const Orders: FC<OrdersProps> = ({ lotsInCartId }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getLots());
+  }, [dispatch]);
+
+  const lots = useTypedSelector((state) => state.lots.lots);
+
+  const lotsInCart = lots.filter((lot) => lotsInCartId.includes(lot.id));
+
+  const handleRemoveLotFromCart = (lotId: number) => {
+    dispatch(removeLotFromCart(lotId));
+  };
   return (
     <>
       <OrdersContainer>
         <ul className="cartWrap">
-          <OrderItem />
-          <li className="orderItem">
-            <div className="infoWrap">
-              <div className="cartSection">
-                <img
-                  src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-                  alt=""
-                  className="itemImg"
-                />
-                <p className="dealerName">Dealer Name</p>
-                <h3>Item Name 1</h3>
-                <p>
-                  <input type="text" className="qty" placeholder="3" /> x $5.00
-                </p>
-
-                <p className="stockStatus"> In Stock</p>
-              </div>
-
-              <div className="prodTotal cartSection">
-                <p>$15.00</p>
-              </div>
-              <div className="cartSection removeWrap">
-                <a href="#" className="remove">
-                  x
-                </a>
-              </div>
-            </div>
-          </li>
-          <li className="orderItem">
-            <div className="infoWrap">
-              <div className="cartSection">
-                <img
-                  src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-                  alt=""
-                  className="itemImg"
-                />
-                <p className="dealerName">Dealer Name</p>
-                <h3>Item Name 1</h3>
-                <p>
-                  <input type="text" className="qty" placeholder="3" /> x $5.00
-                </p>
-
-                <p className="stockStatus"> In Stock</p>
-              </div>
-
-              <div className="prodTotal cartSection">
-                <p>$15.00</p>
-              </div>
-              <div className="cartSection removeWrap">
-                <a href="#" className="remove">
-                  x
-                </a>
-              </div>
-            </div>
-          </li>
-
-          <li className="orderItem">
-            <div className="infoWrap">
-              <div className="cartSection">
-                <img
-                  src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-                  alt=""
-                  className="itemImg"
-                />
-                <p className="dealerName">dealer Name</p>
-                <h3>Item Name 1</h3>
-
-                <p>
-                  <input type="text" className="qty" placeholder="3" /> x $5.00
-                </p>
-
-                <p className="stockStatus out"> Out of Stock</p>
-              </div>
-
-              <div className="prodTotal cartSection">
-                <p>$15.00</p>
-              </div>
-              <div className="cartSection removeWrap">
-                <a href="#" className="remove">
-                  x
-                </a>
-              </div>
-            </div>
-          </li>
-          <li className="orderItem">
-            <div className="infoWrap">
-              <div className="cartSection info">
-                <img
-                  src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-                  alt=""
-                  className="itemImg"
-                />
-                <p className="dealerName">dealer Name</p>
-                <h3>Item Name 1</h3>
-
-                <p>
-                  <input type="text" className="qty" placeholder="3" /> x $5.00
-                </p>
-
-                <p className="stockStatus"> In Stock</p>
-              </div>
-
-              <div className="prodTotal cartSection">
-                <p>$15.00</p>
-              </div>
-
-              <div className="cartSection removeWrap">
-                <a href="#" className="remove">
-                  x
-                </a>
-              </div>
-            </div>
-          </li>
+          {lotsInCart.map((lot) => (
+            <OrderItem key={lot.id} lot={lot} handleRemoveLotFromCart={handleRemoveLotFromCart} />
+          ))}
         </ul>
       </OrdersContainer>
       <Subtotal>
@@ -128,16 +37,6 @@ const Orders: FC = () => {
           <li className="totalRow">
             <span className="label">Subtotal</span>
             <span className="value">$35.00</span>
-          </li>
-
-          <li className="totalRow">
-            <span className="label">Shipping</span>
-            <span className="value">$5.00</span>
-          </li>
-
-          <li className="totalRow">
-            <span className="label">Tax</span>
-            <span className="value">$4.00</span>
           </li>
           <li className="totalRow final">
             <span className="label">Total</span>

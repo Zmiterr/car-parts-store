@@ -18,7 +18,12 @@ import { StyledCard } from '../../../../shared/styled/containers/Card';
 import { SmallDescribe } from '../../../../shared/styled/headers/SmallDescribe';
 import { PrimaryButton } from '../../../../shared/styled/Elements/PrimaryButton';
 import { LotInterface } from '../../../../store/lots/types';
-import { addLotToCompare, removeLotFromCompare } from '../../../../store/lots/lotsActions';
+import {
+  addLotToCart,
+  addLotToCompare,
+  removeLotFromCart,
+  removeLotFromCompare,
+} from '../../../../store/lots/lotsActions';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 
 interface PartPropsInterface {
@@ -35,7 +40,15 @@ const Part: FC<PartPropsInterface> = ({ lot }) => {
     setIsChecked(!isChecked);
   };
 
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const addToCart = () => {
+    const updateLotCart = !isAddedToCart ? addLotToCart : removeLotFromCart;
+    dispatch(updateLotCart(lot.id));
+    setIsAddedToCart(!isAddedToCart);
+  };
+
   const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
+  const lotsInCart = useTypedSelector((state) => state.lots.lotsInCart);
 
   return (
     <StyledCard>
@@ -70,7 +83,9 @@ const Part: FC<PartPropsInterface> = ({ lot }) => {
         <PartDealer>
           <span>Dealer name</span>
         </PartDealer>
-        <PrimaryButton>Add to cart</PrimaryButton>
+        <PrimaryButton onClick={addToCart}>
+          {!lotsInCart.some((checkedLot) => lot.id === checkedLot) ? `Add to cart` : `Remove`}
+        </PrimaryButton>
       </PartOrderInfo>
     </StyledCard>
   );

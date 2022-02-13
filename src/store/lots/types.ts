@@ -19,6 +19,8 @@ export enum LotsActionsType {
   REMOVE_LOT = 'lots/REMOVE_LOT',
   ADD_COMPARE_LOT = 'lots/ADD_COMPARE_LOT',
   REMOVE_COMPARE_LOT = 'lots/REMOVE_COMPARE_LOT',
+  ADD_LOT_TO_CART = 'lots/ADD_LOT_TO_CART',
+  REMOVE_LOT_FROM_CART = 'lots/REMOVE_LOT_FROM_CART',
   FETCH_LOTS_REQUEST = 'lots/FETCH_LOTS_REQUEST',
   FETCH_LOTS_ERROR = 'lots/FETCH_ERROR',
 }
@@ -53,6 +55,16 @@ export interface RemoveLotFromCompareInterface extends Action<LotsActionsType> {
   payload: number;
 }
 
+export interface AddLotToCartInterface extends Action<LotsActionsType> {
+  type: LotsActionsType.ADD_LOT_TO_CART;
+  payload: number;
+}
+
+export interface RemoveLotFromCartInterface extends Action<LotsActionsType> {
+  type: LotsActionsType.REMOVE_LOT_FROM_CART;
+  payload: number;
+}
+
 export interface FetchLotRequestActionInterface extends Action<LotsActionsType> {
   type: LotsActionsType.FETCH_LOTS_REQUEST;
 }
@@ -67,5 +79,7 @@ export type LotsActions =
   | UpdateLotsActionInterface
   | AddLotToCompareInterface
   | RemoveLotFromCompareInterface
+  | AddLotToCartInterface
+  | RemoveLotFromCartInterface
   | FetchLotRequestActionInterface
   | FetchLotErrorActionInterface;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const PrimaryButton = styled.button`
+  min-width: 80px;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
@@ -21,6 +22,11 @@ export const PrimaryButton = styled.button`
     outline: 0;
     text-decoration: none;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  &:disabled {
+    box-shadow: none;
+    cursor: inherit;
+    background-color: ${(globalProps) => globalProps.theme.colors.grayLight};
   }
     
   }

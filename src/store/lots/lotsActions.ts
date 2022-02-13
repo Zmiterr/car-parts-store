@@ -1,5 +1,12 @@
 import { Dispatch } from 'redux';
-import { LotInterface, LotsActionsType } from './types';
+import {
+  AddLotToCartInterface,
+  AddLotToCompareInterface,
+  LotInterface,
+  LotsActionsType,
+  RemoveLotFromCartInterface,
+  RemoveLotFromCompareInterface,
+} from './types';
 import { lotsService } from '../../api/LotsService';
 import { SubmitBodyInterface } from '../../pages/MyLots/MyLots';
 import { sortArrayAscend } from '../../shared/utils/sortArrayAscend';
@@ -78,14 +85,33 @@ const createLot =
     }
   };
 
-const addLotToCompare = (data: number) => ({
+const addLotToCompare = (data: number): AddLotToCompareInterface => ({
   type: LotsActionsType.ADD_COMPARE_LOT,
   payload: data,
 });
 
-const removeLotFromCompare = (data: number) => ({
+const removeLotFromCompare = (data: number): RemoveLotFromCompareInterface => ({
   type: LotsActionsType.REMOVE_COMPARE_LOT,
   payload: data,
 });
 
-export { getLots, removeLot, updateLot, createLot, addLotToCompare, removeLotFromCompare };
+const addLotToCart = (data: number): AddLotToCartInterface => ({
+  type: LotsActionsType.ADD_LOT_TO_CART,
+  payload: data,
+});
+
+const removeLotFromCart = (data: number): RemoveLotFromCartInterface => ({
+  type: LotsActionsType.REMOVE_LOT_FROM_CART,
+  payload: data,
+});
+
+export {
+  getLots,
+  removeLot,
+  updateLot,
+  createLot,
+  addLotToCompare,
+  removeLotFromCompare,
+  addLotToCart,
+  removeLotFromCart,
+};

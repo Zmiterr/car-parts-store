@@ -19,8 +19,6 @@ const Parts: FC = () => {
     setFilteredLots(lots);
   }, [lots]);
 
-  // console.log(filteredLots);
-
   return (
     <Container>
       <Search setFilteredLots={setFilteredLots} lots={lots} />
