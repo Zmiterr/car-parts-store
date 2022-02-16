@@ -9,6 +9,7 @@ import Cart from '../pages/Cart/Cart';
 import NotFound from '../pages/NotFound/NotFound';
 import Profile from '../pages/Profile/Profile';
 import LotsCompare from '../pages/LotCompare/LotsCompare';
+import OrderConfirm from '../pages/OrderConfirm/OrderConfirm';
 
 export interface RoutesInterface {
   path: string;
@@ -28,6 +29,7 @@ export enum RouteNames {
   CHAT = '/chat',
   PROFILE = '/profile',
   COMPARE = '/compare',
+  ORDER_CONFIRM = '/confirm',
   NOT_FOUND = '/404-error',
 }
 
@@ -37,7 +39,12 @@ export const defaultRoutes: RoutesInterface[] = [
   { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
   { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
   { path: RouteNames.COMPARE, exact: true, component: LotsCompare, readableName: 'Compare' },
-
+  {
+    path: RouteNames.ORDER_CONFIRM,
+    exact: true,
+    component: OrderConfirm,
+    readableName: 'Confirm',
+  },
   // { path: RouteNames.CART, exact: true, component: Cart, readableName: '' },
   // { path: RouteNames.PROFILE, exact: true, component: Profile, readableName: '' },
   // { path: RouteNames.MY_LOTS, exact: true, component: MyLots, readableName: 'My lots' },
