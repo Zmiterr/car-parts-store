@@ -63,7 +63,6 @@ const Profile: FC = () => {
             <StyledCard>
               {activeTab === 0 && <UserAvatar />}
               <UserInfo>
-                {/* //TODO fix ts errror */}
                 {activeTab === 0 && user && <UserInfoForm user={user} />}
                 {activeTab === 1 && user && <SecurityForm />}
                 {activeTab === 2 && user.role === 'dealer' && <StoreLocation />}

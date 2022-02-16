@@ -51,7 +51,7 @@ const Chat: FC = () => {
             ))}
           </Messages>
           <InputArea>
-            <textarea placeholder="Type your message" maxLength="10000" />
+            <textarea placeholder="Type your message" maxLength={10000} />
             <img
               src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png"
               alt=""

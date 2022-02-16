@@ -5,7 +5,7 @@ import { EmptyCart, EmptyCartBackground } from './Styles';
 import { SmallDescribe } from '../../shared/styled/headers/SmallDescribe';
 import Orders from './Orders/Orders';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-// TODO add empty condition
+
 const Cart: FC = () => {
   const lotsInCartId = useTypedSelector((state) => state.lots.lotsInCart);
 

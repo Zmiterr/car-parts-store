@@ -33,8 +33,8 @@ const Login: FC = () => {
   const onLogin = (loginData: LoginData) => {
     dispatch(AuthActions.login(loginData.username, loginData.password));
   };
-  const onCreateAccount = (newUSerData: NewUserData) => {
-    dispatch(AuthActions.createUser(newUSerData.username, newUSerData.password, newUSerData.role));
+  const onCreateAccount = (newUserData: NewUserData) => {
+    dispatch(AuthActions.createUser(newUserData.username, newUserData.password, newUserData.role));
   };
   // TODO move to Actions
   if (isAuth) history.push('/profile');

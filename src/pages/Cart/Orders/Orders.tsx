@@ -26,6 +26,7 @@ const Orders: FC<OrdersProps> = ({ lotsInCartId }) => {
   const total = lotsInCart.reduce((totalSum, lot) => totalSum + lot.price, 0);
 
   const result = lotsInCart.reduce((map, obj) => {
+    // TODO lodash reassign set
     map[obj.dealerID] = map[obj.dealerID] || [];
     map[obj.dealerID].push(obj);
     return map;

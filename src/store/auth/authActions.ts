@@ -13,6 +13,7 @@ import { AppDispatch } from '../rootReducer';
 import { UserInterface } from '../../models/UserInterface';
 import AuthService from '../../api/AuthService';
 import UserService from '../../api/UserService';
+import { Auth } from '../../shared/constants/localstorage';
 
 export const AuthActions = {
   checkAuth:
@@ -21,9 +22,10 @@ export const AuthActions = {
       try {
         if (localStorage.getItem('auth')) {
           dispatch(AuthActions.setAuth(true));
-          dispatch(AuthActions.login(localStorage.getItem('login'), 1));
+          const login = localStorage.getItem('login') || '';
+          dispatch(AuthActions.login(login, '1'));
         } else {
-          dispatch(AuthActions.logout());
+          AuthActions.logout();
         }
       } catch (e) {
         dispatch(AuthActions.setError(String(e)));
@@ -81,9 +83,10 @@ export const AuthActions = {
     () =>
     async (dispatch: AppDispatch): Promise<void> => {
       try {
+        Object.values(Auth).forEach((localStorageAuthKey) => {
+          localStorage.removeItem(localStorageAuthKey);
+        });
         // TODO clear all state
-        localStorage.removeItem('auth');
-        localStorage.removeItem('username');
         dispatch(AuthActions.setAuth(false));
         dispatch(AuthActions.setUser({} as UserInterface));
         dispatch(AuthActions.setRole(''));

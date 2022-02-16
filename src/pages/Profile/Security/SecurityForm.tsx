@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Input, Submit } from '../../Login/Styles';
 import { AuthActions } from '../../../store/auth/authActions';
+import { UserDataInterface } from '../../../models/UserInterface';
 
 const SecurityForm: FC = () => {
   const dispatch = useDispatch();
@@ -11,8 +12,8 @@ const SecurityForm: FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (userData) => {
-    dispatch(AuthActions.login(userData.username, userData.password));
+  const onSubmit = (userData: UserDataInterface) => {
+    dispatch(AuthActions.login(userData.login, userData.password));
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -14,7 +14,7 @@ const partsReducer = (state = initialState, action: PartsActions): PartsStateInt
     case PartsActionsType.REMOVE_PART:
       return {
         ...state,
-        parts: state.parts.filter((part: PartInterface) => part.objectId !== action.payload),
+        parts: state.parts.filter((part: PartInterface) => part.id !== action.payload),
         isLoading: false,
       };
     case PartsActionsType.FETCH_PARTS_REQUEST:
