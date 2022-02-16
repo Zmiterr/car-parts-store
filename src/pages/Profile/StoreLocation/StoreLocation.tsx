@@ -8,23 +8,37 @@ import {
   GeolocationControl,
   SearchControl,
 } from 'react-yandex-maps';
+import { config } from '../../../config/config';
 
 const StoreLocation: FC = () => {
-  const [place, setPlace] = useState([55.684758, 37.738521]);
+  const [place, setPlace] = useState([53.94544564913215, 27.774963676929314]);
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setPlace([position.coords.latitude, position.coords.longitude]);
     });
   }, []);
   const [ymaps, setYmaps] = useState();
+  const [address, setAddress] = useState('store');
 
-  const clickOnMap = (e: { get: (arg0: string) => React.SetStateAction<number[]> }) => {
+  const clickOnMap = async (e: { get: (arg0: string) => React.SetStateAction<number[]> }) => {
     setPlace(e.get('coords'));
-    console.log(ymaps);
-    const geoObjects = ymaps && ymaps.geocode(e.get('coords'));
+    const res = await ymaps?.geocode?.(e.get('coords'));
+    const firstGeoObject = res?.geoObjects?.get(0);
+    if (!firstGeoObject) return;
+    const newAddress = [
+      firstGeoObject.getLocalities().length
+        ? firstGeoObject.getLocalities()
+        : firstGeoObject.getAdministrativeAreas(),
+      firstGeoObject.getThoroughfare() || firstGeoObject.getPremise(),
+      firstGeoObject.getPremiseNumber(),
+    ]
+      .filter(Boolean)
+      .join(', ');
+    setAddress(newAddress);
   };
+
   return (
-    <YMaps query={{ load: 'package.full' }}>
+    <YMaps query={{ load: 'package.full', apikey: config.YANDEX_API_KEY }}>
       <Map
         width="90vh"
         height="60vh"
@@ -35,7 +49,7 @@ const StoreLocation: FC = () => {
         instanceRef={(inst) => inst?.events?.add('click', clickOnMap)}
         onLoad={(maps) => setYmaps(maps)}
       >
-        <Placemark geometry={place} properties={{ iconCaption: 'your store' }} />
+        <Placemark geometry={place} properties={{ iconCaption: address }} />
         <ZoomControl />
         <FullscreenControl />
         <SearchControl />
