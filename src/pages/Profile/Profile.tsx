@@ -19,7 +19,9 @@ import { UserInterface } from '../../models/UserInterface';
 import UserAvatar from './UserInfo/UserAvatar/UserAvatar';
 
 const Profile: FC = () => {
-  const userId = useTypedSelector((state) => state.auth.user.userData[0].id);
+  const userId = useTypedSelector((state) => state.auth.user?.userData?.[0].id);
+  const role = useTypedSelector((state) => state.auth.user?.userData?.[0].role);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUser(userId));
@@ -28,39 +30,48 @@ const Profile: FC = () => {
   const user: UserInterface = useTypedSelector((state) =>
     state.user.user ? state.user.user[0] : [],
   );
-  const tabs = ['User info', 'Security', 'Store location'];
+
+  const getCurrentUserTabs = () => {
+    const commonTabs = ['User info', 'Security'];
+    const deaderTabs = ['Store location'];
+    const currentTabs = role === 'dealer' ? deaderTabs : [];
+    return [...commonTabs, ...currentTabs];
+  };
+
   const [activeTab, setActiveTab] = useState(0);
   return (
     <Container>
       <PageHeader>
         <h2>Profile</h2>
       </PageHeader>
-      <SearchBody>
-        <SearchNavigation>
-          {tabs.map((tabName, index) => {
-            return (
-              <SearchNavigationItem
-                key={tabName}
-                isActiveTab={activeTab === index}
-                onClick={() => setActiveTab(index)}
-              >
-                {tabName}
-              </SearchNavigationItem>
-            );
-          })}
-        </SearchNavigation>
-        <SearchContent>
-          <StyledCard>
-            {activeTab === 0 && <UserAvatar />}
-            <UserInfo>
-              {/* //TODO fix ts errror */}
-              {activeTab === 0 && user && <UserInfoForm user={user} />}
-              {activeTab === 1 && user && <SecurityForm />}
-              {activeTab === 2 && user.role === 'dealer' && <StoreLocation />}
-            </UserInfo>
-          </StyledCard>
-        </SearchContent>
-      </SearchBody>
+      {user && (
+        <SearchBody>
+          <SearchNavigation>
+            {getCurrentUserTabs().map((tabName, index) => {
+              return (
+                <SearchNavigationItem
+                  key={tabName}
+                  isActiveTab={activeTab === index}
+                  onClick={() => setActiveTab(index)}
+                >
+                  {tabName}
+                </SearchNavigationItem>
+              );
+            })}
+          </SearchNavigation>
+          <SearchContent>
+            <StyledCard>
+              {activeTab === 0 && <UserAvatar />}
+              <UserInfo>
+                {/* //TODO fix ts errror */}
+                {activeTab === 0 && user && <UserInfoForm user={user} />}
+                {activeTab === 1 && user && <SecurityForm />}
+                {activeTab === 2 && user.role === 'dealer' && <StoreLocation />}
+              </UserInfo>
+            </StyledCard>
+          </SearchContent>
+        </SearchBody>
+      )}
     </Container>
   );
 };
