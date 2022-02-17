@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface ComponentsPropsInterface {
+  myMessage: boolean;
+}
+
 export const ChatContainer = styled.div`
   display: flex;
   height: 70%;
@@ -154,9 +158,11 @@ export const StyledMessage = styled.li`
     height: 0;
     border-style: solid;
     border-width: 0 10px 10px 10px;
-    border-color: transparent transparent ${(props) => (props.myMessage ? `#58b666` : `#6fbced`)}
+    border-color: transparent transparent
+      ${(componentsProps: ComponentsPropsInterface) =>
+        componentsProps.myMessage ? `#58b666` : `#6fbced`}
       transparent;
-    margin-left: ${(props) => (props.myMessage ? `600px ` : `15px`)};
+    margin-left: ${(componentsProps) => (componentsProps.myMessage ? `600px ` : `15px`)};
   }
 
   .entete {

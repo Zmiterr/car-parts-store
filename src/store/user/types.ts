@@ -18,7 +18,7 @@ export enum UserActionsType {
 
 export interface GetUserActionInterface extends Action<UserActionsType> {
   type: UserActionsType.GET_USER;
-  payload: UserInterface;
+  payload: UserInterface[];
 }
 
 export interface FetchUserRequestActionInterface extends Action<UserActionsType> {

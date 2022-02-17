@@ -13,9 +13,9 @@ enum PayWay {
 }
 
 const OrderConfirm: FC = () => {
-  const [payWay, setPayWay] = useState(PayWay.CARD);
+  const [payWay, setPayWay] = useState<string>(PayWay.CARD);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPayWay(event.target.value);
   };
 
