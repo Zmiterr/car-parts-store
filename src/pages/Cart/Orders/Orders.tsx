@@ -1,11 +1,13 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { PrimaryButton } from '../../../shared/styled/Elements/PrimaryButton';
 import { OrdersContainer, Subtotal } from './styles';
 import { getLots, removeLotFromCart } from '../../../store/lots/lotsActions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import OrderItem from './OrderList/OrderItem/OrderItem';
 import { LotInterface } from '../../../store/lots/types';
+import { RouteNames } from '../../../router';
 
 interface OrdersProps {
   lotsInCartId: number[];
@@ -68,7 +70,9 @@ const Orders: FC<OrdersProps> = ({ lotsInCartId }) => {
             <span className="value">${total}</span>
           </li>
           <li className="totalRow">
-            <PrimaryButton>Order</PrimaryButton>
+            <Link to={RouteNames.ORDER_CONFIRM}>
+              <PrimaryButton>Order</PrimaryButton>
+            </Link>
           </li>
         </ul>
       </Subtotal>

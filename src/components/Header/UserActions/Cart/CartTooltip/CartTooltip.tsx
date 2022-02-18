@@ -15,7 +15,10 @@ const CartTooltip: FC<CartTooltipProps> = ({ setIsComponentVisible, myRef }) => 
     state.lots.lots.map((lot) => ({ ...lot, dealerID: Math.trunc(Math.random() * 2) })),
   );
   const lotsInCartId = useTypedSelector((state) => state.lots.lotsInCart);
+
   const lotsInCart = lots.filter((lot) => lotsInCartId.includes(lot.id));
+
+  const total = lotsInCart.reduce((totalSum, lot) => totalSum + lot.price, 0);
 
   const handleClick = () => {
     setIsComponentVisible(false);
@@ -32,6 +35,7 @@ const CartTooltip: FC<CartTooltipProps> = ({ setIsComponentVisible, myRef }) => 
             </li>
           ))}
         </ul>
+        {total > 0 && <span>Total: {total}$</span>}
         <Link to={RouteNames.CART}>
           <PrimaryButton onClick={handleClick}>Go to cart</PrimaryButton>
         </Link>

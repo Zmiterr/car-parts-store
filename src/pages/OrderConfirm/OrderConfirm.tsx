@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { PrimaryButton } from '../../shared/styled/Elements/PrimaryButton';
 import { Container } from '../../shared/styled/containers/Container';
 import { PageHeader } from '../../shared/styled/headers/PageHeader';
@@ -25,16 +25,10 @@ const OrderConfirm: FC = () => {
         <H2>Order confirm</H2>
       </PageHeader>
       <UserInfoForm />
-      <RadioGroup
-        aria-labelledby="demo-controlled-radio-buttons-group"
-        name="controlled-radio-buttons-group"
-        value={payWay}
-        row
-        onChange={handleChange}
-      >
-        <FormControlLabel value={PayWay.CARD} control={<Radio />} label={PayWay.CARD} />
-        <FormControlLabel value={PayWay.CASH} control={<Radio />} label={PayWay.CASH} />
-      </RadioGroup>
+      <ToggleButtonGroup color="primary" value={payWay} exclusive onChange={handleChange}>
+        <ToggleButton value={PayWay.CARD}>{PayWay.CARD}</ToggleButton>
+        <ToggleButton value={PayWay.CASH}>{PayWay.CASH}</ToggleButton>
+      </ToggleButtonGroup>
       {payWay === PayWay.CARD && <CardForm />}
       <PrimaryButton>Order</PrimaryButton>
     </Container>
