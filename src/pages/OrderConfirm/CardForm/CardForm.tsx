@@ -25,6 +25,8 @@ const CardForm: FC = () => {
     setCardNumber(testCards[randomNumber]);
   };
 
+  function handleClickGenerate() {}
+
   return (
     <CardFormStyledComponent>
       <div className="container preload">
@@ -48,11 +50,19 @@ const CardForm: FC = () => {
         </div>
         <div className="field-container">
           <label htmlFor="cardnumber">Card Number</label>
-          <span className="generatecard" onClick={generatecard}>
+          <span
+            role="button"
+            tabIndex={0}
+            className="generatecard"
+            onKeyDown={handleClickGenerate}
+            onClick={generatecard}
+          >
             generate random
           </span>
           <input
             id="cardnumber"
+            name="card"
+            required
             type="text"
             pattern="[0-9]*"
             inputMode="numeric"

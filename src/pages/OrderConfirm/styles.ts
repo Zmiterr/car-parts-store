@@ -43,56 +43,31 @@ export const UserInfoFormSection = styled.section`
     transition: all 0.5s;
 
     &:hover {
-      border-color: #3e3e3e !important;
-      color: #3e3e3e !important;
+      border-color: #3e3e3e;
+      color: #3e3e3e;
       background-color: #dedede;
     }
   }
-  .input-rectangle {
-    border-radius: 0;
-  }
 
-  .form-vertical.form-spacing-10 {
+  .user-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
     margin-left: -10px;
     width: calc(100% + 10px);
   }
 
-  .form-vertical {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-  }
-
-  .form-vertical.form-spacing-10 .form-group {
+  .user-form .form-group {
     margin-bottom: 10px;
     padding-left: 10px;
   }
-
-  .form-vertical .form-partition-factor-2 {
-    width: 50%;
+  @media (min-width: 400px) {
+    .user-form .form-partition-factor-2 {
+      width: 50%;
+    }
   }
-
-  .button-style.border-grey-dark-1:hover,
-  .button-style.border-grey-dark-1:focus {
-    border-color: #3e3e3e !important;
-    color: #3e3e3e !important;
-    background-color: transparent !important;
-  }
-
-  .align-center {
-    text-align: center;
-  }
-
   .label {
     margin-left: 5px;
     color: #999999;
-  }
-
-  .border-grey-30,
-  .separator-grey-30:after {
-    border-color: #b3b3b3;
-  }
-  .border-1 {
-    border-width: 1px;
   }
 `;

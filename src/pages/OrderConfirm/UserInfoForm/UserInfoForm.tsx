@@ -1,65 +1,99 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { UserInfoFormSection } from '../styles';
+import { FieldErrorNotification } from '../../../shared/styled/headers/FieldErrorNotification';
+
+interface CustomerOrderDataInterface {
+  name: string;
+  address: string;
+  time: string;
+  phone: string;
+}
 
 const UserInfoForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CustomerOrderDataInterface>();
+
+  const submitCustomerOrderData = (data: CustomerOrderDataInterface) => {
+    console.log(data);
+  };
+
   return (
     <UserInfoFormSection>
-      <form
-        action="https://nicepage.com/editor/Forms/Process"
-        method="POST"
-        className="form-spacing-10 form-vertical"
-        name="form"
-      >
-        <div className="form-group form-name form-partition-factor-2 form-group-2">
-          <label htmlFor="name-f2a8" className="label ">
-            Name
+      <form className="user-form" name="form" onSubmit={handleSubmit(submitCustomerOrderData)}>
+        <div className="form-group  form-partition-factor-2 ">
+          <label htmlFor="name" className="label ">
+            Name{' '}
+            {errors?.phone?.type === 'required' && (
+              <FieldErrorNotification>This field is required</FieldErrorNotification>
+            )}
           </label>
           <input
+            {...register('name', { required: true })}
             type="text"
             placeholder="Enter your Name"
-            id="name-f2a8"
+            id="name"
             name="name"
-            className="border-1 border-grey-30 input input-rectangle white"
+            className="input"
           />
         </div>
-        <div className="form-group form-partition-factor-2 form-group-1">
-          <label htmlFor="address-f2a8" className="label">
-            Your address
+        <div className="form-group form-partition-factor-2">
+          <label htmlFor="address" className="label">
+            Your address{' '}
+            {errors?.address?.type === 'required' && (
+              <FieldErrorNotification>This field is required</FieldErrorNotification>
+            )}
           </label>
           <input
+            {...register('address', { required: true })}
             type="text"
             placeholder="Enter a address"
-            id="address-f2a8"
+            id="address"
             name="address"
-            className="border-1 border-grey-30 input input-rectangle white"
+            className="input"
           />
         </div>
-        <div className="form-date form-group form-partition-factor-2 form-group-3">
-          <label htmlFor="time-4441" className="label ">
-            Delivery date and time
+        <div className="form-group form-partition-factor-2">
+          <label htmlFor="time" className="label ">
+            Delivery date and time{' '}
+            {errors?.time?.type === 'required' && (
+              <FieldErrorNotification>This field is required</FieldErrorNotification>
+            )}
           </label>
           <input
+            {...register('time', { required: true })}
             type="datetime-local"
-            id="time-4441"
+            id="time"
             name="time"
-            className="border-1 border-grey-30 input input-rectangle white"
+            className=" input  white"
           />
         </div>
-        <div className="form-group form-partition-factor-2 form-group-4">
-          <label htmlFor="phone-447e" className="label ">
-            Phone
+        <div className="form-group form-partition-factor-2">
+          <label htmlFor="phone" className="label ">
+            Phone{' '}
+            {errors?.phone?.type === 'required' && (
+              <FieldErrorNotification>This field is required</FieldErrorNotification>
+            )}
+            {errors?.phone?.type === 'pattern' && (
+              <FieldErrorNotification>Wrong phone format</FieldErrorNotification>
+            )}
           </label>
           <input
-            id="phone-447e"
+            {...register('phone', {
+              required: true,
+              pattern: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im,
+            })}
+            id="phone"
             type="tel"
-            pattern="\+?\d{0,2}[\s\(\-]?([0-9]{3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})"
             placeholder="Enter your phone (e.g. +375331234567)"
             name="phone"
-            className="border-1 border-grey-30 input input-rectangle"
+            className=" input "
           />
         </div>
-
-        <div className="align-center form-group form-submit form-group-6">
+        <div className="form-group">
           <input type="submit" value="save for next orders" className="btn " />
         </div>
       </form>
