@@ -5,13 +5,67 @@ interface CreditcardProps {
   name: string;
   expirationDate: string;
   securityCode: string;
+  cardType: string;
 }
-
-const Creditcard: FC<CreditcardProps> = ({ cardNumber, name, expirationDate, securityCode }) => {
+const image =
+  '<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny" width="47.4" height="40.65" viewBox="21 18.5 158 135.5"><path d="M25,50 l150,0 0,100 -150,0 z" stroke-width="4" stroke="black" fill="rgb(128,224,255)" fill-opacity="1" ></path><path d="M25,50 L175,150 M25,150 L175,50" stroke-width="4" stroke="black" fill="black" ></path><g transform="translate(0,0)" stroke-width="4" stroke="black" fill="none" ><circle cx="100" cy="30" r="7.5" fill="black" ></circle><circle cx="70" cy="30" r="7.5" fill="black" ></circle><circle cx="130" cy="30" r="7.5" fill="black" ></circle></g></svg>';
+const Creditcard: FC<CreditcardProps> = ({
+  cardNumber,
+  name,
+  expirationDate,
+  securityCode,
+  cardType,
+}) => {
   return (
     <div className="creditcard">
       <div className="front">
-        <div id="ccsingle" />
+        <div id="ccsingle">
+          <svg
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="750px"
+            height="471px"
+            viewBox="0 0 750 471"
+            enableBackground="new 0 0 750 471"
+            xmlSpace="preserve"
+          >
+            <title>Slice 1</title>
+            <desc>Created with Sketch.</desc>
+            <g id="visa">
+              <path
+                id="Shape"
+                fill="#0E4595"
+                d="M278.198,334.228l33.36-195.763h53.358l-33.384,195.763H278.198L278.198,334.228z"
+              />
+              <path
+                id="path13"
+                fill="#0E4595"
+                d="M524.307,142.687c-10.57-3.966-27.135-8.222-47.822-8.222c-52.725,0-89.863,26.551-90.18,64.604c-0.297,28.129,26.514,43.821,46.754,53.185c20.77,9.597,27.752,15.716,27.652,24.283c-0.133,13.123-16.586,19.116-31.924,19.116c-21.355,0-32.701-2.967-50.225-10.274l-6.877-3.112l-7.488,43.823c12.463,5.466,35.508,10.199,59.438,10.445c56.09,0,92.502-26.248,92.916-66.884c0.199-22.27-14.016-39.216-44.801-53.188c-18.65-9.056-30.072-15.099-29.951-24.269c0-8.137,9.668-16.838,30.559-16.838c17.447-0.271,30.088,3.534,39.936,7.5l4.781,2.259L524.307,142.687"
+              />
+              <path
+                id="Path"
+                fill="#0E4595"
+                d="M661.615,138.464h-41.23c-12.773,0-22.332,3.486-27.941,16.234l-79.244,179.402h56.031c0,0,9.16-24.121,11.232-29.418c6.123,0,60.555,0.084,68.336,0.084c1.596,6.854,6.492,29.334,6.492,29.334h49.512L661.615,138.464L661.615,138.464z M596.198,264.872c4.414-11.279,21.26-54.724,21.26-54.724c-0.314,0.521,4.381-11.334,7.074-18.684l3.607,16.878c0,0,10.217,46.729,12.352,56.527h-44.293V264.872L596.198,264.872z"
+              />
+              <path
+                id="path16"
+                fill="#0E4595"
+                d="M232.903,138.464L180.664,271.96l-5.565-27.129c-9.726-31.274-40.025-65.157-73.898-82.12l47.767,171.204l56.455-0.064l84.004-195.386L232.903,138.464"
+              />
+              <path
+                id="path18"
+                fill="#F2AE14"
+                d="M131.92,138.464H45.879l-0.682,4.073c66.939,16.204,111.232,55.363,129.618,102.415l-18.709-89.96C152.877,142.596,143.509,138.896,131.92,138.464"
+              />
+            </g>
+          </svg>
+
+          {/* //TODO fix error with svg string */}
+          {/* <img alt={cardType} src={`data:image/svg+xml;utf8,${cardLogo[cardType]}`} /> */}
+        </div>
         <svg
           version="1.1"
           id="cardfront"

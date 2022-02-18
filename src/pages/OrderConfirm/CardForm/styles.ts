@@ -31,7 +31,6 @@ export const CardFormStyledComponent = styled.div`
   }
 
   .field-container input {
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
 
@@ -101,7 +100,6 @@ export const CardFormStyledComponent = styled.div`
   .creditcard svg#cardfront,
   .creditcard svg#cardback {
     width: 100%;
-    -webkit-box-shadow: 1px 5px 6px 0 black;
     box-shadow: 1px 5px 6px 0 black;
     border-radius: 22px;
   }
@@ -119,7 +117,6 @@ export const CardFormStyledComponent = styled.div`
   /* CHANGEABLE CARD ELEMENTS */
   .creditcard .lightcolor,
   .creditcard .darkcolor {
-    -webkit-transition: fill 0.5s;
     transition: fill 0.5s;
   }
 
@@ -312,10 +309,7 @@ export const CardFormStyledComponent = styled.div`
   .creditcard {
     width: 100%;
     max-width: 400px;
-    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    transition: -webkit-transform 0.6s;
-    -webkit-transition: -webkit-transform 0.6s;
     transition: transform 0.6s;
     cursor: pointer;
   }
@@ -325,19 +319,16 @@ export const CardFormStyledComponent = styled.div`
     position: absolute;
     width: 100%;
     max-width: 400px;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-font-smoothing: antialiased;
     color: #47525d;
   }
 
   .creditcard .back {
-    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
+    transition: all 1s;
   }
 
-  .creditcard.flipped {
-    -webkit-transform: rotateY(180deg);
+  .creditcard:hover {
     transform: rotateY(180deg);
   }
 `;
