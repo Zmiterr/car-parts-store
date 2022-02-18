@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { UserInfoFormSection } from '../styles';
 import { FieldErrorNotification } from '../../../shared/styled/headers/FieldErrorNotification';
@@ -10,7 +10,7 @@ interface CustomerOrderDataInterface {
   phone: string;
 }
 
-const UserInfoForm = () => {
+const UserInfoForm: FC<void> = () => {
   const {
     register,
     handleSubmit,
@@ -92,9 +92,6 @@ const UserInfoForm = () => {
             name="phone"
             className=" input "
           />
-        </div>
-        <div className="form-group">
-          <input type="submit" value="save for next orders" className="btn " />
         </div>
       </form>
     </UserInfoFormSection>
