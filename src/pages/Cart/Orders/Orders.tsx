@@ -18,10 +18,8 @@ const Orders: FC<OrdersProps> = ({ lotsInCartId }) => {
   useEffect(() => {
     dispatch(getLots());
   }, [dispatch]);
-  const dealers = { 0: 'Dealer 1', 1: 'Dealer 2' };
-  const lots = useTypedSelector((state) =>
-    state.lots.lots.map((lot) => ({ ...lot, dealerID: Math.trunc(Math.random() * 2) })),
-  );
+
+  const lots = useTypedSelector((state) => state.lots.lots);
 
   const lotsInCart = lots.filter((lot) => lotsInCartId.includes(lot.id));
 
@@ -29,8 +27,8 @@ const Orders: FC<OrdersProps> = ({ lotsInCartId }) => {
 
   const result = lotsInCart.reduce((map, obj) => {
     // TODO lodash reassign set
-    map[obj.dealerID] = map[obj.dealerID] || [];
-    map[obj.dealerID].push(obj);
+    map[`${obj.firstName} ${obj.lastName}`] = map[`${obj.firstName} ${obj.lastName}`] || [];
+    map[`${obj.firstName} ${obj.lastName}`].push(obj);
     return map;
   }, {});
 
@@ -42,11 +40,11 @@ const Orders: FC<OrdersProps> = ({ lotsInCartId }) => {
     <>
       <OrdersContainer>
         <ul className="cartWrap">
-          {Object.keys(result).map((dealerId) => {
-            const groupByDealerLots = result[dealerId];
+          {Object.keys(result).map((dealerName) => {
+            const groupByDealerLots = result[dealerName];
             return (
               <>
-                <h2>{dealers[dealerId]}</h2>
+                <h2>{dealerName}</h2>
                 {groupByDealerLots.map((lot: LotInterface) => (
                   <OrderItem
                     key={lot.id}

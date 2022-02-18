@@ -8,7 +8,6 @@ import { StyledCard } from '../../../shared/styled/containers/Card';
 import EditIcon from '../../../assets/icons/edit.svg';
 import DeleteIcon from '../../../assets/icons/delete.svg';
 import { Icon, IconWrapper, LotContent, LotDescription, LotName } from './Styles';
-import img from '../../../assets/images/ats_classic_1_large.png';
 import { PartImage, PartOrderInfo, PartPrise } from '../../Parts/Components/Part/Styles';
 import {
   addLotToCompare,
@@ -71,7 +70,7 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
           labelPlacement="start"
           onChange={handleCompareClick}
         />
-        <PartImage src={img} alt="text" />
+        <PartImage src={lot.photoUrl || lot.defaultImageUrl} alt="text" />
         <LotName>{lot.name}</LotName>
         <LotName>{lot.condition}</LotName>
         <LotName>{[lot.models].join(',')}</LotName>

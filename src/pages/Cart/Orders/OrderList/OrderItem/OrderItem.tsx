@@ -13,12 +13,10 @@ const OrderItem: FC<OrderItemProps> = ({ lot, handleRemoveLotFromCart }) => {
     <li key={lot.id} className="orderItem">
       <div className="infoWrap">
         <div className="cartSection">
-          <img
-            src="https://www.carparts4less.co.uk/catalogimages/categories/102x136/75_cp2_03.png?v=1"
-            alt=""
-            className="itemImg"
-          />
-          <p className="dealerName">Dealer Name</p>
+          <img src={lot.photoUrl || lot.defaultImageUrl} alt="" className="itemImg" />
+          <p className="dealerName">
+            {lot.firstName} {lot.lastName}
+          </p>
           <h3>{lot.name}</h3>
           <p>
             <input type="text" className="qty" placeholder="1" /> x ${lot.price}

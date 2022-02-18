@@ -10,6 +10,10 @@ export interface LotInterface {
   condition: string;
   price: number;
   photoUrl: string;
+  defaultImageUrl: string;
+  firstName: string;
+  lastName: string;
+  location: string;
 }
 
 export enum LotsActionsType {

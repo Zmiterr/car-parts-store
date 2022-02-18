@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/BookmarkAdded';
-import img from '../../../../assets/images/ats_classic_1_large.png';
 import { H5 } from '../../../../shared/styled/headers/H5';
 import {
   PartDealer,
@@ -59,7 +58,7 @@ const Part: FC<PartPropsInterface> = ({ lot }) => {
         labelPlacement="start"
         onChange={handleCompareClick}
       />
-      <PartImage src={img} alt="text" />
+      <PartImage src={lot.photoUrl || lot.defaultImageUrl} alt="text" />
       <PartSpecifications>
         <H5>{lot.name}</H5>
         <ul>
@@ -81,7 +80,9 @@ const Part: FC<PartPropsInterface> = ({ lot }) => {
           <SmallDescribe>Los-santos</SmallDescribe>
         </PartLocation>
         <PartDealer>
-          <span>Dealer name</span>
+          <span>
+            {lot.firstName} {lot.lastName}
+          </span>
         </PartDealer>
         <PrimaryButton onClick={addToCart}>
           {!lotsInCart.some((checkedLot) => lot.id === checkedLot) ? `Add to cart` : `Remove`}
