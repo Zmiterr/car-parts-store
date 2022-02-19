@@ -10,7 +10,7 @@ interface CustomerOrderDataInterface {
   phone: string;
 }
 
-const UserInfoForm: FC<void> = () => {
+const UserInfoForm: FC = () => {
   const {
     register,
     handleSubmit,
