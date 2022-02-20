@@ -34,7 +34,6 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
   };
 
   const [autocompleteData, setAutocompleteData] = useState(lot.partId);
-  const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
 
   const onEditLot = () => {
     setOpen(true);
@@ -43,14 +42,6 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
   const onSubmit = (data: SubmitBodyInterface) => {
     dispatch(updateLot(lot.id, { ...lot, ...data, partId: autocompleteData }));
     setOpen(false);
-  };
-  // const isLotPresentInCompare = lotsToCompare.some((checkedLot) => lot.id === checkedLot.id);
-
-  const [isChecked, setIsChecked] = useState(false);
-  const handleCompareClick = () => {
-    const updateLotCompare = isChecked ? removeLotFromCompare : addLotToCompare;
-    dispatch(updateLotCompare(lot.id));
-    setIsChecked(!isChecked);
   };
 
   return (
@@ -63,13 +54,7 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
           setAutocompleteData={setAutocompleteData}
           onSubmit={onSubmit}
         />
-        <FormControlLabel
-          control={<Checkbox icon={<BookmarkBorderIcon />} checkedIcon={<BookmarkIcon />} />}
-          label=""
-          checked={lotsToCompare.some((checkedLot) => lot.id === checkedLot)}
-          labelPlacement="start"
-          onChange={handleCompareClick}
-        />
+
         <PartImage src={lot.photoUrl || lot.defaultImageUrl} alt="text" />
         <LotName>{lot.name}</LotName>
         <LotName>{lot.condition}</LotName>
