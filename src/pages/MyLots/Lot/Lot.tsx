@@ -1,24 +1,15 @@
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Checkbox, FormControlLabel } from '@mui/material';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/bookmarkAdded';
 import { SmallDescribe } from '../../../shared/styled/headers/SmallDescribe';
 import { StyledCard } from '../../../shared/styled/containers/Card';
 import EditIcon from '../../../assets/icons/edit.svg';
 import DeleteIcon from '../../../assets/icons/delete.svg';
 import { Icon, IconWrapper, LotContent, LotDescription, LotName } from './Styles';
 import { PartImage, PartOrderInfo, PartPrise } from '../../Parts/Components/Part/Styles';
-import {
-  addLotToCompare,
-  removeLot,
-  removeLotFromCompare,
-  updateLot,
-} from '../../../store/lots/lotsActions';
+import { removeLot, updateLot } from '../../../store/lots/lotsActions';
 
 import { LotInterface } from '../../../store/lots/types';
 import { LotsModal } from '../LotsModal';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 type SubmitBodyInterface = Omit<LotInterface, 'id'>;
 
