@@ -10,6 +10,7 @@ import NotFound from '../pages/NotFound/NotFound';
 import Profile from '../pages/Profile/Profile';
 import LotsCompare from '../pages/LotCompare/LotsCompare';
 import OrderConfirm from '../pages/OrderConfirm/OrderConfirm';
+import CustomerOrders from '../pages/CustomerOrders/CustomerOrders';
 
 export interface RoutesInterface {
   path: string;
@@ -24,6 +25,7 @@ export enum RouteNames {
   PARTS = '/parts',
   DEALERS = '/dealers',
   MY_LOTS = '/my-lots',
+  CUSTOMER_LOTS = '/customer-lots',
   ORDERS = '/orders',
   CART = '/cart',
   CHAT = '/chat',
@@ -43,7 +45,7 @@ export const defaultRoutes: RoutesInterface[] = [
     path: RouteNames.ORDER_CONFIRM,
     exact: true,
     component: OrderConfirm,
-    readableName: 'Confirm',
+    readableName: '',
   },
   // { path: RouteNames.CART, exact: true, component: Cart, readableName: '' },
   // { path: RouteNames.PROFILE, exact: true, component: Profile, readableName: '' },
@@ -61,6 +63,7 @@ export const dealerRoutes: RoutesInterface[] = [
 
 export const customerRoutes: RoutesInterface[] = [
   { path: RouteNames.CART, exact: true, component: Cart, readableName: '' },
+  { path: RouteNames.CUSTOMER_LOTS, exact: true, component: CustomerOrders, readableName: '' },
 ];
 
 export const notFoundRoutes: RoutesInterface[] = [
