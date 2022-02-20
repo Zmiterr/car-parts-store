@@ -7,6 +7,7 @@ export interface UserProfileDataInterface {
   lastName: string;
   phone: string;
   email: string;
+  role: string;
   location: string;
 }
 

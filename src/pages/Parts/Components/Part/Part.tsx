@@ -48,6 +48,7 @@ const Part: FC<PartPropsInterface> = ({ lot }) => {
 
   const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
   const lotsInCart = useTypedSelector((state) => state.lots.lotsInCart);
+  const userRole = useTypedSelector((state) => state.user.user?.[0]?.role);
 
   return (
     <StyledCard>
@@ -84,9 +85,11 @@ const Part: FC<PartPropsInterface> = ({ lot }) => {
             {lot.firstName} {lot.lastName}
           </span>
         </PartDealer>
-        <PrimaryButton onClick={addToCart}>
-          {!lotsInCart.some((checkedLot) => lot.id === checkedLot) ? `Add to cart` : `Remove`}
-        </PrimaryButton>
+        {userRole !== 'dealer' && (
+          <PrimaryButton onClick={addToCart}>
+            {!lotsInCart.some((checkedLot) => lot.id === checkedLot) ? `Add to cart` : `Remove`}
+          </PrimaryButton>
+        )}
       </PartOrderInfo>
     </StyledCard>
   );

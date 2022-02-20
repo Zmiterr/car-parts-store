@@ -1,11 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Container } from '../../shared/styled/containers/Container';
 import Part from './Components/Part/Part';
 import Search from './Components/Search/Search';
 import { getLots } from '../../store/lots/lotsActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { LotInterface } from '../../store/lots/types';
+import { CompareButtonArea } from './styles';
+import { RouteNames } from '../../router';
 
 const Parts: FC = () => {
   const dispatch = useDispatch();
@@ -13,6 +16,7 @@ const Parts: FC = () => {
     dispatch(getLots());
   }, [dispatch]);
   const { lots } = useTypedSelector((state) => state.lots);
+  const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
   const [filteredLots, setFilteredLots] = useState(lots);
 
   useEffect(() => {
@@ -25,6 +29,13 @@ const Parts: FC = () => {
       {filteredLots.map((lot: LotInterface) => (
         <Part key={lot.id} lot={lot} />
       ))}
+      {lotsToCompare.length > 1 && (
+        <CompareButtonArea>
+          <Link to={RouteNames.COMPARE}>
+            <div className="compare-button"> Compare</div>
+          </Link>
+        </CompareButtonArea>
+      )}
     </Container>
   );
 };
