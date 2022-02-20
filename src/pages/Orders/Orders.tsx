@@ -10,6 +10,7 @@ import { getLots } from '../../store/lots/lotsActions';
 const Orders: FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
+    // TODO make get only dealer orders
     dispatch(getOrders());
     dispatch(getLots());
   }, [dispatch]);

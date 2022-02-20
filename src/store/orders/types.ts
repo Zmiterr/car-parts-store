@@ -10,6 +10,7 @@ export interface OrderInterface {
   dealerFirstName: string;
   dealerLastName: string;
   location: string | null;
+  orderDate: string;
 }
 
 export enum OrdersActionsType {
