@@ -16,15 +16,13 @@ const Orders: FC = () => {
 
   const orders = useTypedSelector((state) => state.orders.orders);
   const lots = useTypedSelector((state) => state.lots.lots);
-  const lotsIdArray = lots.map((lot) => lot.id);
-  const lotsData = lots.filter((lot) => lotsIdArray.includes(lot.id));
 
   return (
     <Container>
       <PageHeader>
         <h2>Orders</h2>
       </PageHeader>
-      {orders && orders.map((order) => <Order key={order.id} order={order} lotsData={lotsData} />)}
+      {orders && orders.map((order) => <Order key={order.id} order={order} lotsData={lots} />)}
     </Container>
   );
 };
