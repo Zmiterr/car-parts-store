@@ -37,7 +37,7 @@ const ConfirmSuccessModal: FC<ConfirmSuccessModalProps> = ({ open, handleClose }
         <H2>Success!!!</H2>
         <p>You have finished internship</p>
         <br />
-        <Link to={RouteNames.PARTS} onClick={handleClose}>
+        <Link to={RouteNames.CUSTOMER_LOTS} onClick={handleClose}>
           <PrimaryButton>Go to shopping</PrimaryButton>
         </Link>
       </Box>
