@@ -40,16 +40,13 @@ export const defaultRoutes: RoutesInterface[] = [
   { path: RouteNames.LOGIN, exact: true, component: Login, readableName: '' },
   { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
   { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
-  { path: RouteNames.COMPARE, exact: true, component: LotsCompare, readableName: 'Compare' },
+  { path: RouteNames.COMPARE, exact: true, component: LotsCompare, readableName: '' },
   {
     path: RouteNames.ORDER_CONFIRM,
     exact: true,
     component: OrderConfirm,
     readableName: '',
   },
-  // { path: RouteNames.CART, exact: true, component: Cart, readableName: '' },
-  // { path: RouteNames.PROFILE, exact: true, component: Profile, readableName: '' },
-  // { path: RouteNames.MY_LOTS, exact: true, component: MyLots, readableName: 'My lots' },
 ];
 export const publicRoutes: RoutesInterface[] = [
   { path: RouteNames.CHAT, exact: true, component: Chat, readableName: '' },
