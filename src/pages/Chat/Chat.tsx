@@ -4,31 +4,10 @@ import { PageHeader } from '../../shared/styled/headers/PageHeader';
 import { ChatContainer, ChatList, Main, ChatSearch, Messages, InputArea } from './styles';
 import ChatRoom from './ChatRoom/ChatRoom';
 import Message from './Message/Message';
-
-const mockMessages = [
-  {
-    author: 'Me',
-    time: 1644783821596,
-    messageText:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget\n' +
-      '                dolor.',
-  },
-
-  {
-    author: 'Ivan',
-    time: 1644783835586,
-    messageText:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget\n' +
-      '                dolor.',
-  },
-  {
-    author: 'Me',
-    time: 1644783839586,
-    messageText: 'Done',
-  },
-];
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 const Chat: FC = () => {
+  const messages = useTypedSelector((state) => state.messages.messages);
   return (
     <Container>
       <PageHeader>
@@ -41,7 +20,7 @@ const Chat: FC = () => {
         </ChatList>
         <Main>
           <Messages>
-            {mockMessages.map((message) => (
+            {messages.map((message) => (
               <Message
                 key={message.time + message.author}
                 author={message.author}

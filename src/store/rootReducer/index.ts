@@ -5,6 +5,7 @@ import lotsReducer from '../lots/lotsReducer';
 import partsReducer from '../parts/partsReducer';
 import userReducer from '../user/userReducer';
 import ordersReducer from '../orders/ordersReducer';
+import messagesReducer from '../messages/messagesReducer';
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -12,6 +13,7 @@ export const rootReducer = combineReducers({
   lots: lotsReducer,
   user: userReducer,
   orders: ordersReducer,
+  messages: messagesReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
