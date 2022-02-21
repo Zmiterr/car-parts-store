@@ -9,6 +9,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { LotInterface } from '../../store/lots/types';
 import { CompareButtonArea } from './styles';
 import { RouteNames } from '../../router';
+import { AuthSuggestModal } from './Components/AuthSuggestModal';
 
 const Parts: FC = () => {
   const dispatch = useDispatch();
@@ -23,11 +24,13 @@ const Parts: FC = () => {
     setFilteredLots(lots);
   }, [lots]);
 
+  const [isOpenAuthSuggestModal, setIsOpenAuthSuggestModal] = useState<boolean>(false);
+
   return (
     <Container>
       <Search setFilteredLots={setFilteredLots} lots={lots} />
       {filteredLots.map((lot: LotInterface) => (
-        <Part key={lot.id} lot={lot} />
+        <Part key={lot.id} lot={lot} setIsOpenAuthSuggestModal={setIsOpenAuthSuggestModal} />
       ))}
       {lotsToCompare.length > 1 && (
         <CompareButtonArea>
@@ -36,6 +39,10 @@ const Parts: FC = () => {
           </Link>
         </CompareButtonArea>
       )}
+      <AuthSuggestModal
+        isOpenAuthSuggestModal={isOpenAuthSuggestModal}
+        setIsOpenAuthSuggestModal={setIsOpenAuthSuggestModal}
+      />
     </Container>
   );
 };

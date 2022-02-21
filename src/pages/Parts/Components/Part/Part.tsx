@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -27,9 +27,10 @@ import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 
 interface PartPropsInterface {
   lot: LotInterface;
+  setIsOpenAuthSuggestModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const Part: FC<PartPropsInterface> = ({ lot }) => {
+const Part: FC<PartPropsInterface> = ({ lot, setIsOpenAuthSuggestModal }) => {
   const dispatch = useDispatch();
 
   const [isChecked, setIsChecked] = useState(false);
@@ -41,6 +42,9 @@ const Part: FC<PartPropsInterface> = ({ lot }) => {
 
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const addToCart = () => {
+    if (!localStorage.getItem('token')) {
+      setIsOpenAuthSuggestModal(true);
+    }
     const updateLotCart = !isAddedToCart ? addLotToCart : removeLotFromCart;
     dispatch(updateLotCart(lot.id));
     setIsAddedToCart(!isAddedToCart);

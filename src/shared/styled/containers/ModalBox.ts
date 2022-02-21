@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { ThemedStyledProps } from 'styled-components';
+
+interface PropsInterface extends ThemedStyledProps<any, any> {
+  transparent?: string;
+}
 
 export const ModalBox = styled.div`
   font-family: 'Roboto', sans-serif;
@@ -8,7 +12,8 @@ export const ModalBox = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
-  background-color: ${(props) => props.theme.colors.white};
+  background-color: ${(props: PropsInterface) =>
+    props.transparent ? props.transparent : props.theme.colors.white};
 `;
 
 export const CardBody = styled.div`
