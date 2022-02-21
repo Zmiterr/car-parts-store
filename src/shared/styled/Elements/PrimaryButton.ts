@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { ThemedStyledProps } from 'styled-components';
+
+interface PrimaryButtonProps extends ThemedStyledProps<any, any> {
+  color?: string;
+}
 
 export const PrimaryButton = styled.button`
   min-width: 80px;
@@ -14,7 +18,8 @@ export const PrimaryButton = styled.button`
   border-radius: 4px;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  background-color: ${(globalProps) => globalProps.theme.colors.success};
+  background-color: ${(globalProps: PrimaryButtonProps) =>
+    globalProps.color || globalProps.theme.colors.success};
   &:focus {
     text-decoration: none;
   }
