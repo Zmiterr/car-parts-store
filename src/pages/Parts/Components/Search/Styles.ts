@@ -41,8 +41,9 @@ export const SearchContent = styled.div`
 `;
 
 export const SearchForm = styled.div`
-  display: inline-block;
+  display: flex;
   margin-right: 40px;
+  margin-bottom: 10px;
   text-align: center;
   width: 100%;
 `;

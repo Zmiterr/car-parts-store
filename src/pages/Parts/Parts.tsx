@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import haversine from 'haversine';
 import { Container } from '../../shared/styled/containers/Container';
 import Part from './Components/Part/Part';
 import Search from './Components/Search/Search';
@@ -10,6 +11,7 @@ import { LotInterface } from '../../store/lots/types';
 import { CompareButtonArea } from './styles';
 import { RouteNames } from '../../router';
 import { AuthSuggestModal } from './Components/AuthSuggestModal';
+import { useCurrentLocation } from '../../hooks/useCurrentLocation';
 
 const Parts: FC = () => {
   const dispatch = useDispatch();
@@ -26,9 +28,27 @@ const Parts: FC = () => {
 
   const [isOpenAuthSuggestModal, setIsOpenAuthSuggestModal] = useState<boolean>(false);
 
+  const { getLocation, currentPosition } = useCurrentLocation();
+  const handleNearMeClick = async () => {
+    getLocation();
+  };
+  const currentPositionArr = currentPosition.split('-');
+  const start = {
+    latitude: Number(currentPositionArr[0]),
+    longitude: Number(currentPositionArr[0]),
+  };
+
+  const end = {
+    latitude: 27.950575,
+    longitude: -82.457178,
+  };
+
+  const harvesterDistance = haversine(start, end);
+  console.log(harvesterDistance);
+
   return (
     <Container>
-      <Search setFilteredLots={setFilteredLots} lots={lots} />
+      <Search setFilteredLots={setFilteredLots} lots={lots} handleNearMeClick={handleNearMeClick} />
       {filteredLots.map((lot: LotInterface) => (
         <Part key={lot.id} lot={lot} setIsOpenAuthSuggestModal={setIsOpenAuthSuggestModal} />
       ))}

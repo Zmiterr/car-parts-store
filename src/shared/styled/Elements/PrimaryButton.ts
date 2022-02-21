@@ -6,6 +6,7 @@ interface PrimaryButtonProps extends ThemedStyledProps<any, any> {
 
 export const PrimaryButton = styled.button`
   min-width: 80px;
+  width: auto;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;

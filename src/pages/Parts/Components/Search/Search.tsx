@@ -1,7 +1,7 @@
 import React, { FC, KeyboardEvent, ChangeEvent, useState } from 'react';
-
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
   SearchBody,
   SearchButton,
@@ -12,6 +12,8 @@ import {
   SearchNavigationItem,
 } from './Styles';
 import { LotInterface } from '../../../../store/lots/types';
+import { PrimaryButton } from '../../../../shared/styled/Elements/PrimaryButton';
+import { theme } from '../../../../theme/theme';
 
 enum SearchTabs {
   ByName = 'By name',
@@ -20,10 +22,11 @@ enum SearchTabs {
 
 interface SearchProps {
   setFilteredLots: (a: LotInterface[]) => void;
+  handleNearMeClick: () => void;
   lots: LotInterface[];
 }
 
-const Search: FC<SearchProps> = ({ lots, setFilteredLots }) => {
+const Search: FC<SearchProps> = ({ lots, setFilteredLots, handleNearMeClick }) => {
   const [searchValue, setSearchValue] = useState('');
   const tabs: SearchTabs[] = [SearchTabs.ByName, SearchTabs.ByPartNumber];
   const [activeTab, setActiveTab] = useState(0);
@@ -51,6 +54,7 @@ const Search: FC<SearchProps> = ({ lots, setFilteredLots }) => {
       sendSearchRequest(event.target.value);
     }
   };
+
   return (
     <SearchBody>
       <SearchNavigation>
@@ -73,6 +77,9 @@ const Search: FC<SearchProps> = ({ lots, setFilteredLots }) => {
             <FontAwesomeIcon icon={faSearch} />
           </SearchButton>
         </SearchForm>
+        <PrimaryButton color={theme.colors.white} onClick={handleNearMeClick}>
+          Near me
+        </PrimaryButton>
       </SearchContent>
     </SearchBody>
   );
