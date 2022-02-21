@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import Login from '../pages/Login/Login';
 import Parts from '../pages/Parts/Parts';
-import Dealers from '../pages/Dealers/Dealers';
 import Chat from '../pages/Chat/Chat';
 import MyLots from '../pages/MyLots/MyLots';
 import Orders from '../pages/Orders/Orders';
@@ -39,7 +38,7 @@ export const defaultRoutes: RoutesInterface[] = [
   { path: RouteNames.MAIN, exact: true, component: Parts, readableName: '' },
   { path: RouteNames.LOGIN, exact: true, component: Login, readableName: '' },
   { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
-  { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
+  // { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
   { path: RouteNames.COMPARE, exact: true, component: LotsCompare, readableName: '' },
   {
     path: RouteNames.ORDER_CONFIRM,
@@ -49,7 +48,7 @@ export const defaultRoutes: RoutesInterface[] = [
   },
 ];
 export const publicRoutes: RoutesInterface[] = [
-  { path: RouteNames.CHAT, exact: true, component: Chat, readableName: '' },
+  { path: RouteNames.CHAT, exact: false, component: Chat, readableName: '' },
   { path: RouteNames.PROFILE, exact: true, component: Profile, readableName: '' },
 ];
 

@@ -19,7 +19,7 @@ export enum MessagesActionsType {
 
 export interface GetMessagesActionInterface extends Action<MessagesActionsType> {
   type: MessagesActionsType.SET_MESSAGES;
-  payload: MessageInterface[];
+  payload: MessageInterface;
 }
 
 export interface GeCustomerMessagesActionInterface extends Action<MessagesActionsType> {
