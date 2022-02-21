@@ -1,14 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
-import {
-  Placemark,
-  YMaps,
-  Map,
-  ZoomControl,
-  FullscreenControl,
-  GeolocationControl,
-  SearchControl,
-} from 'react-yandex-maps';
+import { Placemark, YMaps, Map, ZoomControl } from 'react-yandex-maps';
+import { PrimaryButton } from '../../../shared/styled/Elements/PrimaryButton';
 import { config } from '../../../config/config';
+import { MapWrapper } from '../Styles';
 
 const StoreLocation: FC = () => {
   const [place, setPlace] = useState([53.94544564913215, 27.774963676929314]);
@@ -37,25 +31,31 @@ const StoreLocation: FC = () => {
     setAddress(newAddress);
   };
 
+  const handleClickSaveLocation = () => {
+    console.log(place.join('-'));
+    // TODO dispatch?
+  };
   return (
-    <YMaps query={{ load: 'package.full', apikey: config.YANDEX_API_KEY }}>
-      <Map
-        width="90vh"
-        height="60vh"
-        defaultState={{
-          center: place,
-          zoom: 13,
-        }}
-        instanceRef={(inst) => inst?.events?.add('click', clickOnMap)}
-        onLoad={(maps) => setYmaps(maps)}
-      >
-        <Placemark geometry={place} properties={{ iconCaption: address }} />
-        <ZoomControl />
-        <FullscreenControl />
-        <SearchControl />
-        <GeolocationControl />
-      </Map>
-    </YMaps>
+    <MapWrapper>
+      <YMaps query={{ load: 'package.full', apikey: config.YANDEX_API_KEY }} className="ww">
+        <Map
+          width="60vw"
+          height="60vh"
+          defaultState={{
+            center: place,
+            zoom: 13,
+          }}
+          instanceRef={(inst) => inst?.events?.add('click', clickOnMap)}
+          onLoad={(maps) => setYmaps(maps)}
+        >
+          <Placemark geometry={place} properties={{ iconCaption: address }} />
+          <ZoomControl />
+        </Map>
+      </YMaps>
+      <div className="button-wrapper">
+        <PrimaryButton onClick={handleClickSaveLocation}>Where place me?</PrimaryButton>
+      </div>
+    </MapWrapper>
   );
 };
 
