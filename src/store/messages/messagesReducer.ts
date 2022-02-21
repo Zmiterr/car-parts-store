@@ -41,7 +41,11 @@ const initialState: MessagesStateInterface = {
 const messagesReducer = (state = initialState, action: MessagesActions): MessagesStateInterface => {
   switch (action.type) {
     case MessagesActionsType.SET_MESSAGES:
-      return { ...state, messages: action.payload, isLoading: false };
+      return <MessagesStateInterface>{
+        ...state,
+        messages: [...state.messages, action.payload],
+        isLoading: false,
+      };
     case MessagesActionsType.FETCH_MESSAGES_REQUEST:
       return { ...state, isLoading: true };
     case MessagesActionsType.FETCH_MESSAGES_ERROR:
