@@ -18,6 +18,10 @@ export const ChatList = styled.aside`
   vertical-align: top;
   border-right: 1px solid #dee2e6;
 
+  .char-room {
+    background-color: #d7d7d7;
+  }
+
   ul {
     padding-left: 0;
     margin: 0;

@@ -3,7 +3,7 @@ import socketIOClient from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import { Container } from '../../shared/styled/containers/Container';
 import { PageHeader } from '../../shared/styled/headers/PageHeader';
-import { ChatContainer, ChatList, Main, ChatSearch, Messages, InputArea } from './styles';
+import { ChatContainer, ChatList, Main, Messages, InputArea } from './styles';
 import ChatRoom from './ChatRoom/ChatRoom';
 import Message from './Message/Message';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
@@ -23,7 +23,7 @@ const Chat: FC = () => {
   }, []);
 
   useEffect(() => {
-    scrollRef.current.scrollIntoView(false);
+    scrollRef.current?.scrollIntoView(false);
   }, [messageText]);
   const dispatch = useDispatch();
 
@@ -70,7 +70,7 @@ const Chat: FC = () => {
       </PageHeader>
       <ChatContainer>
         <ChatList>
-          <ChatSearch />
+          {/* <ChatSearch /> */}
           <ChatRoom />
         </ChatList>
         <Main>
