@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export function stripeCardNumberValidation(cardNumber) {
+export function stripeCardNumberValidation(cardNumber: string): string {
   const regexPattern = {
     MASTERCARD: /^5[1-5][0-9]{1,}|^2[2-7][0-9]{1,}$/,
     VISA: /^4[0-9]{2,}$/,
@@ -21,7 +21,7 @@ export function stripeCardNumberValidation(cardNumber) {
   return 'Enter a valid Card';
 }
 
-export const stripeCardExpirValidation = (value) => {
+export const stripeCardExpirValidation = (value: string): string | undefined => {
   if (value) {
     if (/^(0[1-9]|1[0-2])\/[0-9]{2}$/i.test(value.trim())) {
       const today = new Date();
@@ -35,14 +35,15 @@ export const stripeCardExpirValidation = (value) => {
         ),
       );
       const visaValue = value.split('/');
-      const visaDate = new Date(`20${visaValue[1]}`, visaValue[0], 0);
+      const visaDate = new Date(Number(`20${visaValue[1]}`), Number(visaValue[0]), 0);
       return CurrentDate < moment(visaDate) ? undefined : 'Please enter valid date';
     }
     return 'Invalid date format';
   }
+  return 0;
 };
 
-export const textWithSpacesOnly = (value) => {
+export const textWithSpacesOnly = (value: string): string | undefined => {
   if (value) {
     if (/^[a-zA-Z ]*$/i.test(value)) {
       return undefined;
@@ -52,5 +53,7 @@ export const textWithSpacesOnly = (value) => {
   return undefined;
 };
 
-export const minLength = (min) => (value) =>
-  value && value.length < min ? `Must be 3 characters or more` : undefined;
+export const minLength =
+  (min: number) =>
+  (value: string): string | undefined =>
+    value && value.length < min ? `Must be 3 characters or more` : undefined;
