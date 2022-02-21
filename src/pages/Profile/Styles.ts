@@ -5,8 +5,8 @@ interface ComponentsPropsInterface {
 }
 
 export const UserAvatarImage = styled.div`
-  width: 360px;
-  height: 320px;
+  width: 260px;
+  height: 300px;
   background-image: url(${(props: ComponentsPropsInterface) => props.image});
   background-size: cover;
   margin: 1rem;

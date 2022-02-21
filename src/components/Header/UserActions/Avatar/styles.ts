@@ -1,8 +1,11 @@
 import styled from 'styled-components';
-import avatar from '../../../../assets/images/user-avatar.jpg';
+
+interface UserAvatarProps {
+  avatarUrl: string;
+}
 
 export const Avatar = styled.div`
-  background-image: url(${avatar});
+  background-image: url(${(componentsProps: UserAvatarProps) => componentsProps.avatarUrl});
   background-color: #fff;
   background-position: center center;
   background-size: 40px 40px;

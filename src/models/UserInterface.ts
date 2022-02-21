@@ -14,4 +14,5 @@ export interface UserInterface {
   location: string;
   role: string;
   userData: UserDataInterface[];
+  avatarUrl: string;
 }

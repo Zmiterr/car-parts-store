@@ -9,6 +9,7 @@ export interface UserProfileDataInterface {
   email: string;
   role: string;
   location: string;
+  avatarUrl: string;
 }
 
 export enum UserActionsType {
