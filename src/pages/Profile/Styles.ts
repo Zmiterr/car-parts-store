@@ -25,15 +25,7 @@ export const MapWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  //width: 90vw;
-  //height: 60vh;
-  .ww {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 60vh;
-  }
+
   .button-wrapper {
     position: absolute;
     bottom: 0;

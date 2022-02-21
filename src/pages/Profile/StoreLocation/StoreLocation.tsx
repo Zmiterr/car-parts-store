@@ -37,7 +37,7 @@ const StoreLocation: FC = () => {
   };
   return (
     <MapWrapper>
-      <YMaps query={{ load: 'package.full', apikey: config.YANDEX_API_KEY }} className="ww">
+      <YMaps query={{ load: 'package.full', apikey: config.YANDEX_API_KEY }}>
         <Map
           width="60vw"
           height="60vh"
