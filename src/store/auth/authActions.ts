@@ -14,6 +14,7 @@ import { UserInterface } from '../../models/UserInterface';
 import AuthService from '../../api/AuthService';
 import UserService from '../../api/UserService';
 import { Auth } from '../../shared/constants/localstorage';
+import { userLoaded } from '../user/userActions';
 
 export const AuthActions = {
   checkAuth:
@@ -86,7 +87,8 @@ export const AuthActions = {
         Object.values(Auth).forEach((localStorageAuthKey) => {
           localStorage.removeItem(localStorageAuthKey);
         });
-        // TODO clear all state
+
+        dispatch(userLoaded([]));
         dispatch(AuthActions.setAuth(false));
         dispatch(AuthActions.setUser({} as UserInterface));
         dispatch(AuthActions.setRole(''));

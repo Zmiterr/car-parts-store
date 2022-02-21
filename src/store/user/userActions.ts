@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
-import { UserActionsType, UserProfileDataInterface } from './types';
+import { GetUserActionInterface, UserActionsType, UserProfileDataInterface } from './types';
 import UserService from '../../api/UserService';
 
-const userLoaded = (data: UserProfileDataInterface[]) => ({
+const userLoaded = (data: UserProfileDataInterface[]): GetUserActionInterface => ({
   type: UserActionsType.GET_USER,
   payload: data,
 });
@@ -34,4 +34,4 @@ const updateUser =
     }
   };
 
-export { getUser, updateUser };
+export { getUser, updateUser, userLoaded };
