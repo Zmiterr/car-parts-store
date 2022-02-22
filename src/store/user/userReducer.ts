@@ -1,13 +1,13 @@
 import { UserActions, UserActionsType, UserProfileDataInterface } from './types';
 
 export interface UserStateInterface {
-  user: UserProfileDataInterface[] | null;
+  user: UserProfileDataInterface;
   isLoading: boolean;
   isError: boolean;
 }
 
 const initialState: UserStateInterface = {
-  user: [],
+  user: {} as UserProfileDataInterface,
   isLoading: false,
   isError: false,
 };

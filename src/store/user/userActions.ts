@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { GetUserActionInterface, UserActionsType, UserProfileDataInterface } from './types';
 import UserService from '../../api/UserService';
 
-const userLoaded = (data: UserProfileDataInterface[]): GetUserActionInterface => ({
+const userLoaded = (data: UserProfileDataInterface): GetUserActionInterface => ({
   type: UserActionsType.GET_USER,
   payload: data,
 });
@@ -16,7 +16,7 @@ const getUser =
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await UserService.getUserById(id);
     if (data) {
-      dispatch(userLoaded(data));
+      dispatch(userLoaded(data[0]));
     } else {
       dispatch(userError());
     }

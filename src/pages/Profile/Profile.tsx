@@ -17,6 +17,7 @@ import { getUser } from '../../store/user/userActions';
 import StoreLocation from './StoreLocation/StoreLocation';
 import { UserInterface } from '../../models/UserInterface';
 import UserAvatar from './UserInfo/UserAvatar/UserAvatar';
+import { UserProfileDataInterface } from '../../store/user/types';
 
 const Profile: FC = () => {
   const userId = useTypedSelector((state) => state.auth.user?.userData?.[0].id);
@@ -27,8 +28,8 @@ const Profile: FC = () => {
     dispatch(getUser(userId));
   }, [dispatch, userId]);
 
-  const user: UserInterface = useTypedSelector((state) =>
-    state.user.user ? state.user.user[0] : [],
+  const user: UserProfileDataInterface = useTypedSelector((state) =>
+    state.user.user ? state.user.user : ({} as UserInterface),
   );
 
   const getCurrentUserTabs = () => {
@@ -44,7 +45,7 @@ const Profile: FC = () => {
       <PageHeader>
         <h2>Profile</h2>
       </PageHeader>
-      {user && (
+      {Object.keys(user).length !== 0 && (
         <SearchBody>
           <SearchNavigation>
             {getCurrentUserTabs().map((tabName, index) => {
