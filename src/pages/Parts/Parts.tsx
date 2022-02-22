@@ -12,6 +12,7 @@ import { CompareButtonArea } from './styles';
 import { RouteNames } from '../../router';
 import { AuthSuggestModal } from './Components/AuthSuggestModal';
 import { useCurrentLocation } from '../../hooks/useCurrentLocation';
+import { sortArrayDescend } from '../../shared/utils/sortArrayAscend';
 
 const Parts: FC = () => {
   const dispatch = useDispatch();
@@ -27,25 +28,29 @@ const Parts: FC = () => {
   }, [lots]);
 
   const [isOpenAuthSuggestModal, setIsOpenAuthSuggestModal] = useState<boolean>(false);
-
+  // TODO get currentPosition well
   const { getLocation, currentPosition } = useCurrentLocation();
+
+  const stringCoordinatesToObject = (stringCoordinates: string) => {
+    const positionArr = stringCoordinates.split('-');
+    return {
+      latitude: Number(positionArr[0]),
+      longitude: Number(positionArr[0]),
+    };
+  };
+
+  const start = stringCoordinatesToObject(currentPosition);
+
   const handleNearMeClick = async () => {
     getLocation();
+    const nearMeLots = Object.values(lots).sort((a, b) =>
+      sortArrayDescend(
+        haversine(stringCoordinatesToObject(a.location), start),
+        haversine(stringCoordinatesToObject(b.location), start),
+      ),
+    );
+    setFilteredLots(nearMeLots);
   };
-  const currentPositionArr = currentPosition.split('-');
-  const start = {
-    latitude: Number(currentPositionArr[0]),
-    longitude: Number(currentPositionArr[0]),
-  };
-
-  const end = {
-    latitude: 27.950575,
-    longitude: -82.457178,
-  };
-
-  const harvesterDistance = haversine(start, end);
-  console.log(harvesterDistance);
-
   return (
     <Container>
       <Search setFilteredLots={setFilteredLots} lots={lots} handleNearMeClick={handleNearMeClick} />
