@@ -65,9 +65,9 @@ const Profile: FC = () => {
               {activeTab === 0 && <UserAvatar avatarUrl={user?.avatarUrl} />}
               <UserInfo>
                 {activeTab === 0 && user && <UserInfoForm user={user} />}
-                {activeTab === 1 && user && <SecurityForm />}
+                {activeTab === 1 && user && <SecurityForm userId={user.id} />}
               </UserInfo>
-              {activeTab === 2 && user.role === 'dealer' && <StoreLocation />}
+              {activeTab === 2 && user.role === 'dealer' && <StoreLocation userId={user.id} />}
             </StyledCard>
           </SearchContent>
         </SearchBody>

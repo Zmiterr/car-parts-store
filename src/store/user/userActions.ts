@@ -34,4 +34,17 @@ const updateUser =
     }
   };
 
-export { getUser, updateUser, userLoaded };
+const updateUserLocation =
+  (id: number, body: string) =>
+  async (dispatch: Dispatch): Promise<void> => {
+    const { data } = await UserService.updateUserLocation(id, body);
+    if (data) {
+      // TODO success message
+      console.log(data);
+    } else {
+      // TODO success message
+      dispatch(userError());
+    }
+  };
+
+export { getUser, updateUser, userLoaded, updateUserLocation };

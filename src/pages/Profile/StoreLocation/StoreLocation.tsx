@@ -1,10 +1,17 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Placemark, YMaps, Map, ZoomControl } from 'react-yandex-maps';
+import { useDispatch } from 'react-redux';
 import { PrimaryButton } from '../../../shared/styled/Elements/PrimaryButton';
 import { config } from '../../../config/config';
 import { MapWrapper } from '../Styles';
+import { updateUserLocation } from '../../../store/user/userActions';
 
-const StoreLocation: FC = () => {
+interface SecurityFormProps {
+  userId: number;
+}
+
+const StoreLocation: FC<SecurityFormProps> = ({ userId }) => {
+  const dispatch = useDispatch();
   const [place, setPlace] = useState([53.94544564913215, 27.774963676929314]);
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -32,8 +39,8 @@ const StoreLocation: FC = () => {
   };
 
   const handleClickSaveLocation = () => {
-    console.log(place.join('-'));
-    // TODO dispatch?
+    const coordinatesString = place.join('-');
+    dispatch(updateUserLocation(userId, coordinatesString));
   };
   return (
     <MapWrapper>

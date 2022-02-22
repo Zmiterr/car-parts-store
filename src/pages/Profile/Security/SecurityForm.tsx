@@ -5,7 +5,11 @@ import { Input, Submit } from '../../Login/Styles';
 import { AuthActions } from '../../../store/auth/authActions';
 import { UserDataInterface } from '../../../models/UserInterface';
 
-const SecurityForm: FC = () => {
+interface SecurityFormProps {
+  userId: number;
+}
+
+const SecurityForm: FC<SecurityFormProps> = ({ userId }) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -15,6 +19,7 @@ const SecurityForm: FC = () => {
   const onSubmit = (userData: UserDataInterface) => {
     dispatch(AuthActions.login(userData.login, userData.password));
   };
+  console.log(userId);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input placeholder="old password" {...register('oldPassword', { required: true })} />
@@ -28,8 +33,7 @@ const SecurityForm: FC = () => {
         {...register('repeatNewPassword', { required: true })}
       />
       {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
-      <Submit />
+      {errors.exampleRequired && <span>This field is required</span>} <Submit />
     </form>
   );
 };

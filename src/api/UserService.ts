@@ -25,6 +25,33 @@ export default class UserService {
     );
   }
 
+  static async updateUserLocation(id: number, body: string): Promise<AxiosResponse<string>> {
+    return StoreApi.put<string>(
+      `${process.env.SERVER}:${process.env.PORT}/users-location/${id}`,
+      body,
+    );
+  }
+
+  static async updateUserPayInfo(
+    id: number,
+    body: UserProfileDataInterface,
+  ): Promise<AxiosResponse<UserProfileDataInterface>> {
+    return StoreApi.put<UserProfileDataInterface>(
+      `${process.env.SERVER}:${process.env.PORT}/users-pay/${id}`,
+      body,
+    );
+  }
+
+  static async updateUserPassword(
+    id: number,
+    body: UserProfileDataInterface,
+  ): Promise<AxiosResponse<UserProfileDataInterface>> {
+    return StoreApi.put<UserProfileDataInterface>(
+      `${process.env.SERVER}:${process.env.PORT}/users-password/${id}`,
+      body,
+    );
+  }
+
   static async setUser(
     username: string,
     password: string,
