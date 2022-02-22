@@ -1,8 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { useHistory } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { H2 } from '../../shared/styled/headers/H2';
 import { StyledCard, CardBody } from '../../shared/styled/containers/Card';
 import { Input, Submit } from './Styles';
@@ -25,6 +26,7 @@ const Login: FC = () => {
   const dispatch = useDispatch();
   const [enterType, setEnterType] = useState<'login' | 'auth'>('login');
   const { isLoading, isAuth } = useTypedSelector((state) => state.auth);
+  const authError = useTypedSelector((state) => state.auth.error);
   const {
     register,
     handleSubmit,
@@ -38,6 +40,11 @@ const Login: FC = () => {
   };
   // TODO move to Actions
   if (isAuth) history.push('/profile');
+  const { enqueueSnackbar } = useSnackbar();
+  useEffect(() => {
+    if (authError) enqueueSnackbar(authError, { variant: 'error' });
+  }, [authError, enqueueSnackbar]);
+
   return (
     <StyledCard>
       <CardBody>

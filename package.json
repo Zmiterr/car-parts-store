@@ -114,6 +114,7 @@
     "dotenv": "^16.0.0",
     "haversine": "^1.1.1",
     "moment": "^2.29.1",
+    "notistack": "^2.0.3",
     "prop-types": "^15.7.2",
     "rc-slider": "^9.7.5",
     "react": "^17.0.2",
