@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Linkify from 'react-linkify';
 import { StyledMessage } from '../styles';
 
 interface MessageProps {
@@ -21,7 +22,9 @@ const Message: FC<MessageProps> = ({ messageText, author, time }) => {
       </div>
       <div className="triangle" />
       <div className="message">
-        <span>{messageText}</span>
+        <span>
+          <Linkify>{messageText}</Linkify>
+        </span>
       </div>
     </StyledMessage>
   );

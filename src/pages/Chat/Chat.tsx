@@ -44,7 +44,7 @@ const Chat: FC = () => {
   const handleKey = (e: KeyboardEvent) => {
     if (e.key === 'Enter') sendMessage();
   };
-  const sanitize = (receivedString: string) => {
+  const xxsProtect = (receivedString: string) => {
     return String(receivedString)
       .replace(/&(?!\w+;)/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -52,7 +52,7 @@ const Chat: FC = () => {
       .replace(/"/g, '&quot;');
   };
 
-  const urlify = (text: string) => {
+  /* const urlify = (text: string) => {
     let string = sanitize(text);
     const urls = string.match(/((((ftp|https?):\/\/)|(w{3}\.))[-\w@:%_+.~#?,&/=]+)/g);
     if (urls) {
@@ -61,7 +61,7 @@ const Chat: FC = () => {
       });
     }
     return string.replace('(', '<br/>(');
-  };
+  }; */
 
   return (
     <Container>
@@ -80,7 +80,7 @@ const Chat: FC = () => {
                 key={message.id}
                 author={message.author}
                 time={message.time}
-                messageText={urlify(message.messageText)}
+                messageText={xxsProtect(message.messageText)}
               />
             ))}
             <div style={{ float: 'left', clear: 'both' }} ref={scrollRef} />
