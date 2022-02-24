@@ -25,13 +25,17 @@ const Orders: FC<OrdersProps> = ({ lotsInCartId }) => {
 
   const total = lotsInCart.reduce((totalSum, lot) => totalSum + lot.price, 0);
 
-  const result = lotsInCart.reduce((map, obj) => {
+  const result = lotsInCart.reduce((map: any, obj) => {
     // TODO lodash reassign set
-    map[`${obj.firstName} ${obj.lastName}`] = map[`${obj.firstName} ${obj.lastName}`] || [];
-    map[`${obj.firstName} ${obj.lastName}`].push(obj);
+    if (`${obj.firstName} ${obj.lastName}` in map) {
+      map[`${obj.firstName} ${obj.lastName}`].push(obj);
+    } else {
+      const newArray = [];
+      newArray.push(obj);
+      map[`${obj.firstName} ${obj.lastName}`] = newArray;
+    }
     return map;
   }, {});
-
   const handleRemoveLotFromCart = (lotId: number) => {
     dispatch(removeLotFromCart(lotId));
   };
