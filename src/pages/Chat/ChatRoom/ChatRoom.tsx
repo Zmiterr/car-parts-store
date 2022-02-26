@@ -1,13 +1,28 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
+import { ChatListItem } from '../styles';
 
-const ChatRoom: FC = () => {
+interface ChatRoomProps {
+  id: number;
+  chatName: string;
+  chatImageUrl: string;
+  setActiveTabId: (id: number) => void;
+  addressId: number;
+}
+
+const ChatRoom: FC<ChatRoomProps> = ({ addressId, chatName, chatImageUrl, id, setActiveTabId }) => {
+  const handleClick = () => {
+    setActiveTabId(id);
+  };
   return (
-    <li className="char-room">
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="" />
-      <div>
-        <h2>Customer</h2>
-      </div>
-    </li>
+    <Link key={id} to={`chat/${id}`} onClick={handleClick}>
+      <ChatListItem isActiveTab={addressId === id}>
+        <img src={chatImageUrl} alt={chatName} />
+        <div>
+          <h2>{chatName}</h2>
+        </div>
+      </ChatListItem>
+    </Link>
   );
 };
 

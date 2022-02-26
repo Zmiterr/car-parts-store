@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { Container } from '../../shared/styled/containers/Container';
 import { PageHeader } from '../../shared/styled/headers/PageHeader';
 import { ChatContainer, ChatList, Main, Messages, InputArea } from './styles';
@@ -13,8 +14,24 @@ const PORT = 7000;
 const SERVER = 'localhost';
 const socket = socketIOClient(`http://${SERVER}:${PORT}`);
 
+const mockChatList = [
+  {
+    chatId: 1,
+    chatName: 'Nick Usaty',
+    chatImageUl:
+      'https://userstock.io/data/wp-content/uploads/2017/09/lesly-b-juarez-276953-300x300.jpg',
+  },
+  {
+    chatId: 2,
+    chatName: 'Sasha Garash',
+    chatImageUl:
+      'https://userstock.io/data/wp-content/uploads/2017/07/pexels-photo-26939-1-300x300.jpg',
+  },
+];
+
 const Chat: FC = () => {
   const [messageText, setMessageText] = useState<string>('');
+  const [activeTabId, setActiveTabId] = useState<number>(2);
 
   const scrollRef = useRef<HTMLElement>();
 
@@ -52,17 +69,8 @@ const Chat: FC = () => {
       .replace(/"/g, '&quot;');
   };
 
-  /* const urlify = (text: string) => {
-    let string = sanitize(text);
-    const urls = string.match(/((((ftp|https?):\/\/)|(w{3}\.))[-\w@:%_+.~#?,&/=]+)/g);
-    if (urls) {
-      urls.forEach((url) => {
-        string = string.replace(url, `<a target="_blank" href="${url}">${url}</a>`);
-      });
-    }
-    return string.replace('(', '<br/>(');
-  }; */
-
+  const { id } = useParams();
+  const addressId = Number(id);
   return (
     <Container>
       <PageHeader>
@@ -71,7 +79,16 @@ const Chat: FC = () => {
       <ChatContainer>
         <ChatList>
           {/* <ChatSearch /> */}
-          <ChatRoom />
+          {mockChatList.map((chat) => (
+            <ChatRoom
+              key={chat.chatName}
+              chatName={chat.chatName}
+              chatImageUrl={chat.chatImageUl}
+              id={chat.chatId}
+              setActiveTabId={setActiveTabId}
+              addressId={addressId}
+            />
+          ))}
         </ChatList>
         <Main>
           <Messages>

@@ -27,7 +27,7 @@ export enum RouteNames {
   CUSTOMER_LOTS = '/customer-lots',
   ORDERS = '/orders',
   CART = '/cart',
-  CHAT = '/chat',
+  CHAT = '/chat/:id',
   PROFILE = '/profile',
   COMPARE = '/compare',
   ORDER_CONFIRM = '/confirm',
