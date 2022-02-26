@@ -10,6 +10,7 @@ import Profile from '../pages/Profile/Profile';
 import LotsCompare from '../pages/LotCompare/LotsCompare';
 import OrderConfirm from '../pages/OrderConfirm/OrderConfirm';
 import CustomerOrders from '../pages/CustomerOrders/CustomerOrders';
+import LotsCard from '../pages/LotsCard/LotsCard';
 
 export interface RoutesInterface {
   path: string;
@@ -22,6 +23,7 @@ export enum RouteNames {
   MAIN = '/',
   LOGIN = '/login',
   PARTS = '/parts',
+  LOTS_CARD = '/lots-card/:id',
   DEALERS = '/dealers',
   MY_LOTS = '/my-lots',
   CUSTOMER_LOTS = '/customer-lots',
@@ -38,6 +40,7 @@ export const defaultRoutes: RoutesInterface[] = [
   { path: RouteNames.MAIN, exact: true, component: Parts, readableName: '' },
   { path: RouteNames.LOGIN, exact: true, component: Login, readableName: '' },
   { path: RouteNames.PARTS, exact: true, component: Parts, readableName: 'Parts' },
+  { path: RouteNames.LOTS_CARD, exact: false, component: LotsCard, readableName: '' },
   // { path: RouteNames.DEALERS, exact: true, component: Dealers, readableName: 'Dealers' },
   { path: RouteNames.COMPARE, exact: true, component: LotsCompare, readableName: '' },
   {

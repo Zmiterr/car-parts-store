@@ -9,6 +9,7 @@ import {
   TableRow,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { LotInterface } from '../../../store/lots/types';
 import { getLots } from '../../../store/lots/lotsActions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
@@ -26,6 +27,8 @@ const CompareTable: FC<CompareTableProps> = ({ lotsIdToCompare }: CompareTablePr
 
   const lotsToCompare = lots.filter((lot) => lotsIdToCompare.includes(lot.id));
 
+  const router = useHistory();
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -40,10 +43,21 @@ const CompareTable: FC<CompareTableProps> = ({ lotsIdToCompare }: CompareTablePr
         </TableHead>
         <TableBody>
           {lotsToCompare.map((lot: LotInterface) => (
-            <TableRow key={lot.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            <TableRow
+              key={lot.id}
+              sx={{
+                '&:last-child td, &:last-child th': { border: 0, cursor: 'pointer' },
+                'td, th': { cursor: 'pointer' },
+                'tr:hover': { background: 'gray' },
+              }}
+              className="table-row"
+              onClick={() => router.push(`/lots-card/${lot.id}`)}
+            >
+              {/* <NavLink key={lot.id} to={`${RouteNames.LOTS_CARD}/${lot.id}`}> */}
               <TableCell component="th" scope="row">
                 {lot.name}
               </TableCell>
+              {/* </NavLink> */}
               <TableCell align="right">{lot.name}</TableCell>
               <TableCell align="right">{lot.description}</TableCell>
               <TableCell align="right">{lot.condition}</TableCell>
