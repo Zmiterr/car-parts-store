@@ -23,7 +23,7 @@ export interface SubmitOrdersBodyInterface {
 
 const OrderConfirm: FC = () => {
   const dispatch = useDispatch();
-  const customerId = useTypedSelector((state) => state.user.user![0].id);
+  const customerId = useTypedSelector((state) => state.user.user.id);
   const orders = useTypedSelector((state) => state.lots.lotsInCart).join('-');
   const [payWay, setPayWay] = useState<string>(PayWay.CARD);
 
