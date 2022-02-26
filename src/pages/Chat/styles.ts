@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface ComponentsPropsInterface {
   myMessage: boolean;
@@ -7,6 +7,16 @@ interface ComponentsPropsInterface {
 export const ChatContainer = styled.div`
   display: flex;
   height: 70%;
+`;
+
+export const ChatListItem = styled.li`
+  background-color: #d7d7d7;
+  ${(props: { isActiveTab: boolean }) =>
+    props.isActiveTab &&
+    css`
+      background-color: ${(themeProps: { theme: { colors: { white: string } } }) =>
+        themeProps.theme.colors.white};
+    `}
 `;
 
 export const ChatList = styled.aside`
@@ -18,8 +28,10 @@ export const ChatList = styled.aside`
   vertical-align: top;
   border-right: 1px solid #dee2e6;
 
-  .char-room {
-    background-color: #d7d7d7;
+  img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
   }
 
   ul {
