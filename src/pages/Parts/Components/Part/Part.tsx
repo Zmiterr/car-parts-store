@@ -52,7 +52,7 @@ const Part: FC<PartPropsInterface> = ({ lot, setIsOpenAuthSuggestModal }) => {
 
   const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
   const lotsInCart = useTypedSelector((state) => state.lots.lotsInCart);
-  const userRole = useTypedSelector((state) => state.user.user?.[0]?.role);
+  const userRole = useTypedSelector((state) => state.user.user?.role);
 
   return (
     <StyledCard>
