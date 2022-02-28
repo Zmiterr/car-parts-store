@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const PartImage = styled.img`
-  width: 150px;
+  width: 110px;
+  height: 110px;
   //padding: 1rem;
 `;
 

@@ -45,7 +45,6 @@ const Lot: FC<PartPropsInterface> = ({ lot }) => {
           setAutocompleteData={setAutocompleteData}
           onSubmit={onSubmit}
         />
-
         <PartImage src={lot.photoUrl || lot.defaultImageUrl} alt="text" />
         <LotName>{lot.name}</LotName>
         <LotName>{lot.condition}</LotName>

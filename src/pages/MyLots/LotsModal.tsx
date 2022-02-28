@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
   FormControlLabel,
   Modal,
@@ -9,6 +9,8 @@ import {
 } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import Autocomplete from '@mui/material/Autocomplete';
+import { Button } from '@mui/material';
+import ReactFileReader from 'react-file-reader';
 import { ModalBox } from '../../shared/styled/containers/ModalBox';
 import { H2 } from '../../shared/styled/headers/H2';
 import { Input, Submit } from '../Login/Styles';
@@ -17,6 +19,7 @@ import { LotInterface } from '../../store/lots/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { PartsInterface } from '../../models/PartsInterface';
 import { sortArrayAscend } from '../../shared/utils/sortArrayAscend';
+import { LotImage } from './styles';
 
 interface LotsModalProps extends ModalPropsWithoutLots {
   lot: LotInterface;
@@ -49,9 +52,14 @@ export const LotsModal: FC<ModalPropsLots> = ({
       description: lot?.description,
       price: lot?.price,
       condition: lot?.condition,
+      defaultImageUrl: lot?.defaultImageUrl,
     },
   });
-
+  const imageUrl = lot.defaultImageUrl;
+  const [image, setImage] = useState<string>(imageUrl);
+  const handleFiles = (files: { base64: React.SetStateAction<string> }) => {
+    setImage(files.base64);
+  };
   // const [autocompleteData, setAutocompleteData] = useState(null);
   return (
     <Modal
@@ -61,8 +69,12 @@ export const LotsModal: FC<ModalPropsLots> = ({
       onClose={handleClose}
     >
       <ModalBox>
-        <H2 id="modal-modal-title">Modal name</H2>
+        <H2 id="modal-modal-title">Lot info</H2>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <LotImage image={image} {...register('defaultImageUrl')} />
+          <ReactFileReader base64 handleFiles={handleFiles}>
+            <Button>Add lot image</Button>
+          </ReactFileReader>
           <Autocomplete
             id="parts-search"
             options={partsArray}
