@@ -2,7 +2,9 @@ import React, { FC, KeyboardEvent, ChangeEvent, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import {
+  BootstrapInput,
   SearchBody,
   SearchButton,
   SearchContent,
@@ -55,6 +57,14 @@ const Search: FC<SearchProps> = ({ lots, setFilteredLots, handleNearMeClick }) =
     }
   };
 
+  const [model, setModel] = React.useState<string>('');
+
+  const handleChange = (event: { target: { value: React.SetStateAction<string> } }) => {
+    setModel(event.target.value);
+  };
+  // TODO KISS it
+  const modelsList = Array.from(new Set(lots.map((lot) => lot.models).flat(3))).slice(0, -1);
+
   return (
     <SearchBody>
       <SearchNavigation>
@@ -80,6 +90,24 @@ const Search: FC<SearchProps> = ({ lots, setFilteredLots, handleNearMeClick }) =
         <PrimaryButton color={theme.colors.white} onClick={handleNearMeClick}>
           Near me
         </PrimaryButton>
+        <FormControl sx={{}}>
+          <InputLabel id="select">Model</InputLabel>
+          <Select
+            labelId="autowidth-label"
+            id="select-autowidth"
+            value={model}
+            autoWidth
+            label="Age"
+            input={<BootstrapInput />}
+            onChange={handleChange}
+          >
+            {modelsList.map((lot) => (
+              <MenuItem key={lot} value={lot}>
+                {lot}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </SearchContent>
     </SearchBody>
   );

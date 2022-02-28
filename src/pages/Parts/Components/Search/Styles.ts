@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { InputBase } from '@mui/material';
 
 export const SearchBody = styled.div`
   display: flex;
@@ -70,3 +71,26 @@ export const SearchButton = styled.button`
   padding-left: 10px;
   border-left: 1px solid #838690;
 `;
+
+export const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: 0,
+  },
+  '& .css-1uwzc1h-MuiSelect-select-MuiInputBase-input.MuiSelect-select': { height: 21 },
+  '& .MuiInputBase-input': {
+    marginLeft: 5,
+    borderRadius: 4,
+    minWidth: 80,
+    position: 'relative',
+    backgroundColor: 'white',
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '5px 26px 10px 12px',
+    transition: 'all, 1s',
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#969696',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}));
