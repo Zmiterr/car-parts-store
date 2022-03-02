@@ -3,9 +3,9 @@ import { DefaultTheme } from 'styled-components';
 const theme: DefaultTheme = {
   colors: {
     main: 'tomato',
-    primary: '#ff3c2d',
+    primary: '#DE4945',
     secondary: '#6c757d',
-    success: '#5b0',
+    success: '#69E091',
     info: '#17a2b8',
     warning: '#ffc107',
     primaryLight: '#fff0ef',
