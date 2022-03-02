@@ -31,7 +31,7 @@ const mockChatList = [
 
 const Chat: FC = () => {
   const [messageText, setMessageText] = useState<string>('');
-  const [activeTabId, setActiveTabId] = useState<number>(2);
+  const [activeTabId, setActiveTabId] = useState<number>(1);
 
   const scrollRef = useRef<HTMLElement>();
 
@@ -110,14 +110,16 @@ const Chat: FC = () => {
               onChange={(e) => setMessageText(e.target.value)}
               onKeyDown={handleKey}
             />
-            <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png"
-              alt=""
-            />
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="" />
-            <button type="button" onClick={sendMessage}>
-              Send
-            </button>
+            <div className="controls">
+              <img
+                src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png"
+                alt=""
+              />
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="" />
+              <button type="button" onClick={sendMessage}>
+                Send
+              </button>
+            </div>
           </InputArea>
         </Main>
       </ChatContainer>

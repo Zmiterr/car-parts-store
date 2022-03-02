@@ -14,8 +14,8 @@ export const ChatListItem = styled.li`
   ${(props: { isActiveTab: boolean }) =>
     props.isActiveTab &&
     css`
-      background-color: ${(themeProps: { theme: { colors: { white: string } } }) =>
-        themeProps.theme.colors.white};
+      background-color: ${(themeProps: { theme: { colors: { gray: string } } }) =>
+        themeProps.theme.colors.gray};
     `}
 `;
 
@@ -156,7 +156,8 @@ export const StyledMessage = styled.li`
     display: inline-block;
     text-align: left;
     border-radius: 5px;
-    background-color: ${(props) => (props.myMessage ? `#58b666` : `#6fbced`)};
+    background-color: ${(props) =>
+      props.myMessage ? props.theme.colors.success : props.theme.colors.indigo};
   }
 
   h2,
@@ -176,7 +177,9 @@ export const StyledMessage = styled.li`
     border-width: 0 10px 10px 10px;
     border-color: transparent transparent
       ${(componentsProps: ComponentsPropsInterface) =>
-        componentsProps.myMessage ? `#58b666` : `#6fbced`}
+        componentsProps.myMessage
+          ? componentsProps.theme.colors.success
+          : componentsProps.theme.colors.indigo}
       transparent;
     margin-left: ${(componentsProps) => (componentsProps.myMessage ? `600px ` : `15px`)};
   }
@@ -209,6 +212,10 @@ export const InputArea = styled.div`
     &::placeholder {
       color: #ddd;
     }
+  }
+
+  .controls {
+    display: flex;
   }
 
   img {
