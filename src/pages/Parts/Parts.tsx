@@ -11,8 +11,8 @@ import { LotInterface } from '../../store/lots/types';
 import { CompareButtonArea } from './styles';
 import { RouteNames } from '../../router';
 import { AuthSuggestModal } from './Components/AuthSuggestModal';
-import { useCurrentLocation } from '../../hooks/useCurrentLocation';
 import { sortArrayDescend } from '../../shared/utils/sortArrayAscend';
+import { getLocation } from '../../shared/utils/location';
 
 const Parts: FC = () => {
   const dispatch = useDispatch();
@@ -22,14 +22,21 @@ const Parts: FC = () => {
   const { lots } = useTypedSelector((state) => state.lots);
   const lotsToCompare = useTypedSelector((state) => state.lots.lotsToCompare);
   const [filteredLots, setFilteredLots] = useState(lots);
+  const [currentPosition, setCurrentPosition] = useState<string>('');
 
   useEffect(() => {
     setFilteredLots(lots);
   }, [lots]);
 
+  useEffect(() => {
+    const getCurrentPosition = async () => {
+      const result = await getLocation();
+      setCurrentPosition(result);
+    };
+    getCurrentPosition();
+  });
+
   const [isOpenAuthSuggestModal, setIsOpenAuthSuggestModal] = useState<boolean>(false);
-  // TODO get currentPosition well
-  const { getLocation, currentPosition } = useCurrentLocation();
 
   const stringCoordinatesToObject = (stringCoordinates: string) => {
     const positionArr = stringCoordinates.split('-');
@@ -42,7 +49,6 @@ const Parts: FC = () => {
   const start = stringCoordinatesToObject(currentPosition);
 
   const handleNearMeClick = async () => {
-    getLocation();
     const nearMeLots = Object.values(lots).sort((a, b) =>
       sortArrayDescend(
         haversine(stringCoordinatesToObject(a.location), start),
