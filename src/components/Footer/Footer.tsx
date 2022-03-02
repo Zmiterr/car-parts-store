@@ -11,7 +11,6 @@ const Footer: FC = () => {
   return (
     <StyledFooter>
       <Container>
-        FOOTER
         <Navbar routes={routes} />
       </Container>
     </StyledFooter>
