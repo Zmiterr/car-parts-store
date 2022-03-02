@@ -10,8 +10,10 @@ import { theme } from '../../theme/theme';
 import Footer from '../Footer';
 import { StyledMain } from '../../shared/styled/containers/Main';
 import { AuthActions } from '../../store/auth/authActions';
+import useNotifier from '../../hooks/useNotifier';
 
 function App(): JSX.Element {
+  useNotifier();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(AuthActions.checkAuth());

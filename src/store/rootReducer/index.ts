@@ -6,6 +6,7 @@ import partsReducer from '../parts/partsReducer';
 import userReducer from '../user/userReducer';
 import ordersReducer from '../orders/ordersReducer';
 import messagesReducer from '../messages/messagesReducer';
+import notifyReducer from '../notifications/reducer';
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -14,6 +15,7 @@ export const rootReducer = combineReducers({
   user: userReducer,
   orders: ordersReducer,
   messages: messagesReducer,
+  notifier: notifyReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
