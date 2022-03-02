@@ -57,6 +57,7 @@ const Part: FC<PartPropsInterface> = ({ lot, setIsOpenAuthSuggestModal }) => {
   return (
     <StyledCard>
       <FormControlLabel
+        style={{ marginRight: '5px' }}
         control={<Checkbox icon={<BookmarkBorderIcon />} checkedIcon={<BookmarkIcon />} />}
         label=""
         checked={lotsToCompare.some((checkedLot) => lot.id === checkedLot)}
@@ -82,7 +83,7 @@ const Part: FC<PartPropsInterface> = ({ lot, setIsOpenAuthSuggestModal }) => {
           <span>{lot.price}$</span>
         </PartPrise>
         <PartLocation>
-          <SmallDescribe>Los-santos</SmallDescribe>
+          <SmallDescribe>{lot.locationString}</SmallDescribe>
         </PartLocation>
         <PartDealer>
           <span>

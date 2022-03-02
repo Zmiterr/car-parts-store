@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const PartImage = styled.img`
   width: 110px;
   height: 110px;
-  //padding: 1rem;
 `;
 
 export const PartSpecifications = styled.div`
@@ -24,6 +23,7 @@ export const PartSpecificationsAdditional = styled.div`
 export const PartOrderInfo = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   justify-content: space-around;
   padding: 1rem;
 `;

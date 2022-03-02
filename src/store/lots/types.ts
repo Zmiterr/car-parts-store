@@ -14,6 +14,7 @@ export interface LotInterface {
   firstName: string;
   lastName: string;
   location: string;
+  locationString: string;
 }
 
 export enum LotsActionsType {

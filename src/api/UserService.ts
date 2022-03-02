@@ -3,6 +3,7 @@ import { UserInterface } from '../models/UserInterface';
 import { UserSignUp } from './types';
 import StoreApi from './storeApi';
 import { UserProfileDataInterface } from '../store/user/types';
+import { SubmitCoordinatesInterface } from '../pages/Profile/StoreLocation/StoreLocation';
 
 export default class UserService {
   static async getUsers(): Promise<AxiosResponse<UserInterface[]>> {
@@ -25,7 +26,10 @@ export default class UserService {
     );
   }
 
-  static async updateUserLocation(id: number, body: string): Promise<AxiosResponse<string>> {
+  static async updateUserLocation(
+    id: number,
+    body: SubmitCoordinatesInterface,
+  ): Promise<AxiosResponse<string>> {
     return StoreApi.put<string>(
       `${process.env.SERVER}:${process.env.PORT}/users-location/${id}`,
       body,

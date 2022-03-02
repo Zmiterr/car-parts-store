@@ -10,6 +10,11 @@ interface SecurityFormProps {
   userId: number;
 }
 
+export interface SubmitCoordinatesInterface {
+  address: string;
+  coordinatesString: string;
+}
+
 const StoreLocation: FC<SecurityFormProps> = ({ userId }) => {
   const dispatch = useDispatch();
   const [place, setPlace] = useState([53.94544564913215, 27.774963676929314]);
@@ -40,7 +45,11 @@ const StoreLocation: FC<SecurityFormProps> = ({ userId }) => {
 
   const handleClickSaveLocation = () => {
     const coordinatesString = place.join('-');
-    dispatch(updateUserLocation(userId, coordinatesString));
+    const submitCoordinates = {
+      coordinatesString,
+      address,
+    };
+    dispatch(updateUserLocation(userId, submitCoordinates));
   };
   return (
     <MapWrapper>
@@ -60,7 +69,7 @@ const StoreLocation: FC<SecurityFormProps> = ({ userId }) => {
         </Map>
       </YMaps>
       <div className="button-wrapper">
-        <PrimaryButton onClick={handleClickSaveLocation}>Where place me?</PrimaryButton>
+        <PrimaryButton onClick={handleClickSaveLocation}>Save location</PrimaryButton>
       </div>
     </MapWrapper>
   );

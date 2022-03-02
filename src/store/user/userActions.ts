@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { GetUserActionInterface, UserActionsType, UserProfileDataInterface } from './types';
 import UserService from '../../api/UserService';
+import { SubmitCoordinatesInterface } from '../../pages/Profile/StoreLocation/StoreLocation';
 
 const userLoaded = (data: UserProfileDataInterface): GetUserActionInterface => ({
   type: UserActionsType.GET_USER,
@@ -35,7 +36,7 @@ const updateUser =
   };
 
 const updateUserLocation =
-  (id: number, body: string) =>
+  (id: number, body: SubmitCoordinatesInterface) =>
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await UserService.updateUserLocation(id, body);
     if (data) {
