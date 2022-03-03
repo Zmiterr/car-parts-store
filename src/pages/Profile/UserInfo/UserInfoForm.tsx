@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Input, Submit } from '../../Login/Styles';
 import { UserProfileDataInterface } from '../../../store/user/types';
-import UserService from '../../../api/UserService';
+import { updateUser } from '../../../store/user/userActions';
 
 type UserInfoFormProps = {
   user: UserProfileDataInterface;
@@ -26,7 +26,7 @@ const UserInfoForm: FC<UserInfoFormProps> = ({
     },
   });
   const onSubmit = (userData: UserProfileDataInterface) => {
-    dispatch(UserService.updateUser(id, userData));
+    dispatch(updateUser(id, userData));
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
