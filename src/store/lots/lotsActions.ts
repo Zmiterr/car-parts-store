@@ -10,6 +10,7 @@ import {
 import { lotsService } from '../../api/LotsService';
 import { SubmitBodyInterface } from '../../pages/MyLots/MyLots';
 import { sortArrayAscend } from '../../shared/utils/sortArrayAscend';
+import { infoNotify, successNotify } from '../notifications/notificationActions';
 
 const lotsLoaded = (data: LotInterface[]) => ({
   type: LotsActionsType.GET_LOTS,
@@ -38,6 +39,7 @@ const removeLot =
     const { status } = await lotsService.deleteLot(id);
     if (status === 200) {
       dispatch<any>(getLots());
+      dispatch(successNotify('Removed'));
     } else {
       dispatch(lotsError());
     }
@@ -50,6 +52,7 @@ const updateLot =
     if (data) {
       // TODO find type for action
       dispatch<any>(getLots());
+      dispatch(successNotify('Updated'));
     } else {
       dispatch(lotsError());
     }
@@ -61,6 +64,7 @@ const createLot =
     const { data } = await lotsService.createLot(payload);
     if (data) {
       dispatch<any>(getLots());
+      dispatch(infoNotify('Done'));
     } else {
       dispatch(lotsError());
     }

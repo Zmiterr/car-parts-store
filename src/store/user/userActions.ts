@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { GetUserActionInterface, UserActionsType, UserProfileDataInterface } from './types';
 import UserService from '../../api/UserService';
 import { SubmitCoordinatesInterface } from '../../pages/Profile/StoreLocation/StoreLocation';
-import { enqueueSnackbar } from '../notifications/notificationActions';
+import { successNotify } from '../notifications/notificationActions';
 
 const userLoaded = (data: UserProfileDataInterface): GetUserActionInterface => ({
   type: UserActionsType.GET_USER,
@@ -29,19 +29,8 @@ const updateUser =
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await UserService.updateUser(id, body);
     if (data) {
-      console.log(data);
-      // TODO find type for action
-      // TODO fix response error
       dispatch<any>(getUser(id));
-      dispatch(
-        enqueueSnackbar({
-          message: 'Saved',
-          options: {
-            key: new Date().getTime() + Math.random(),
-            variant: 'success',
-          },
-        }),
-      );
+      dispatch(successNotify('Saved'));
     } else {
       dispatch(userError());
     }
@@ -52,15 +41,7 @@ const updateUserLocation =
   async (dispatch: Dispatch): Promise<void> => {
     const { data } = await UserService.updateUserLocation(id, body);
     if (data) {
-      dispatch(
-        enqueueSnackbar({
-          message: data,
-          options: {
-            key: new Date().getTime() + Math.random(),
-            variant: 'success',
-          },
-        }),
-      );
+      dispatch(successNotify(data));
     } else {
       // TODO success message
       dispatch(userError());
