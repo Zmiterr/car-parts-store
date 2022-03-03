@@ -1,5 +1,5 @@
 import { bool } from 'prop-types';
-import { ENQUEUE_SNACKBAR, CLOSE_SNACKBAR, REMOVE_SNACKBAR } from './actions';
+import { ENQUEUE_SNACKBAR, CLOSE_SNACKBAR, REMOVE_SNACKBAR } from './notificationActions';
 
 export interface NotificationInterface {
   key: string;

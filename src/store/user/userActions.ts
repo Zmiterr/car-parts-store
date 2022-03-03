@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { GetUserActionInterface, UserActionsType, UserProfileDataInterface } from './types';
 import UserService from '../../api/UserService';
 import { SubmitCoordinatesInterface } from '../../pages/Profile/StoreLocation/StoreLocation';
-import { enqueueSnackbar } from '../notifications/actions';
+import { enqueueSnackbar } from '../notifications/notificationActions';
 
 const userLoaded = (data: UserProfileDataInterface): GetUserActionInterface => ({
   type: UserActionsType.GET_USER,

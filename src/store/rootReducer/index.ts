@@ -6,7 +6,7 @@ import partsReducer from '../parts/partsReducer';
 import userReducer from '../user/userReducer';
 import ordersReducer from '../orders/ordersReducer';
 import messagesReducer from '../messages/messagesReducer';
-import notifyReducer from '../notifications/reducer';
+import notifyReducer from '../notifications/notoficationReducer';
 
 export const rootReducer = combineReducers({
   auth: authReducer,

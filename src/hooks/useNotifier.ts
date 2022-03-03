@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import { removeSnackbar } from '../store/notifications/actions';
+import { removeSnackbar } from '../store/notifications/notificationActions';
 import { useTypedSelector } from './useTypedSelector';
 
 let displayed: [] = [];
