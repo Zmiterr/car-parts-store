@@ -22,6 +22,7 @@ export const PartSpecificationsAdditional = styled.div`
 
 export const PartOrderInfo = styled.div`
   display: flex;
+  max-width: 330px;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-around;
